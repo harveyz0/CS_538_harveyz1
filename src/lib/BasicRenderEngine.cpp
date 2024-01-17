@@ -1,4 +1,5 @@
 #include "BasicRenderEngine.hpp"
+#include <cmath>
 
 BasicRenderEngine::BasicRenderEngine(int windowWidth, int windowHeight) {
     // Store window width and height

@@ -12,17 +12,19 @@ set(CMAKE_PREFIX_PATH ${MASTER_DEPEND} ${CMAKE_PREFIX_PATH})
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(OpenGL_GL_PREFERENCE GLVND)
 
 #####################################
 # Find necessary libraries
 #####################################
 
+find_package(OpenGL REQUIRED)
 find_package(Vulkan REQUIRED)
 find_package(assimp REQUIRED)
 find_package(glfw3 3.3 REQUIRED) 
 find_package(GLEW REQUIRED)	
 
-add_definitions(-DGLEW_STATIC)
+#add_definitions(-DGLEW_STATIC)
 
 #####################################
 # Get general sources
@@ -40,8 +42,8 @@ file(GLOB GENERAL_SOURCES
 # and install targets
 #####################################
 
-set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew_s)
- 
+set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES})
+
 # RenderApp
 add_executable(BasicRenderApp ${GENERAL_SOURCES} "./src/app/BasicRenderApp.cpp")
 target_link_libraries(BasicRenderApp ${ALL_LIBRARIES})
