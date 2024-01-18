@@ -50,3 +50,10 @@ target_link_libraries(BasicRenderApp ${ALL_LIBRARIES})
 install(TARGETS BasicRenderApp RUNTIME DESTINATION bin/BasicRenderApp)
 install(DIRECTORY shaders/BasicRenderApp DESTINATION bin/BasicRenderApp/shaders)
 
+# PExercise01
+add_executable(PExercise01 ${GENERAL_SOURCES} "./src/app/PExercise01.cpp")
+target_link_libraries(PExercise01 ${ALL_LIBRARIES})
+install(TARGETS PExercise01 RUNTIME DESTINATION bin/PExercise01)
+install(DIRECTORY shaders/PExercise01 DESTINATION bin/PExercise01/shaders)
+
+
