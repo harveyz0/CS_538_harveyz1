@@ -48,3 +48,4 @@ target_link_libraries(BasicRenderApp ${ALL_LIBRARIES})
 install(TARGETS BasicRenderApp RUNTIME DESTINATION bin/BasicRenderApp)
 install(DIRECTORY shaders/BasicRenderApp DESTINATION bin/BasicRenderApp/shaders)
 
+
