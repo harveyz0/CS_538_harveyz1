@@ -5,6 +5,8 @@ set(CMAKE_INSTALL_PREFIX .)
 
 set(MASTER_DEPEND "E:/Dependencies" CACHE PATH "Set this if necessary to your directory for dependencies.")	
 set(CMAKE_PREFIX_PATH ${MASTER_DEPEND} ${CMAKE_PREFIX_PATH})
+set(CMAKE_BUILD_TYPE Debug)
+
 
 #####################################
 # Require C++17
@@ -45,8 +47,12 @@ file(GLOB GENERAL_SOURCES
 set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES})
 
 # RenderApp
-add_executable(BasicRenderApp ${GENERAL_SOURCES} "./src/app/BasicRenderApp.cpp")
-target_link_libraries(BasicRenderApp ${ALL_LIBRARIES})
-install(TARGETS BasicRenderApp RUNTIME DESTINATION bin/BasicRenderApp)
-install(DIRECTORY shaders/BasicRenderApp DESTINATION bin/BasicRenderApp/shaders)
+#add_executable(BasicRenderApp ${GENERAL_SOURCES} "./src/app/BasicRenderApp.cpp")
+#target_link_libraries(BasicRenderApp ${ALL_LIBRARIES})
+#install(TARGETS BasicRenderApp RUNTIME DESTINATION bin/BasicRenderApp)
+#install(DIRECTORY shaders/BasicRenderApp DESTINATION bin/BasicRenderApp/shaders)
 
+add_executable(Assign01 ${GENERAL_SOURCES} "./src/app/Assign01.cpp")
+target_link_libraries(Assign01 ${ALL_LIBRARIES})
+install(TARGETS Assign01 RUNTIME DESTINATION bin/Assign01)
+install(DIRECTORY shaders/Assign01 DESTINATION bin/Assign01/shaders)

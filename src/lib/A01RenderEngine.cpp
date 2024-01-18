@@ -1,77 +1,80 @@
-#include "BasicRenderEngine.hpp"
+#include "box.hpp"
+#include "A01RenderEngine.hpp"
 #include <cmath>
 
-BasicRenderEngine::BasicRenderEngine(int windowWidth, int windowHeight) {
+A01RenderEngine::A01RenderEngine(int windowWidth, int windowHeight) {
     // Store window width and height
     // We assume RGB for the format (so 3 components)
     this->windowWidth = windowWidth;
     this->windowHeight = windowHeight;
     this->nrComponents = 3;
+    this->currentBox = new Box(0, 0, 255, 255);
+    cout << "currentBox " << this->currentBox->bottomLeftX << " Y " << this->currentBox->bottomLeftY << endl;
 
-    // Create drawing buffer and a "screen" buffer 
+    // Create drawing buffer and a "screen" buffer
     // (as if we were transmitting information to the display device)
     this->totalBufferSize = windowWidth*windowHeight*nrComponents;
-    this->frontBuffer = new unsigned char[totalBufferSize];     
+    this->frontBuffer = new unsigned char[totalBufferSize];
     this->screenBuffer = new unsigned char[totalBufferSize];
-    clearBuffer(this->frontBuffer, 0, 0, 0);    
+    clearBuffer(this->frontBuffer, 0, 0, 0);
     clearBuffer(this->screenBuffer, 0, 0, 0);
 
     // Generate window texture
-    glGenTextures(1, &windowTextureID);    
+    glGenTextures(1, &windowTextureID);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    
+
     glBindTexture(GL_TEXTURE_2D, windowTextureID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, windowWidth, windowHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, screenBuffer);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    
+
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-BasicRenderEngine::~BasicRenderEngine() { 
+A01RenderEngine::~A01RenderEngine() {
     // Clean up buffer(s)
-    delete [] frontBuffer;  
-    delete [] screenBuffer;  
+    delete [] frontBuffer;
+    delete [] screenBuffer;
     frontBuffer = 0;
     screenBuffer = 0;
-    
-    // Clean up texture    
+
+    // Clean up texture
     glBindTexture(GL_TEXTURE_2D, 0);
     glDeleteTextures(1, &(windowTextureID));
     windowTextureID = 0;
 }
 
-void BasicRenderEngine::renderToWindowTexture() {    
+void A01RenderEngine::renderToWindowTexture() {
     // FOR NOW, just draw the frame here
     drawOneFrame();
 
-    // Activate screen texture    
+    // Activate screen texture
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, windowTextureID);
 
-    // Simulate buffer to screen transfer    
-    for(int i = 0; i < totalBufferSize; i++) {        
+    // Simulate buffer to screen transfer
+    for(int i = 0; i < totalBufferSize; i++) {
         screenBuffer[i] = frontBuffer[i];
     }
-        
+
     // Copy in screen buffer to texture
-    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, windowWidth, windowHeight, 
-                    GL_RGB, GL_UNSIGNED_BYTE, screenBuffer); 	
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, windowWidth, windowHeight,
+                    GL_RGB, GL_UNSIGNED_BYTE, screenBuffer);
 }
 
-void BasicRenderEngine::clearBuffer(unsigned char *buffer, 
+void A01RenderEngine::clearBuffer(unsigned char *buffer,
                                     unsigned char r,
                                     unsigned char g,
                                     unsigned char b) {
     for(int i = 0; i < totalBufferSize; i += nrComponents) {
         buffer[i] = r;
         buffer[i+1] = g;
-        buffer[i+2] = b;        
+        buffer[i+2] = b;
     }
 }
 
-void BasicRenderEngine::drawOneFrame() {
+void A01RenderEngine::drawOneFrame() {
     // Timing code from: https://www.learncpp.com/cpp-tutorial/timing-your-code/
     using Clock = std::chrono::steady_clock;
 	using Second = std::chrono::duration<double, std::ratio<1> >;
@@ -93,10 +96,12 @@ void BasicRenderEngine::drawOneFrame() {
     // Draw our items
     // EXAMPLE: Just draw a red column that moves every frame
     int colWidth = 200;
-    int colInc = 1;
-    drawAABox(drawBuffer, currentCol, 0, (currentCol+colWidth), windowHeight-1,
-                255, 0, 0);
+    int colInc = 0;
+    drawAABox(drawBuffer, currentBox,
+    //drawAABox(drawBuffer, currentCol, 0, currentCol+currentCol, currentCol+currentCol,
+                128, 128, 0);
     currentCol = (currentCol+colInc)%windowWidth;
+    currentBox->MoveObject(1, 1, windowWidth, windowHeight);
 
     // Get elapsed time
     double elapsed = chrono::duration_cast<Second>(Clock::now() - startTime).count();
@@ -108,7 +113,7 @@ void BasicRenderEngine::drawOneFrame() {
     int possibleFPS = (int)(round(1.0/elapsed));
 
     // Overtime?
-    if(waitTime < 0) {            
+    if(waitTime < 0) {
         waitTime = 0;
     }
 
@@ -116,29 +121,40 @@ void BasicRenderEngine::drawOneFrame() {
     cout << "POSSIBLE FPS: " << possibleFPS << "; TIME (SECONDS): " << elapsed << endl;
 
     // Wait extra time
-    this_thread::sleep_for(chrono::milliseconds((long)round(waitTime*1000)));    
+    this_thread::sleep_for(chrono::milliseconds((long)round(waitTime*1000)));
 }
 
-void BasicRenderEngine::drawAABox(  unsigned char* buffer,
-                                    int sx, int sy, 
-                                    int ex, int ey,
+void A01RenderEngine::drawAABox(  unsigned char* buffer,
+                                    Box *box,
                                     unsigned char r,
                                     unsigned char g,
                                     unsigned char b) {
 
-    int w = ex - sx + 1;
-    int h = ey - sy + 1;
-    int index = nrComponents*(windowWidth*sy + sx);
+//    int w = ex - sx + 1;
+//    int h = ey - sy + 1;
+    int index = nrComponents*(windowWidth*box->bottomLeftY + box->bottomLeftX);
     int lineWidth = windowWidth*nrComponents;
 
-    for(int y = sy; y <= ey && y < windowHeight; y++) {
+    for(int y = box->bottomLeftY; y <= box->bottomLeftY + box->width && y < windowWidth; ++y){
         int startCol = index;
-        for(int x = sx; x <= ex && x < windowWidth; x++) {
+        for(int x = box->bottomLeftX; x < box->bottomLeftX + box->height && x < windowWidth; ++x){
             buffer[index] = r;
             buffer[index+1] = b;
             buffer[index+2] = g;
             index += nrComponents;
         }
         index = startCol + lineWidth;
-    } 
+    }
+
+
+//    for(int y = sy; y <= ey && y < windowHeight; y++) {
+//        int startCol = index;
+//        for(int x = sx; x <= ex && x < windowWidth; x++) {
+//            buffer[index] = r;
+//            buffer[index+1] = b;
+//            buffer[index+2] = g;
+//            index += nrComponents;
+//        }
+//        index = startCol + lineWidth;
+//    }
 }

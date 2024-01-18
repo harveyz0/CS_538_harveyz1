@@ -7,11 +7,13 @@
 #include <chrono>
 #include <mutex>
 #include <cmath>
-#include <GL/glew.h>					
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "box.hpp"
 using namespace std;
 
-class BasicRenderEngine {
+
+class A01RenderEngine {
     private:
         // Data for display buffer
         unsigned int windowTextureID = 0;
@@ -22,27 +24,29 @@ class BasicRenderEngine {
         int nrComponents = 3;
         int totalBufferSize = 0;
 
-        // BONUS    
-        int currentCol = 0;
+        // BONUS
+        int currentCol = 100;
+  Box *currentBox = new Box(1, 1, 1, 1);
 
         // Internal drawing functions
-        void clearBuffer(   unsigned char *buffer, 
+        void clearBuffer(   unsigned char *buffer,
                             unsigned char r,
                             unsigned char g,
                             unsigned char b);
-        void drawOneFrame();    
+        void drawOneFrame();
         void drawAABox( unsigned char *buffer,
-                        int sx, int sy, 
-                        int ex, int ey,
+                        Box *box,
                         unsigned char r,
                         unsigned char g,
                         unsigned char b);
-        
+
     public:
-        BasicRenderEngine(int windowWidth, int windowHeight);
-        ~BasicRenderEngine();  
-        // Copies display buffer to window texture  
+        A01RenderEngine(int windowWidth, int windowHeight);
+        ~A01RenderEngine();
+        // Copies display buffer to window texture
         void renderToWindowTexture();
 };
+
+
 
 #endif

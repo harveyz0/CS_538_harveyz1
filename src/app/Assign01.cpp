@@ -11,7 +11,8 @@
 #include "MeshGLData.hpp"
 #include "GLSetup.hpp"
 #include "Shader.hpp"
-#include "BasicRenderEngine.hpp"
+#include "A01RenderEngine.hpp"
+#include "box.hpp"
 using namespace std;
 using namespace tinyxml2;
 
@@ -159,7 +160,7 @@ int main(int argc, char **argv) {
 
 	// GLFW setup
 	// Switch to 4.1 if necessary for macOS
-	GLFWwindow* window = setupGLFW("BasicRenderApp", 4, 3, windowWidth, windowHeight, DEBUG_MODE);
+	GLFWwindow* window = setupGLFW("Assign01: harveyz1", 4, 3, windowWidth, windowHeight, DEBUG_MODE);
 
 	// GLEW setup
 	setupGLEW(window);
@@ -194,8 +195,8 @@ int main(int argc, char **argv) {
 	GLuint programID = 0;
 	try {		
 		// Load vertex shader code and fragment shader code
-		string vertexCode = readFileToString("./shaders/BasicRenderApp/Quad.vs");
-		string fragCode = readFileToString("./shaders/BasicRenderApp/Quad.fs");
+		string vertexCode = readFileToString("./shaders/Assign01/Quad.vs");
+		string fragCode = readFileToString("./shaders/Assign01/Quad.fs");
 
 		// Print out shader code, just to check
 		if(DEBUG_MODE) printShaderCode(vertexCode, fragCode);
@@ -224,7 +225,7 @@ int main(int argc, char **argv) {
 	glEnable(GL_DEPTH_TEST);
 
     // Create Basic Render Engine
-    BasicRenderEngine *engine = new BasicRenderEngine(windowWidth, windowHeight);
+    A01RenderEngine *engine = new A01RenderEngine(windowWidth, windowHeight);
 
 	while (!glfwWindowShouldClose(window)) {
 		// Set viewport size
