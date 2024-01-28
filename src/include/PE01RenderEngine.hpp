@@ -1,5 +1,4 @@
-#ifndef RENDER_ENGINE_H
-#define RENDER_ENGINE_H
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -50,5 +49,3 @@ class PE01RenderEngine {
         // Copies display buffer to window texture  
         void renderToWindowTexture();
 };
-
-#endif
