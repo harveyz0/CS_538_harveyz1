@@ -12,6 +12,9 @@ int main(){
     auto va = vf + vd;
 
     cout << "va " << va.x << " " << va.y << " " << va.z << " " << typeid(va).name() << endl;
+    // The previous line prints the following
+    // va 3 5 7 4Vec3IdE
+    // I have no idea what 4Vec3IdE means.
     return 0;
 }
 
