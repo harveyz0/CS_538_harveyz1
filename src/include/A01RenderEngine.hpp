@@ -26,7 +26,7 @@ class A01RenderEngine {
 
         // BONUS
         int currentCol = 100;
-  Box *currentBox = new Box(1, 1, 1, 1);
+        Box currentBox = Box(1, 1, 1, 1);
 
         // Internal drawing functions
         void clearBuffer(   unsigned char *buffer,
@@ -35,10 +35,13 @@ class A01RenderEngine {
                             unsigned char b);
         void drawOneFrame();
         void drawAABox( unsigned char *buffer,
-                        Box *box,
+                        const Box& box,
                         unsigned char r,
                         unsigned char g,
                         unsigned char b);
+
+    
+        Box getPoints(Box);
 
     public:
         A01RenderEngine(int windowWidth, int windowHeight);

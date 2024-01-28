@@ -53,13 +53,19 @@ set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GL
 #install(DIRECTORY shaders/BasicRenderApp DESTINATION bin/BasicRenderApp/shaders)
 
 # PExercise01
-add_executable(PExercise01 ${GENERAL_SOURCES} "./src/app/PExercise01.cpp")
-target_link_libraries(PExercise01 ${ALL_LIBRARIES})
-install(TARGETS PExercise01 RUNTIME DESTINATION bin/PExercise01)
-install(DIRECTORY shaders/PExercise01 DESTINATION bin/PExercise01/shaders)
+#add_executable(PExercise01 ${GENERAL_SOURCES} "./src/app/PExercise01.cpp")
+#target_link_libraries(PExercise01 ${ALL_LIBRARIES})
+#install(TARGETS PExercise01 RUNTIME DESTINATION bin/PExercise01)
+#install(DIRECTORY shaders/PExercise01 DESTINATION bin/PExercise01/shaders)
 
 
 add_executable(Assign01 ${GENERAL_SOURCES} "./src/app/Assign01.cpp")
 target_link_libraries(Assign01 ${ALL_LIBRARIES})
 install(TARGETS Assign01 RUNTIME DESTINATION bin/Assign01)
 install(DIRECTORY shaders/Assign01 DESTINATION bin/Assign01/shaders)
+
+
+#add_executable(tester ${GENERAL_SOURCES} "./src/lib/tester.cpp")
+#target_link_libraries(tester ${ALL_LIBRARIES})
+#install(TARGETS tester RUNTIME DESTINATION bin/tester)
+#install(DIRECTORY shaders/tester DESTINATION bin/tester/shaders)

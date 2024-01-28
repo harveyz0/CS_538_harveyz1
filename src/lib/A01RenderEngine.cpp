@@ -8,8 +8,7 @@ A01RenderEngine::A01RenderEngine(int windowWidth, int windowHeight) {
     this->windowWidth = windowWidth;
     this->windowHeight = windowHeight;
     this->nrComponents = 3;
-    this->currentBox = new Box(0, 0, 255, 255);
-    cout << "currentBox " << this->currentBox->bottomLeftX << " Y " << this->currentBox->bottomLeftY << endl;
+    this->currentBox = Box(100, 0, 255, 255);
 
     // Create drawing buffer and a "screen" buffer
     // (as if we were transmitting information to the display device)
@@ -31,6 +30,8 @@ A01RenderEngine::A01RenderEngine(int windowWidth, int windowHeight) {
 
     glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+
 
 A01RenderEngine::~A01RenderEngine() {
     // Clean up buffer(s)
@@ -87,6 +88,7 @@ void A01RenderEngine::drawOneFrame() {
     // Start time
     chrono::time_point<Clock> startTime = Clock::now();
 
+
     // Set drawing buffer
     unsigned char *drawBuffer = frontBuffer;
 
@@ -101,7 +103,7 @@ void A01RenderEngine::drawOneFrame() {
     //drawAABox(drawBuffer, currentCol, 0, currentCol+currentCol, currentCol+currentCol,
                 128, 128, 0);
     currentCol = (currentCol+colInc)%windowWidth;
-    currentBox->MoveObject(1, 1, windowWidth, windowHeight);
+    currentBox.MoveObject(1, 1, windowWidth, windowHeight);
 
     // Get elapsed time
     double elapsed = chrono::duration_cast<Second>(Clock::now() - startTime).count();
@@ -125,19 +127,19 @@ void A01RenderEngine::drawOneFrame() {
 }
 
 void A01RenderEngine::drawAABox(  unsigned char* buffer,
-                                    Box *box,
+                                    const Box& box,
                                     unsigned char r,
                                     unsigned char g,
                                     unsigned char b) {
 
 //    int w = ex - sx + 1;
 //    int h = ey - sy + 1;
-    int index = nrComponents*(windowWidth*box->bottomLeftY + box->bottomLeftX);
+    int index = nrComponents*(windowWidth*box.bottomLeftY + box.bottomLeftX);
     int lineWidth = windowWidth*nrComponents;
 
-    for(int y = box->bottomLeftY; y <= box->bottomLeftY + box->width && y < windowWidth; ++y){
+    for(int y = box.bottomLeftY; y <= box.bottomLeftY + box.width && y < windowWidth; ++y){
         int startCol = index;
-        for(int x = box->bottomLeftX; x < box->bottomLeftX + box->height && x < windowWidth; ++x){
+        for(int x = box.bottomLeftX; x < box.bottomLeftX + box.height && x < windowWidth; ++x){
             buffer[index] = r;
             buffer[index+1] = b;
             buffer[index+2] = g;
