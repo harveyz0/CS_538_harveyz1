@@ -3,7 +3,7 @@ project( Basic_CS_538 )
 
 set(CMAKE_INSTALL_PREFIX .)
 
-set(MASTER_DEPEND "E:/Dependencies" CACHE PATH "Set this if necessary to your directory for dependencies.")	
+set(MASTER_DEPEND "~/Dependencies" CACHE PATH "Set this if necessary to your directory for dependencies.")	
 set(CMAKE_PREFIX_PATH ${MASTER_DEPEND} ${CMAKE_PREFIX_PATH})
 
 #####################################
@@ -21,6 +21,7 @@ find_package(Vulkan REQUIRED)
 find_package(assimp REQUIRED)
 find_package(glfw3 3.3 REQUIRED) 
 find_package(GLEW REQUIRED)	
+find_package(doctest REQUIRED)
 
 add_definitions(-DGLEW_STATIC)
 
