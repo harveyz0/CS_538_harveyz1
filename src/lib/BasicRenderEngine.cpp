@@ -135,8 +135,8 @@ void BasicRenderEngine::drawAABox(  unsigned char* buffer,
         int startCol = index;
         for(int x = sx; x <= ex && x < windowWidth; x++) {
             buffer[index] = r;
-            buffer[index+1] = b;
-            buffer[index+2] = g;
+            buffer[index+1] = g;
+            buffer[index+2] = b;
             index += nrComponents;
         }
         index = startCol + lineWidth;
