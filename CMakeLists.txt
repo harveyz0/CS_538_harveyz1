@@ -49,6 +49,7 @@ file(GLOB GENERAL_SOURCES
 
 set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES}  doctest::doctest)
 
+ 
 # RenderApp
 #add_executable(BasicRenderApp ${GENERAL_SOURCES} "./src/app/BasicRenderApp.cpp")
 #target_link_libraries(BasicRenderApp ${ALL_LIBRARIES})
@@ -61,13 +62,6 @@ set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GL
 #install(TARGETS PExercise01 RUNTIME DESTINATION bin/PExercise01)
 #install(DIRECTORY shaders/PExercise01 DESTINATION bin/PExercise01/shaders)
 
-#add_executable(Assign01 ${GENERAL_SOURCES} "./src/app/Assign01.cpp")
-#target_link_libraries(Assign01 ${ALL_LIBRARIES})
-#install(TARGETS Assign01 RUNTIME DESTINATION bin/Assign01)
-#install(DIRECTORY shaders/Assign01 DESTINATION bin/Assign01/shaders)
-
-enable_testing()
-
 add_executable(tester ${GENERAL_SOURCES} "./src/lib/tester.cpp")
 target_link_libraries(tester ${ALL_LIBRARIES})
 #install(TARGETS tester RUNTIME DESTINATION bin/tester)
@@ -75,3 +69,28 @@ target_link_libraries(tester ${ALL_LIBRARIES})
 
 set_target_properties(tester PROPERTIES COMPILE_DEFINITIONS "TEST")
 doctest_discover_tests(tester)
+
+# Assign01
+# Uncomment these lines
+#add_executable(Assign01 ${GENERAL_SOURCES} "./src/app/Assign01.cpp")
+#target_link_libraries(Assign01 ${ALL_LIBRARIES})
+#install(TARGETS Assign01 RUNTIME DESTINATION bin/Assign01)
+#install(DIRECTORY shaders/Assign01 DESTINATION bin/Assign01/shaders)
+
+# PotatoRenderApp
+# Uncomment these lines
+#add_executable(PotatoRenderApp ${GENERAL_SOURCES} "./src/app/PotatoRenderApp.cpp")
+#target_link_libraries(PotatoRenderApp ${ALL_LIBRARIES})
+#install(TARGETS PotatoRenderApp RUNTIME DESTINATION bin/PotatoRenderApp)
+#install(DIRECTORY shaders/PotatoRenderApp DESTINATION bin/PotatoRenderApp/shaders)
+
+#####################################
+# TEST TARGETS
+#####################################
+
+enable_testing()
+
+add_executable(TestVec3 ${GENERAL_SOURCES} "./src/tests/TestVec3.cpp")
+target_link_libraries(TestVec3 ${ALL_LIBRARIES})
+set_target_properties(TestVec3 PROPERTIES COMPILE_DEFINITIONS "TEST")
+doctest_discover_tests(TestVec3)
