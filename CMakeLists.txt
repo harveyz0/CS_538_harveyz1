@@ -27,13 +27,15 @@ find_package(glfw3 3.3 REQUIRED)
 find_package(GLEW REQUIRED)	
 find_package(doctest REQUIRED)
 
+include(CTest)
+include(doctest)
 #add_definitions(-DGLEW_STATIC)
 
 #####################################
 # Get general sources
 #####################################
 
-include_directories("src/include" ${Vulkan_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS})
+include_directories("src/include" ${Vulkan_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${DOCTEST_INCLUDE_DIR})
 
 file(GLOB GENERAL_SOURCES    
     "src/lib/*.cpp"  
@@ -45,7 +47,7 @@ file(GLOB GENERAL_SOURCES
 # and install targets
 #####################################
 
-set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES})
+set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES}  doctest::doctest)
 
 # RenderApp
 #add_executable(BasicRenderApp ${GENERAL_SOURCES} "./src/app/BasicRenderApp.cpp")
@@ -64,8 +66,12 @@ set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GL
 #install(TARGETS Assign01 RUNTIME DESTINATION bin/Assign01)
 #install(DIRECTORY shaders/Assign01 DESTINATION bin/Assign01/shaders)
 
+enable_testing()
 
 add_executable(tester ${GENERAL_SOURCES} "./src/lib/tester.cpp")
 target_link_libraries(tester ${ALL_LIBRARIES})
 #install(TARGETS tester RUNTIME DESTINATION bin/tester)
 #install(DIRECTORY shaders/tester DESTINATION bin/tester/shaders)
+
+set_target_properties(tester PROPERTIES COMPILE_DEFINITIONS "TEST")
+doctest_discover_tests(tester)
