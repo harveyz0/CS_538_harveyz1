@@ -27,7 +27,12 @@ find_package(glfw3 3.3 REQUIRED)
 find_package(GLEW REQUIRED)	
 find_package(doctest REQUIRED)
 
-#add_definitions(-DGLEW_STATIC)
+if(${CMAKE_SYSTEM_NAME} MATCHES Linux)
+    message("Linux system: ${CMAKE_SYSTEM_NAME}")
+else()
+    message("Other system: ${CMAKE_SYSTEM_NAME}")
+    add_definitions(-DGLEW_STATIC)
+endif()
 
 #####################################
 # Get general sources
@@ -45,7 +50,11 @@ file(GLOB GENERAL_SOURCES
 # and install targets
 #####################################
 
-set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES})
+if(${CMAKE_SYSTEM_NAME} MATCHES Linux)
+    set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES})
+else()
+    set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew_s ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES})
+endif()
 
 # RenderApp
 #add_executable(BasicRenderApp ${GENERAL_SOURCES} "./src/app/BasicRenderApp.cpp")
@@ -59,13 +68,13 @@ set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GL
 #install(TARGETS PExercise01 RUNTIME DESTINATION bin/PExercise01)
 #install(DIRECTORY shaders/PExercise01 DESTINATION bin/PExercise01/shaders)
 
-#add_executable(Assign01 ${GENERAL_SOURCES} "./src/app/Assign01.cpp")
-#target_link_libraries(Assign01 ${ALL_LIBRARIES})
-#install(TARGETS Assign01 RUNTIME DESTINATION bin/Assign01)
-#install(DIRECTORY shaders/Assign01 DESTINATION bin/Assign01/shaders)
+add_executable(Assign01 ${GENERAL_SOURCES} "./src/app/Assign01.cpp")
+target_link_libraries(Assign01 ${ALL_LIBRARIES})
+install(TARGETS Assign01 RUNTIME DESTINATION bin/Assign01)
+install(DIRECTORY shaders/Assign01 DESTINATION bin/Assign01/shaders)
 
 
-add_executable(tester ${GENERAL_SOURCES} "./src/lib/tester.cpp")
+add_executable(tester ${GENERAL_SOURCES} "./src/app/tester.cpp")
 target_link_libraries(tester ${ALL_LIBRARIES})
 #install(TARGETS tester RUNTIME DESTINATION bin/tester)
 #install(DIRECTORY shaders/tester DESTINATION bin/tester/shaders)
