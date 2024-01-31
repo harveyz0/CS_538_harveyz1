@@ -72,13 +72,13 @@ endif()
 #install(TARGETS PExercise01 RUNTIME DESTINATION bin/PExercise01)
 #install(DIRECTORY shaders/PExercise01 DESTINATION bin/PExercise01/shaders)
 
-add_executable(tester ${GENERAL_SOURCES} "./src/lib/tester.cpp")
-target_link_libraries(tester ${ALL_LIBRARIES})
+#add_executable(tester ${GENERAL_SOURCES} "./src/lib/tester.cpp")
+#target_link_libraries(tester ${ALL_LIBRARIES})
 #install(TARGETS tester RUNTIME DESTINATION bin/tester)
 #install(DIRECTORY shaders/tester DESTINATION bin/tester/shaders)
 
-set_target_properties(tester PROPERTIES COMPILE_DEFINITIONS "TEST")
-doctest_discover_tests(tester)
+#set_target_properties(tester PROPERTIES COMPILE_DEFINITIONS "TEST")
+#doctest_discover_tests(tester)
 
 # Assign01
 # Uncomment these lines
