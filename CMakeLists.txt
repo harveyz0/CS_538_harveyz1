@@ -29,7 +29,13 @@ find_package(doctest REQUIRED)
 
 include(CTest)
 include(doctest)
-#add_definitions(-DGLEW_STATIC)
+
+if(${CMAKE_SYSTEM_NAME} MATCHES Linux)
+    message("Linux system: ${CMAKE_SYSTEM_NAME}")
+else()
+    message("Other system: ${CMAKE_SYSTEM_NAME}")
+    add_definitions(-DGLEW_STATIC)
+endif()
 
 #####################################
 # Get general sources
@@ -47,7 +53,11 @@ file(GLOB GENERAL_SOURCES
 # and install targets
 #####################################
 
-set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES}  doctest::doctest)
+if(${CMAKE_SYSTEM_NAME} MATCHES Linux)
+    set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES} doctest::doctest)
+else()
+    set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew_s ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES})
+endif()
 
  
 # RenderApp
@@ -94,3 +104,4 @@ add_executable(TestVec3 ${GENERAL_SOURCES} "./src/tests/TestVec3.cpp")
 target_link_libraries(TestVec3 ${ALL_LIBRARIES})
 set_target_properties(TestVec3 PROPERTIES COMPILE_DEFINITIONS "TEST")
 doctest_discover_tests(TestVec3)
+
