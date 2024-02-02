@@ -1,0 +1,1221 @@
+Script started on 2024-02-02 16:01:36-05:00 [TERM="screen-256color" TTY="/dev/pts/2" COLUMNS="255" LINES="65"]
+[32m
+Welcome zac to xacvidia
+[00m
+[1m[3m%[23m[1m[0m                                                                                                                                                                                                                                                               [0m[23m[24m[JDocuments/classes/CS538/CS_538_harveyz1 [34m([32m0[34m) $ [00m[K[?2004hg[32mg[39m[32mg[39m[90mit status[39m[9D[32mg[32mi[39m[1m[31mg[1m[31mi[0m[39m[1m[31mg[1m[31mi[1m[31mt[0m[39m[0m[32mg[0m[32mi[0m[32mt[39m[32mt[32m [39m[32mt[39m[39m [39ms[39mt[39ma[39mt[39mu[39ms[?2004l
+On branch assign02
+Your branch is ahead of 'origin/assign02' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	[32mnew file:   shaders/PotatoRenderApp/Quad.fs[m
+	[32mnew file:   shaders/PotatoRenderApp/Quad.vs[m
+	[32mnew file:   src/app/PotatoRenderApp.cpp[m
+	[32mnew file:   src/include/Line.hpp[m
+	[32mnew file:   src/include/PotatoRenderEngine.hpp[m
+	[32mmodified:   src/include/Vector.hpp[m
+	[32mnew file:   src/lib/PotatoRenderEngine.cpp[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   src/include/vec.hpp[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31m.cache/[m
+	[31mdocs/[m
+	[31mscreenshots/Assign02.script.txt[m
+
+[1m[3m%[23m[1m[0m                                                                                                                                                                                                                                                               [0m[23m[24m[JDocuments/classes/CS538/CS_538_harveyz1 [34m([32m0[34m) $ [00m[K[?2004hgit status[10D[32mg[32mi[32mt[39m[7C[10D[32ms[32mc[32mr[39mipt screenshots/Assign02.script.txt[36D[32mr[32mi[32mp[32mt[39m [4ms[4mc[4mr[4me[4me[4mn[4ms[4mh[4mo[4mt[4ms[4m/[4mA[4ms[4ms[4mi[4mg[4mn[4m0[4m2[4m.[4ms[4mc[4mr[4mi[4mp[4mt[4m.[4mt[4mx[4mt[24m[38D[32mm[32ma[32mn[32m [32ms[32mc[39mr[4mi[4mp[4mt[24m[24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [28D[8D[32mn[39m[39m [39ms[39mcr[24mi[24mp[24mt[10D[32ms[32mc[32mr[39mipt screenshots/Assign02.script.txt[36D[32mr[32mi[32mp[32mt[39m [4ms[4mc[4mr[4me[4me[4mn[4ms[4mh[4mo[4mt[4ms[4m/[4mA[4ms[4ms[4mi[4mg[4mn[4m0[4m2[4m.[4ms[4mc[4mr[4mi[4mp[4mt[4m.[4mt[4mx[4mt[24m[38D[32mg[32mi[32mt[32m [32ms[32mt[39ma[4mt[4mu[4ms[24m[24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [28D[8D[32mt[39m[39m [39ms[39mta[24mt[24mu[24ms[10D[39m [39m [39m        [10Dgit status[10D[32mg[32mi[32mt[39m[7C[10D[32ms[32mc[32mr[39mipt screenshots/Assign02.script.txt[36D[32mr[32mi[32mp[32mt[39m [4ms[4mc[4mr[4me[4me[4mn[4ms[4mh[4mo[4mt[4ms[4m/[4mA[4ms[4ms[4mi[4mg[4mn[4m0[4m2[4m.[4ms[4mc[4mr[4mi[4mp[4mt[4m.[4mt[4mx[4mt[24m[38D[32mm[32ma[32mn[32m [32ms[32mc[39mr[4mi[4mp[4mt[24m[24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [28D[8D[32mn[39m[39m [39ms[39mcr[24mi[24mp[24mt[10D[32mr[32mm[32m [39mtypescript[13D[32mr[32mm[39m[39m [10C[13D[32ml[32ms[39m           [11D[32mc[32ma[39mt typescript[14D[32mc[32ma[32mt[39m[11C[14D[32ml[32ml[39m[39m            [12D[36ml[36ml[39m[36ms[36mc[39mript[32ms[32mc[32mr[32mi[32mp[32mt[39m[32mg[32mi[32mt[32m [32mc[32mo[39mmmit[8D[32mt[39m[39m [39mc[39mo[4C[10D[32mg[32ms[2C[39m      [32mg[32mi[32mt[39m add src/app/PotatoRenderApp.cpp src/include/Line.hpp src/include/PotatoRenderEngine.hpp src/lib/PotatoRenderEngine.cpp shaders/PotatoRenderApp/ src/include/Vector.hpp[162D[4ms[4mr[4mc[4m/[4ma[4mp[4mp[4m/[4mP[4mo[4mt[4ma[4mt[4mo[4mR[4me[4mn[4md[4me[4mr[4mA[4mp[4mp[4m.[4mc[4mp[4mp[24m [4ms[4mr[4mc[4m/[4mi[4mn[4mc[4ml[4mu[4md[4me[4m/[4mL[4mi[4mn[4me[4m.[4mh[4mp[4mp[24m [4ms[4mr[4mc[4m/[4mi[4mn[4mc[4ml[4mu[4md[4me[4m/[4mP[4mo[4mt[4ma[4mt[4mo[4mR[4me[4mn[4md[4me[4mr[4mE[4mn[4mg[4mi[4mn[4me[4m.[4mh[4mp[4mp[24m [4ms[4mr[4mc[4m/[4ml[4mi[4mb[4m/[4mP[4mo[4mt[4ma[4mt[4mo[4mR[4me[4mn[4md[4me[4mr[4mE[4mn[4mg[4mi[4mn[4me[4m.[4mc[4mp[4mp[24m [4ms[4mh[4ma[4md[4me[4mr[4ms[4m/[4mP[4mo[4mt[4ma[4mt[4mo[4mR[4me[4mn[4md[4me[4mr[4mA[4mp[4mp[4m/[24m [4ms[4mr[4mc[4m/[4mi[4mn[4mc[4ml[4mu[4md[4me[4m/[4mV[4me[4mc[4mt[4mo[4mr[4m.[4mh[4mp[4mp[24m[170D[32ml[32ms[32m [39m-la  [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m  [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m  [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m  [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m  [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m  [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [24m [164D[32ml[32ms[39m[39m [3C[32mr[32mm[39m[2Crf CMakeFiles Makefile build[32D[32m.[32m.[39m                              [30D[4m[32m.[4m[32m.[24m[39m[4m[32m.[4m[32m/[24m[39mTestVec3[10D[24m[1m[31m.[24m[1m[31m/[1m[31mT[1m[31me[1m[31ms[1m[31mt[1m[31mV[1m[31me[1m[31mc[1m[31m3[0m[39m[1m[31mt[0m[39m[0m[39m [0m[39m [0m[39m [0m[39m [0m[39m[4m.[0m[39m[4m/[0m[39m[4mT[0m[39m[4me[0m[39m[4ms[0m[39m[4mt[24m[4mm[4ma[4mk[4me[24m[24m [24m [24m[32mm[24m[32ma[24m[32mk[24m[32me[39m[32mc[32md[32m [32mb[39muild[8D[32mc[32md[39m[39m [39mb[4CDocuments/classes/CS538/CS_538_harveyz1[42D[32mn[32mv[39mim                                      [38D[32mn[32mv[32mi[32mm[39m[32m.[32m/[32m.[32ms[39mcreenlayout/docked.sh && ~/.fehbg[37D[1m[31m.[1m[31m/[1m[31m.[1m[31ms[1m[31mc[1m[31mr[1m[31me[1m[31me[1m[31mn[1m[31ml[1m[31ma[1m[31my[1m[31mo[1m[31mu[1m[31mt[1m[31m/[1m[31md[1m[31mo[1m[31mc[1m[31mk[1m[31me[1m[31md[1m[31m.[1m[31ms[1m[31mh[0m[39m[4C[32m~[32m/[32m.[32mf[32me[32mh[32mb[32mg[39m[37D[1m[31mp[1m[31mo[1m[31mw[1m[31me[1m[31mr[1m[31mo[1m[31mf[1m[31mf[0m[39m[0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m [0m[39m     [39m [39m [39m [39m [39m [39m [39m [39m [29D[8D[0m[32mp[0m[32mo[0m[32mw[0m[32me[0m[32mr[0m[32mo[0m[32mf[0m[32mf[39m[8D[32mg[32mi[32mt[32m [32mf[32me[32mt[32mc[39mh --all[13D[32mt[39m[39m [39mf[39me[39mt[39mc[7C[15D[32mn[32mv[32mi[39mm /home/zac/Documents/classes/CS538/CS_538_harveyz1/src/include/XML.hpp[72D[32mi[32mm[39m [4m/[4mh[4mo[4mm[4me[4m/[4mz[4ma[4mc[4m/[4mD[4mo[4mc[4mu[4mm[4me[4mn[4mt[4ms[4m/[4mc[4ml[4ma[4ms[4ms[4me[4ms[4m/[4mC[4mS[4m5[4m3[4m8[4m/[4mC[4mS[4m_[4m5[4m3[4m8[4m_[4mh[4ma[4mr[4mv[4me[4my[4mz[4m1[4m/[4ms[4mr[4mc[4m/[4mi[4mn[4mc[4ml[4mu[4md[4me[4m/[4mX[4mM[4mL[4m.[4mh[4mp[4mp[24m[15D[4ml[4mi[4mb[4m/[4mX[4mM[4mL[4m.[4mc[4mp[4mp[24m[24m [24m [24m [24m [70D[32mc[32mm[32ma[32mk[39me[4m [4m-[4mD[4mC[4mM[4mA[4mK[4mE[4m_[4mB[4mU[4mI[4mL[4mD[4m_[4mT[4mY[4mP[4mE[4m:[4mS[4mT[4mR[4mI[4mN[4mG[4m=[4mD[4me[4mb[4mu[4mg[4m [4m-[4mD[4mC[4mM[4mA[4mK[4mE[4m_[4mE[4mX[4mP[4mO[4mR[4mT[4m_[4mC[4mO[4mM[4mP[4mI[4mL[4mE[4m_[4mC[4mO[4mM[4mM[4mA[4mN[4mD[4mS[4m=[24mYES -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -S/home/zac/Documents/classes/CS538/CS_538_harveyz1 -B/home/zac/Documents/classes/CS538/CS_538_harveyz1/build -G Unix\ Makefiles[KM[16D[32mk[32me[39m[68P[9CBUILD_TYPE:STRING=Debu[P[P[10CEXPORT_COMPILE_COMMANDS=YES -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -S/home/zac/Documents/classes/CS538/CS_538_harveyz1 -B/home/zac/[64CM[170C2024_Spring -B/home/zac/Documents/classes/CS538/CS_538_2024_Spring/build -G Unix\ MakefilesM[164Charveyz1[3P[9Czac/[3P[31Charveyz1[3P[25C      M[170C2024_Spring -B/home/zac/Documents/classes/CS538/CS_538_2024_Spring/build -G Unix\ MakefilesM[164Charveyz1[3P[9Czac/[3P[31Charveyz1[3P[25C      [?2004l
+-- The C compiler identification is Clang 16.0.6
+-- The CXX compiler identification is Clang 16.0.6
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenGL: /usr/lib/libOpenGL.so   
+-- Found Vulkan: /lib/libvulkan.so (found version "1.3.276") found components: glslc glslangValidator 
+-- Found GLEW: /usr/include (found version "2.2.0") 
+[0mLinux system: Linux[0m
+-- Configuring done (0.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/zac/Documents/classes/CS538/CS_538_harveyz1/build
+[1m[3m%[23m[1m[0m                                                                                                                                                                                                                                                               [0m[23m[24m[JDocuments/classes/CS538/CS_538_harveyz1 [34m([32m0[34m) $ [00m[K[?2004hc[1m[31mc[0m[39m[1m[31mc[0m[39m[90mmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -S/home/zac/Documents/classes/CS538/CS_538_harveyz1 -B/home/zac[90m/[90mDocuments/classes/CS538/CS_538_harveyz1/build -G Unix\ Makefiles[39m[KM[18D[1m[31mc[1m[31md[0m[39m[K[1B[KM[48C[0m[32mc[0m[32md[39m[90m build[39m[32mc[32md[32m [39m[32mc[32md[39m[39m [39mb[4mb[24m[4mb[39m[4mu[24m[4mu[39m[4mi[24m[4mi[39m[4ml[24m[4ml[39m[4md[24m[?2004l[1B[1m[3m%[23m[1m[0m                                                                                                                                                                                                                                                               [0m[23m[24m[Jclasses/CS538/CS_538_harveyz1/build [34m([32m0[34m) $ [00m[K[?2004hm[1m[31mm[0m[39m[1m[31mm[0m[39m[90man script[39m[9D[1m[31mm[1m[31ma[0m[39m[1m[31mm[1m[31ma[1m[31mk[0m[39m[39m [39m [39m [39m [39m [39m [39m [90me[39m[1m[31mk[1m[31me[0m[39m[0m[32mm[0m[32ma[0m[32mk[0m[32me[39m[?2004l
+[  7%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/A01RenderEngine.cpp.o[0m
+[ 15%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/BasicRenderEngine.cpp.o[0m
+[ 23%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/GLSetup.cpp.o[0m
+[ 30%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/MeshGLData.cpp.o[0m
+[ 38%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/PE01RenderEngine.cpp.o[0m
+[ 46%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/PotatoRenderEngine.cpp.o[0m
+[ 53%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/Shader.cpp.o[0m
+[1m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/lib/Shader.cpp:10:19: [0m[0;1;35mwarning: [0m[1mobject backing the pointer will be destroyed at the end of the full-expression [-Wdangling-gsl][0m
+                const char *m = ("ERROR: Could not open file: " + filename).c_str();
+[0;1;32m                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[0m1 warning generated.
+[ 61%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/Utility.cpp.o[0m
+[ 69%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/XML.cpp.o[0m
+[ 76%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/box.cpp.o[0m
+[1m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/lib/box.cpp:12:23: [0m[0;1;35mwarning: [0m[1massigning field to itself [-Wself-assign-field][0m
+    this->bottomLeftY = bottomLeftY;
+[0;1;32m                      ^
+[0m1 warning generated.
+[ 84%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/lib/tinyxml2.cpp.o[0m
+[ 92%] [32mBuilding CXX object CMakeFiles/TestVec3.dir/src/tests/TestVec3.cpp.o[0m
+[100%] [32m[1mLinking CXX executable TestVec3[0m
+[100%] Built target TestVec3
+[1m[3m%[23m[1m[0m                                                                                                                                                                                                                                                               [0m[23m[24m[Jclasses/CS538/CS_538_harveyz1/build [34m([32m0[34m) $ [00m[K[?2004h.[32m.[39m[32m.[39m[90m.[39m[32m.[32m/[39m[4m[32m.[4m[32m/[24m[39m[90mTestVec3[39m[8D[39mT[39me[39ms[39mt[39mV[39me[39mc[39m3[10D[24m[32m.[24m[32m/[32mT[32me[32ms[32mt[32mV[32me[32mc[32m3[39m[?2004l
+[0;36m[doctest] [0mdoctest version is "2.4.9"
+[0;36m[doctest] [0mrun with "--help" for options
+[0m[0m[0m[0m[0m[0m[0m[0m[0m[0m[0m[0m[0m[0m[0m[0;33m===============================================================================
+[0;36m[doctest] [0mtest cases:  15 | [0;32m 15 passed[0m | [0m0 failed[0m | [0m0 skipped[0m
+[0;36m[doctest] [0massertions: 230 | [0;32m230 passed[0m | [0m0 failed[0m |
+[0;36m[doctest] [0mStatus: [0;32mSUCCESS![0m
+[1m[3m%[23m[1m[0m                                                                                                                                                                                                                                                               [0m[23m[24m[Jclasses/CS538/CS_538_harveyz1/build [34m([32m0[34m) $ [00m[K[?2004h./TestVec3[10D[32m.[32m/[32mT[32me[32ms[32mt[32mV[32me[32mc[32m3[39m[32m3[32m [39m[32m3[39m[39m -[90m-success=true[39m[13D[39m-[39ms[39mu[39mc[39mc[39me[39ms[39ms[39m=[39mt[39mr[39mu[39me[?2004l
+[0;36m[doctest] [0mdoctest version is "2.4.9"
+[0;36m[doctest] [0mrun with "--help" for options
+[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:32:
+[0;33mTEST CASE:  [0mVecLength
+  float
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:33: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(potato::VecLength<float>::type) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:32:
+[0;33mTEST CASE:  [0mVecLength
+  int
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:34: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(potato::VecLength<int>::type) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:32:
+[0;33mTEST CASE:  [0mVecLength
+  unsigned char
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:35: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(potato::VecLength<unsigned char>::type) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:32:
+[0;33mTEST CASE:  [0mVecLength
+  double
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:36: [1;32mSUCCESS: [0;36mCHECK( typeid(double) == typeid(potato::VecLength<double>::type) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:39:
+[0;33mTEST CASE:  [0mVec3: Constructors
+  Default
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:44: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f.x) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:45: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f.y) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:46: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f.z) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:48: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(i.x) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:49: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(i.y) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:50: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(i.z) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:52: [1;32mSUCCESS: [0;36mCHECK( close(f.x, 0.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:53: [1;32mSUCCESS: [0;36mCHECK( close(f.y, 0.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:54: [1;32mSUCCESS: [0;36mCHECK( close(f.z, 0.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:56: [1;32mSUCCESS: [0;36mCHECK( i.x == 0 ) [0mis correct!
+  values: CHECK( 0 == 0 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:57: [1;32mSUCCESS: [0;36mCHECK( i.y == 0 ) [0mis correct!
+  values: CHECK( 0 == 0 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:58: [1;32mSUCCESS: [0;36mCHECK( i.z == 0 ) [0mis correct!
+  values: CHECK( 0 == 0 )
+
+[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:39:
+[0;33mTEST CASE:  [0mVec3: Constructors
+  Arguments
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:65: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f.x) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:66: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f.y) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:67: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f.z) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:69: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(i.x) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:70: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(i.y) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:71: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(i.z) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:73: [1;32mSUCCESS: [0;36mCHECK( close(f.x, 1.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:74: [1;32mSUCCESS: [0;36mCHECK( close(f.y, 2.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:75: [1;32mSUCCESS: [0;36mCHECK( close(f.z, 3.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:77: [1;32mSUCCESS: [0;36mCHECK( i.x == 4 ) [0mis correct!
+  values: CHECK( 4 == 4 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:78: [1;32mSUCCESS: [0;36mCHECK( i.y == 5 ) [0mis correct!
+  values: CHECK( 5 == 5 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:79: [1;32mSUCCESS: [0;36mCHECK( i.z == 6 ) [0mis correct!
+  values: CHECK( 6 == 6 )
+
+[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:39:
+[0;33mTEST CASE:  [0mVec3: Constructors
+  Conversion
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:89: [1;32mSUCCESS: [0;36mCHECK( close(i2f.x, 4.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:90: [1;32mSUCCESS: [0;36mCHECK( close(i2f.y, 5.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:91: [1;32mSUCCESS: [0;36mCHECK( close(i2f.z, 6.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:93: [1;32mSUCCESS: [0;36mCHECK( f2i.x == 1 ) [0mis correct!
+  values: CHECK( 1 == 1 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:94: [1;32mSUCCESS: [0;36mCHECK( f2i.y == -3 ) [0mis correct!
+  values: CHECK( -3 == -3 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:95: [1;32mSUCCESS: [0;36mCHECK( f2i.z == 5 ) [0mis correct!
+  values: CHECK( 5 == 5 )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:99:
+[0;33mTEST CASE:  [0mVec3: Union Data
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:102: [1;32mSUCCESS: [0;36mCHECK( close(f.r, 1.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:103: [1;32mSUCCESS: [0;36mCHECK( close(f.g, 2.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:104: [1;32mSUCCESS: [0;36mCHECK( close(f.b, 3.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:106: [1;32mSUCCESS: [0;36mCHECK( close(f.s, 1.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:107: [1;32mSUCCESS: [0;36mCHECK( close(f.t, 2.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:108: [1;32mSUCCESS: [0;36mCHECK( close(f.p, 3.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:114: [1;32mSUCCESS: [0;36mCHECK( close(f.r, 4.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:115: [1;32mSUCCESS: [0;36mCHECK( close(f.g, 5.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:116: [1;32mSUCCESS: [0;36mCHECK( close(f.b, 6.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:118: [1;32mSUCCESS: [0;36mCHECK( close(f.s, 4.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:119: [1;32mSUCCESS: [0;36mCHECK( close(f.t, 5.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:120: [1;32mSUCCESS: [0;36mCHECK( close(f.p, 6.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:123:
+[0;33mTEST CASE:  [0mVec3: Addition
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:129: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(a+b) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:130: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(b+a) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:131: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(c+d) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:132: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(d+c) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:134: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(b+c) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:135: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(c+b) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:143: [1;32mSUCCESS: [0;36mCHECK( cd.x == 6 ) [0mis correct!
+  values: CHECK( 6 == 6 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:144: [1;32mSUCCESS: [0;36mCHECK( cd.y == 2 ) [0mis correct!
+  values: CHECK( 2 == 2 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:145: [1;32mSUCCESS: [0;36mCHECK( cd.z == 7 ) [0mis correct!
+  values: CHECK( 7 == 7 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:147: [1;32mSUCCESS: [0;36mCHECK( dc.x == 6 ) [0mis correct!
+  values: CHECK( 6 == 6 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:148: [1;32mSUCCESS: [0;36mCHECK( dc.y == 2 ) [0mis correct!
+  values: CHECK( 2 == 2 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:149: [1;32mSUCCESS: [0;36mCHECK( dc.z == 7 ) [0mis correct!
+  values: CHECK( 7 == 7 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:151: [1;32mSUCCESS: [0;36mCHECK( close(ac.x, -1.8f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:152: [1;32mSUCCESS: [0;36mCHECK( close(ac.y, 8.8f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:153: [1;32mSUCCESS: [0;36mCHECK( close(ac.z, 1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:155: [1;32mSUCCESS: [0;36mCHECK( close(ab.x, -1.5f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:156: [1;32mSUCCESS: [0;36mCHECK( close(ab.y, 8.7f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:157: [1;32mSUCCESS: [0;36mCHECK( close(ab.z, 2.3f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:159: [1;32mSUCCESS: [0;36mCHECK( close(ca.x, -1.8f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:160: [1;32mSUCCESS: [0;36mCHECK( close(ca.y, 8.8f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:161: [1;32mSUCCESS: [0;36mCHECK( close(ca.z, 1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:164:
+[0;33mTEST CASE:  [0mVec3: Subtraction
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:170: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(a-b) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:171: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(b-a) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:172: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(c-d) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:173: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(d-c) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:175: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(b-c) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:176: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(c-b) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:184: [1;32mSUCCESS: [0;36mCHECK( cd.x == -12 ) [0mis correct!
+  values: CHECK( -12 == -12 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:185: [1;32mSUCCESS: [0;36mCHECK( cd.y == 6 ) [0mis correct!
+  values: CHECK( 6 == 6 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:186: [1;32mSUCCESS: [0;36mCHECK( cd.z == -5 ) [0mis correct!
+  values: CHECK( -5 == -5 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:188: [1;32mSUCCESS: [0;36mCHECK( dc.x == 12 ) [0mis correct!
+  values: CHECK( 12 == 12 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:189: [1;32mSUCCESS: [0;36mCHECK( dc.y == -6 ) [0mis correct!
+  values: CHECK( -6 == -6 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:190: [1;32mSUCCESS: [0;36mCHECK( dc.z == 5 ) [0mis correct!
+  values: CHECK( 5 == 5 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:192: [1;32mSUCCESS: [0;36mCHECK( close(ac.x, 4.2f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:193: [1;32mSUCCESS: [0;36mCHECK( close(ac.y, 0.8f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:194: [1;32mSUCCESS: [0;36mCHECK( close(ac.z, -1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:196: [1;32mSUCCESS: [0;36mCHECK( close(ab.x, 3.9f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:197: [1;32mSUCCESS: [0;36mCHECK( close(ab.y, 0.9f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:198: [1;32mSUCCESS: [0;36mCHECK( close(ab.z, -2.3f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:200: [1;32mSUCCESS: [0;36mCHECK( close(ca.x, -4.2f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:201: [1;32mSUCCESS: [0;36mCHECK( close(ca.y, -0.8f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:202: [1;32mSUCCESS: [0;36mCHECK( close(ca.z, 1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:205:
+[0;33mTEST CASE:  [0mVec3: Multiplication
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:211: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(a*b) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:212: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(b*a) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:213: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(c*d) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:214: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(d*c) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:216: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(b*c) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:217: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(c*b) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:225: [1;32mSUCCESS: [0;36mCHECK( cd.x == -27 ) [0mis correct!
+  values: CHECK( -27 == -27 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:226: [1;32mSUCCESS: [0;36mCHECK( cd.y == -8 ) [0mis correct!
+  values: CHECK( -8 == -8 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:227: [1;32mSUCCESS: [0;36mCHECK( cd.z == 6 ) [0mis correct!
+  values: CHECK( 6 == 6 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:229: [1;32mSUCCESS: [0;36mCHECK( dc.x == -27 ) [0mis correct!
+  values: CHECK( -27 == -27 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:230: [1;32mSUCCESS: [0;36mCHECK( dc.y == -8 ) [0mis correct!
+  values: CHECK( -8 == -8 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:231: [1;32mSUCCESS: [0;36mCHECK( dc.z == 6 ) [0mis correct!
+  values: CHECK( 6 == 6 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:233: [1;32mSUCCESS: [0;36mCHECK( close(ac.x, -3.6f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:234: [1;32mSUCCESS: [0;36mCHECK( close(ac.y, 19.2f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:235: [1;32mSUCCESS: [0;36mCHECK( close(ac.z, 0.3f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:237: [1;32mSUCCESS: [0;36mCHECK( close(ab.x, -3.24f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:238: [1;32mSUCCESS: [0;36mCHECK( close(ab.y, 18.72f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:239: [1;32mSUCCESS: [0;36mCHECK( close(ab.z, 0.69f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:241: [1;32mSUCCESS: [0;36mCHECK( close(ca.x, -3.6f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:242: [1;32mSUCCESS: [0;36mCHECK( close(ca.y, 19.2f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:243: [1;32mSUCCESS: [0;36mCHECK( close(ca.z, 0.3f) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:246:
+[0;33mTEST CASE:  [0mVec3: Multiplication (Scalar)
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:253: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(a*f) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:254: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(c*i) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:256: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(a*i) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:257: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(c*f) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:265: [1;32mSUCCESS: [0;36mCHECK( ci.x == -63 ) [0mis correct!
+  values: CHECK( -63 == -63 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:266: [1;32mSUCCESS: [0;36mCHECK( ci.y == 84 ) [0mis correct!
+  values: CHECK( 84 == 84 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:267: [1;32mSUCCESS: [0;36mCHECK( ci.z == 21 ) [0mis correct!
+  values: CHECK( 21 == 21 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:269: [1;32mSUCCESS: [0;36mCHECK( close(af.x, 2.16f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:270: [1;32mSUCCESS: [0;36mCHECK( close(af.y, -3.12f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:271: [1;32mSUCCESS: [0;36mCHECK( close(af.z, -1.84f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:273: [1;32mSUCCESS: [0;36mCHECK( close(ai.x, -56.7f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:274: [1;32mSUCCESS: [0;36mCHECK( close(ai.y, 81.9f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:275: [1;32mSUCCESS: [0;36mCHECK( close(ai.z, 48.3f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:277: [1;32mSUCCESS: [0;36mCHECK( close(cf.x, 2.4f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:278: [1;32mSUCCESS: [0;36mCHECK( close(cf.y, -3.2f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:279: [1;32mSUCCESS: [0;36mCHECK( close(cf.z, -0.8f) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:282:
+[0;33mTEST CASE:  [0mVec3: Division (Scalar)
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:289: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(a/f) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:290: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(c/i) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:292: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(a/i) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:293: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(c/f) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:301: [1;32mSUCCESS: [0;36mCHECK( ci.x == 0 ) [0mis correct!
+  values: CHECK( 0 == 0 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:302: [1;32mSUCCESS: [0;36mCHECK( ci.y == -1 ) [0mis correct!
+  values: CHECK( -1 == -1 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:303: [1;32mSUCCESS: [0;36mCHECK( ci.z == 2 ) [0mis correct!
+  values: CHECK( 2 == 2 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:305: [1;32mSUCCESS: [0;36mCHECK( close(af.x, 3.375f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:306: [1;32mSUCCESS: [0;36mCHECK( close(af.y, -4.875f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:307: [1;32mSUCCESS: [0;36mCHECK( close(af.z, -2.875f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:309: [1;32mSUCCESS: [0;36mCHECK( close(ai.x, -0.675f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:310: [1;32mSUCCESS: [0;36mCHECK( close(ai.y, 0.975f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:311: [1;32mSUCCESS: [0;36mCHECK( close(ai.z, 0.575f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:313: [1;32mSUCCESS: [0;36mCHECK( close(cf.x, -3.75f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:314: [1;32mSUCCESS: [0;36mCHECK( close(cf.y, 5.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:315: [1;32mSUCCESS: [0;36mCHECK( close(cf.z, -12.5f) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:318:
+[0;33mTEST CASE:  [0mVec3: Array Access
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:322: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f[0]) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:323: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f[1]) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:324: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f[2]) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:326: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(i[0]) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:327: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(i[1]) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:328: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(i[2]) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:330: [1;32mSUCCESS: [0;36mCHECK( close(f[0], 1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:331: [1;32mSUCCESS: [0;36mCHECK( close(f[1], 2.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:332: [1;32mSUCCESS: [0;36mCHECK( close(f[2], 3.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:334: [1;32mSUCCESS: [0;36mCHECK( i[0] == 1 ) [0mis correct!
+  values: CHECK( 1 == 1 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:335: [1;32mSUCCESS: [0;36mCHECK( i[1] == 2 ) [0mis correct!
+  values: CHECK( 2 == 2 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:336: [1;32mSUCCESS: [0;36mCHECK( i[2] == 3 ) [0mis correct!
+  values: CHECK( 3 == 3 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:346: [1;32mSUCCESS: [0;36mCHECK( close(f.x, 4.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:347: [1;32mSUCCESS: [0;36mCHECK( close(f.y, 5.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:348: [1;32mSUCCESS: [0;36mCHECK( close(f.z, 6.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:350: [1;32mSUCCESS: [0;36mCHECK( close(f[0], 4.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:351: [1;32mSUCCESS: [0;36mCHECK( close(f[1], 5.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:352: [1;32mSUCCESS: [0;36mCHECK( close(f[2], 6.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:354: [1;32mSUCCESS: [0;36mCHECK( i.x == 4 ) [0mis correct!
+  values: CHECK( 4 == 4 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:355: [1;32mSUCCESS: [0;36mCHECK( i.y == 5 ) [0mis correct!
+  values: CHECK( 5 == 5 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:356: [1;32mSUCCESS: [0;36mCHECK( i.z == 6 ) [0mis correct!
+  values: CHECK( 6 == 6 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:358: [1;32mSUCCESS: [0;36mCHECK( i[0] == 4 ) [0mis correct!
+  values: CHECK( 4 == 4 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:359: [1;32mSUCCESS: [0;36mCHECK( i[1] == 5 ) [0mis correct!
+  values: CHECK( 5 == 5 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:360: [1;32mSUCCESS: [0;36mCHECK( i[2] == 6 ) [0mis correct!
+  values: CHECK( 6 == 6 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:364: [1;32mSUCCESS: [0;36mCHECK( close(cf.x, 1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:365: [1;32mSUCCESS: [0;36mCHECK( close(cf.y, 2.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:366: [1;32mSUCCESS: [0;36mCHECK( close(cf.z, 3.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:368: [1;32mSUCCESS: [0;36mCHECK( close(cf[0], 1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:369: [1;32mSUCCESS: [0;36mCHECK( close(cf[1], 2.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:370: [1;32mSUCCESS: [0;36mCHECK( close(cf[2], 3.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:372: [1;32mSUCCESS: [0;36mCHECK_THROWS_AS( cf[-1], std::out_of_range ) [0mthrew as expected![0;36m"ERROR: -1 out of bounds!"
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:373: [1;32mSUCCESS: [0;36mCHECK_THROWS_AS( cf[3], std::out_of_range ) [0mthrew as expected![0;36m"ERROR: 3 out of bounds!"
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:375: [1;32mSUCCESS: [0;36mCHECK_THROWS_AS( f[-1]=0.0f, std::out_of_range ) [0mthrew as expected![0;36m"ERROR: -1 out of bounds!"
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:376: [1;32mSUCCESS: [0;36mCHECK_THROWS_AS( f[3]=0.0f, std::out_of_range ) [0mthrew as expected![0;36m"ERROR: 3 out of bounds!"
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:379:
+[0;33mTEST CASE:  [0mVec3: Printout
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:385: [1;32mSUCCESS: [0;36mCHECK( outS.str() == "(-2.7,3.9,2.3)\n" ) [0mis correct!
+  values: CHECK( (-2.7,3.9,2.3)
+ == (-2.7,3.9,2.3)
+ )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:388: [1;32mSUCCESS: [0;36mCHECK( outS.str() == "(-2.7,3.9,2.3)\n(8.9,3.9,2.3)\n" ) [0mis correct!
+  values: CHECK( (-2.7,3.9,2.3)
+(8.9,3.9,2.3)
+ == (-2.7,3.9,2.3)
+(8.9,3.9,2.3)
+ )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:390: [1;32mSUCCESS: [0;36mCHECK( outS.str() == "(-2.7,3.9,2.3)\n(8.9,3.9,2.3)\n(-3,4,1)\n" ) [0mis correct!
+  values: CHECK( (-2.7,3.9,2.3)
+(8.9,3.9,2.3)
+(-3,4,1)
+ == (-2.7,3.9,2.3)
+(8.9,3.9,2.3)
+(-3,4,1)
+ )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:393:
+[0;33mTEST CASE:  [0mVec3: Dot Product
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:399: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(a.dot(b)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:400: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(b.dot(a)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:401: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(c.dot(d)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:402: [1;32mSUCCESS: [0;36mCHECK( typeid(int) == typeid(d.dot(c)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:404: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(b.dot(c)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:405: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(c.dot(b)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:413: [1;32mSUCCESS: [0;36mCHECK( cd == -29 ) [0mis correct!
+  values: CHECK( -29 == -29 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:414: [1;32mSUCCESS: [0;36mCHECK( dc == -29 ) [0mis correct!
+  values: CHECK( -29 == -29 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:416: [1;32mSUCCESS: [0;36mCHECK( close(ac, 15.9f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:417: [1;32mSUCCESS: [0;36mCHECK( close(ab, 16.17f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:418: [1;32mSUCCESS: [0;36mCHECK( close(ca, 15.9f) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:421:
+[0;33mTEST CASE:  [0mVec3: Cross Product
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:427: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(a.cross(b)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:428: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(b.cross(a)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:429: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(c.cross(d)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:430: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(d.cross(c)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:432: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(b.cross(c)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:433: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(c.cross(b)) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:441: [1;32mSUCCESS: [0;36mCHECK( cd.x == 26 ) [0mis correct!
+  values: CHECK( 26 == 26 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:442: [1;32mSUCCESS: [0;36mCHECK( cd.y == 27 ) [0mis correct!
+  values: CHECK( 27 == 27 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:443: [1;32mSUCCESS: [0;36mCHECK( cd.z == -30 ) [0mis correct!
+  values: CHECK( -30 == -30 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:445: [1;32mSUCCESS: [0;36mCHECK( dc.x == -26 ) [0mis correct!
+  values: CHECK( -26 == -26 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:446: [1;32mSUCCESS: [0;36mCHECK( dc.y == -27 ) [0mis correct!
+  values: CHECK( -27 == -27 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:447: [1;32mSUCCESS: [0;36mCHECK( dc.z == 30 ) [0mis correct!
+  values: CHECK( 30 == 30 )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:449: [1;32mSUCCESS: [0;36mCHECK( close(ac.x, 3.6f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:450: [1;32mSUCCESS: [0;36mCHECK( close(ac.y, -2.1f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:451: [1;32mSUCCESS: [0;36mCHECK( close(ac.z, 19.2f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:453: [1;32mSUCCESS: [0;36mCHECK( close(ab.x, 9.87f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:454: [1;32mSUCCESS: [0;36mCHECK( close(ab.y, -3.57f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:455: [1;32mSUCCESS: [0;36mCHECK( close(ab.z, 17.64f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:457: [1;32mSUCCESS: [0;36mCHECK( close(ca.x, -3.6f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:458: [1;32mSUCCESS: [0;36mCHECK( close(ca.y, 2.1f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:459: [1;32mSUCCESS: [0;36mCHECK( close(ca.z, -19.2f) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:462:
+[0;33mTEST CASE:  [0mVec3: Length
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:468: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(f.length()) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:469: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(i.length()) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:470: [1;32mSUCCESS: [0;36mCHECK( typeid(float) == typeid(u.length()) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:471: [1;32mSUCCESS: [0;36mCHECK( typeid(double) == typeid(d.length()) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:473: [1;32mSUCCESS: [0;36mCHECK( close(f.length(), 4.94773f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:474: [1;32mSUCCESS: [0;36mCHECK( close(i.length(), 5.09902f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:475: [1;32mSUCCESS: [0;36mCHECK( close(u.length(), 11.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:476: [1;32mSUCCESS: [0;36mCHECK( really_close(d.length(), 5.27162214123888) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:479:
+[0;33mTEST CASE:  [0mVec3: Normalize
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:490: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(nf) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:491: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(ni) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:492: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(nu) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:493: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<double>) == typeid(nd) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:495: [1;32mSUCCESS: [0;36mCHECK( close(nf.length(), 1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:496: [1;32mSUCCESS: [0;36mCHECK( close(ni.length(), 1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:497: [1;32mSUCCESS: [0;36mCHECK( close(nu.length(), 1.0f) ) [0mis correct!
+  values: CHECK( true )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:498: [1;32mSUCCESS: [0;36mCHECK( really_close(nd.length(), 1.0) ) [0mis correct!
+  values: CHECK( true )
+
+[0m[0;33m===============================================================================
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:501:
+[0;33mTEST CASE:  [0mVec3: Alternate Names
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:507: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<float>) == typeid(f) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:508: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<int>) == typeid(i) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:509: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<unsigned char>) == typeid(u) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0;37m/home/zac/Documents/classes/CS538/CS_538_harveyz1/src/tests/TestVec3.cpp:510: [1;32mSUCCESS: [0;36mCHECK( typeid(potato::Vec3<double>) == typeid(d) ) [0mis correct!
+  values: CHECK( {?} == {?} )
+
+[0m[0;33m===============================================================================
+[0;36m[doctest] [0mtest cases:  15 | [0;32m 15 passed[0m | [0m0 failed[0m | [0m0 skipped[0m
+[0;36m[doctest] [0massertions: 230 | [0;32m230 passed[0m | [0m0 failed[0m |
+[0;36m[doctest] [0mStatus: [0;32mSUCCESS![0m
+[1m[3m%[23m[1m[0m                                                                                                                                                                                                                                                               [0m[23m[24m[Jclasses/CS538/CS_538_harveyz1/build [34m([32m0[34m) $ [00m[K[?2004ht[1m[31mt[0m[39m[1m[31mt[0m[39m[90mouch Line.hpp[39m[13D[1m[31mt[1m[31mr[0m[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [12D[0m[32mt[0m[32mr[39m[90mee -L 1[39m[32mt[32mr[32me[39m[1m[31mt[1m[31mr[1m[31me[0m[39m[1m[31me[1m[31me[0m[39m[0m[32mt[0m[32mr[0m[32me[0m[32me[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [9D.[32m.[39m[32m.[39m[90m/TestVec3 --success=true[39m[24D[32m.[32m.[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [23D[4m[32m.[4m[32m.[24m[39m[?2004l
+[1m[3m%[23m[1m[0m                                                                                                                                                                                                                                                               [0m[23m[24m[JDocuments/classes/CS538/CS_538_harveyz1 [34m([32m0[34m) $ [00m[K[?2004ht[1m[31mt[0m[39m[1m[31mt[0m[39m[90mouch Line.hpp[39m[13D[1m[31mt[1m[31mr[0m[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [12D[0m[32mt[0m[32mr[39m[90mee -L 1[39m[32mt[32mr[32me[39m[1m[31mt[1m[31mr[1m[31me[0m[39m[1m[31me[1m[31me[0m[39m[0m[32mt[0m[32mr[0m[32me[0m[32me[39m[32me[32m [39m[32me[39m[39m [39m [39m [39m [39m [?2004l
+.
+├── assignDescriptions
+│   ├── CS_538_Assign01.pdf
+│   ├── CS_538_Assign02.pdf
+│   └── CS_538_CoreAssignRules.pdf
+├── build
+│   ├── CMakeCache.txt
+│   ├── CMakeFiles
+│   │   ├── 3.28.1
+│   │   │   ├── CMakeCCompiler.cmake
+│   │   │   ├── CMakeCXXCompiler.cmake
+│   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │   │   ├── CMakeSystem.cmake
+│   │   │   ├── CompilerIdC
+│   │   │   │   ├── a.out
+│   │   │   │   ├── CMakeCCompilerId.c
+│   │   │   │   └── tmp
+│   │   │   └── CompilerIdCXX
+│   │   │       ├── a.out
+│   │   │       ├── CMakeCXXCompilerId.cpp
+│   │   │       └── tmp
+│   │   ├── cmake.check_cache
+│   │   ├── CMakeConfigureLog.yaml
+│   │   ├── CMakeDirectoryInformation.cmake
+│   │   ├── CMakeRuleHashes.txt
+│   │   ├── CMakeScratch
+│   │   ├── ContinuousBuild.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ContinuousConfigure.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ContinuousCoverage.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── Continuous.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ContinuousMemCheck.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ContinuousStart.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ContinuousSubmit.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ContinuousTest.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ContinuousUpdate.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ExperimentalBuild.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ExperimentalConfigure.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ExperimentalCoverage.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── Experimental.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ExperimentalMemCheck.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ExperimentalStart.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ExperimentalSubmit.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ExperimentalTest.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── ExperimentalUpdate.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── Makefile2
+│   │   ├── Makefile.cmake
+│   │   ├── NightlyBuild.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── NightlyConfigure.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── NightlyCoverage.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── Nightly.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── NightlyMemCheck.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── NightlyMemoryCheck.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── NightlyStart.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── NightlySubmit.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── NightlyTest.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── NightlyUpdate.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── pkgRedirects
+│   │   ├── progress.marks
+│   │   ├── TargetDirectories.txt
+│   │   └── TestVec3.dir
+│   │       ├── build.make
+│   │       ├── cmake_clean.cmake
+│   │       ├── compiler_depend.make
+│   │       ├── compiler_depend.ts
+│   │       ├── DependInfo.cmake
+│   │       ├── depend.make
+│   │       ├── flags.make
+│   │       ├── link.txt
+│   │       ├── progress.make
+│   │       └── src
+│   │           ├── lib
+│   │           │   ├── A01RenderEngine.cpp.o
+│   │           │   ├── A01RenderEngine.cpp.o.d
+│   │           │   ├── BasicRenderEngine.cpp.o
+│   │           │   ├── BasicRenderEngine.cpp.o.d
+│   │           │   ├── box.cpp.o
+│   │           │   ├── box.cpp.o.d
+│   │           │   ├── GLSetup.cpp.o
+│   │           │   ├── GLSetup.cpp.o.d
+│   │           │   ├── MeshGLData.cpp.o
+│   │           │   ├── MeshGLData.cpp.o.d
+│   │           │   ├── PE01RenderEngine.cpp.o
+│   │           │   ├── PE01RenderEngine.cpp.o.d
+│   │           │   ├── PotatoRenderEngine.cpp.o
+│   │           │   ├── PotatoRenderEngine.cpp.o.d
+│   │           │   ├── Shader.cpp.o
+│   │           │   ├── Shader.cpp.o.d
+│   │           │   ├── tinyxml2.cpp.o
+│   │           │   ├── tinyxml2.cpp.o.d
+│   │           │   ├── Utility.cpp.o
+│   │           │   ├── Utility.cpp.o.d
+│   │           │   ├── XML.cpp.o
+│   │           │   └── XML.cpp.o.d
+│   │           └── tests
+│   │               ├── TestVec3.cpp.o
+│   │               └── TestVec3.cpp.o.d
+│   ├── cmake_install.cmake
+│   ├── compile_commands.json
+│   ├── CTestTestfile.cmake
+│   ├── DartConfiguration.tcl
+│   ├── Makefile
+│   ├── Testing
+│   │   └── Temporary
+│   ├── TestVec3
+│   ├── TestVec3_include-b858cb2.cmake
+│   └── TestVec3_tests-b858cb2.cmake
+├── CMakeLists.txt
+├── docs
+│   └── final-paper.bib
+├── sampleModels
+│   ├── cube.obj
+│   ├── sphere.obj
+│   └── teapot.obj
+├── screenshots
+│   ├── Assign01_full.gif
+│   ├── Assign01.png
+│   ├── Assign02.script.txt
+│   └── AssignmentScreenshotsGoHere.txt
+├── shaders
+│   ├── Assign01
+│   │   ├── Quad.fs
+│   │   └── Quad.vs
+│   ├── BasicRenderApp
+│   │   ├── Quad.fs
+│   │   └── Quad.vs
+│   ├── PExercise01
+│   │   ├── Quad.fs
+│   │   └── Quad.vs
+│   └── PotatoRenderApp
+│       ├── Quad.fs
+│       └── Quad.vs
+├── src
+│   ├── app
+│   │   ├── Assign01.cpp
+│   │   ├── BasicRenderApp.cpp
+│   │   ├── PExercise01.cpp
+│   │   ├── PotatoRenderApp.cpp
+│   │   └── tester.cpp
+│   ├── include
+│   │   ├── A01RenderEngine.hpp
+│   │   ├── BasicRenderEngine.hpp
+│   │   ├── box.hpp
+│   │   ├── GLSetup.hpp
+│   │   ├── Line.hpp
+│   │   ├── MeshData.hpp
+│   │   ├── MeshGLData.hpp
+│   │   ├── PE01RenderEngine.hpp
+│   │   ├── PotatoRenderEngine.hpp
+│   │   ├── Shader.hpp
+│   │   ├── stb_image.h
+│   │   ├── stb_image_write.h
+│   │   ├── tinyxml2.h
+│   │   ├── Utility.hpp
+│   │   ├── vec.hpp
+│   │   ├── Vector.hpp
+│   │   └── XML.hpp
+│   ├── lib
+│   │   ├── A01RenderEngine.cpp
+│   │   ├── BasicRenderEngine.cpp
+│   │   ├── box.cpp
+│   │   ├── GLSetup.cpp
+│   │   ├── MeshGLData.cpp
+│   │   ├── PE01RenderEngine.cpp
+│   │   ├── PotatoRenderEngine.cpp
+│   │   ├── Shader.cpp
+│   │   ├── tinyxml2.cpp
+│   │   ├── Utility.cpp
+│   │   └── XML.cpp
+│   └── tests
+│       └── TestVec3.cpp
+├── starfleet.html
+└── Testing
+    └── Temporary
+
+60 directories, 282 files
+[1m[3m%[23m[1m[0m                                                                                                                                                                                                                                                               [0m[23m[24m[JDocuments/classes/CS538/CS_538_harveyz1 [34m([32m0[34m) $ [00m[K[?2004h[?2004l
+
+Script done on 2024-02-02 16:02:37-05:00 [COMMAND_EXIT_CODE="0"]
