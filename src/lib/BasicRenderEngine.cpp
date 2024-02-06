@@ -10,10 +10,10 @@ BasicRenderEngine::BasicRenderEngine(int windowWidth, int windowHeight) {
     // Create drawing buffer and a "screen" buffer 
     // (as if we were transmitting information to the display device)
     this->totalBufferSize = windowWidth*windowHeight*nrComponents;
-    this->frontBuffer = new unsigned char[totalBufferSize];     
-    this->screenBuffer = new unsigned char[totalBufferSize];
-    clearBuffer(this->frontBuffer, 0, 0, 0);    
-    clearBuffer(this->screenBuffer, 0, 0, 0);
+    this->frontBuffer = new Image<Vec3u>(windowWidth, windowHeight);  
+    this->screenBuffer = new Image<Vec3u>(windowWidth, windowHeight);
+    this->frontBuffer->clear(Vec3u(0,0,0));
+    this->screenBuffer->clear(Vec3u(0,0,0));
 
     // Generate window texture
     glGenTextures(1, &windowTextureID);    
@@ -30,8 +30,8 @@ BasicRenderEngine::BasicRenderEngine(int windowWidth, int windowHeight) {
 
 BasicRenderEngine::~BasicRenderEngine() { 
     // Clean up buffer(s)
-    delete [] frontBuffer;  
-    delete [] screenBuffer;  
+    delete frontBuffer;  
+    delete screenBuffer;  
     frontBuffer = 0;
     screenBuffer = 0;
     
@@ -42,7 +42,7 @@ BasicRenderEngine::~BasicRenderEngine() {
 }
 
 void BasicRenderEngine::renderToWindowTexture() {    
-    // FOR NOW, just draw the frame here
+    // FOR NOW, just draw Tthe frame here
     drawOneFrame();
 
     // Activate screen texture    
@@ -50,24 +50,14 @@ void BasicRenderEngine::renderToWindowTexture() {
     glBindTexture(GL_TEXTURE_2D, windowTextureID);
 
     // Simulate buffer to screen transfer    
-    for(int i = 0; i < totalBufferSize; i++) {        
-        screenBuffer[i] = frontBuffer[i];
-    }
+    //for(int i = 0; i < totalBufferSize; i++) {        
+    //    screenBuffer[i] = frontBuffer[i];
+    //}
+    screenBuffer->copyFrom(frontBuffer);
         
     // Copy in screen buffer to texture
     glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, windowWidth, windowHeight, 
-                    GL_RGB, GL_UNSIGNED_BYTE, screenBuffer); 	
-}
-
-void BasicRenderEngine::clearBuffer(unsigned char *buffer, 
-                                    unsigned char r,
-                                    unsigned char g,
-                                    unsigned char b) {
-    for(int i = 0; i < totalBufferSize; i += nrComponents) {
-        buffer[i] = r;
-        buffer[i+1] = g;
-        buffer[i+2] = b;        
-    }
+                    GL_RGB, GL_UNSIGNED_BYTE, screenBuffer->data()); 	
 }
 
 void BasicRenderEngine::drawOneFrame() {
@@ -84,17 +74,17 @@ void BasicRenderEngine::drawOneFrame() {
     chrono::time_point<Clock> startTime = Clock::now();
 
     // Set drawing buffer
-    unsigned char *drawBuffer = frontBuffer;
+    Image<Vec3u> *drawBuffer = frontBuffer;
 
     // Clear drawing buffer
-    clearBuffer(drawBuffer, 0, 0, 0);
-
+    drawBuffer->clear(Vec3u(0,0,0));
+    
     // Draw our items
     // EXAMPLE: Just draw a red column that moves every frame
     int colWidth = 200;
     int colInc = 1;
     drawAABox(drawBuffer, currentCol, 0, (currentCol+colWidth), windowHeight-1,
-                255, 0, 0);
+                Vec3u(255, 0, 0));
     currentCol = (currentCol+colInc)%windowWidth;
 
     potato::Vec3f A(1.0f,2.0f,3.0f);
@@ -125,12 +115,10 @@ void BasicRenderEngine::drawOneFrame() {
     this_thread::sleep_for(chrono::milliseconds((long)round(waitTime*1000)));    
 }
 
-void BasicRenderEngine::drawAABox(  unsigned char* buffer,
+void BasicRenderEngine::drawAABox(  Image<Vec3u>* buffer,
                                     int sx, int sy, 
                                     int ex, int ey,
-                                    unsigned char r,
-                                    unsigned char g,
-                                    unsigned char b) {
+                                    Vec3u color) {
 
     int w = ex - sx + 1;
     int h = ey - sy + 1;
@@ -140,9 +128,10 @@ void BasicRenderEngine::drawAABox(  unsigned char* buffer,
     for(int y = sy; y <= ey && y < windowHeight; y++) {
         int startCol = index;
         for(int x = sx; x <= ex && x < windowWidth; x++) {
-            buffer[index] = r;
-            buffer[index+1] = g;
-            buffer[index+2] = b;
+            //buffer[index] = r;
+            //buffer[index+1] = g;
+            //buffer[index+2] = b;
+            buffer->setPixel(x,y,color);
             index += nrComponents;
         }
         index = startCol + lineWidth;
