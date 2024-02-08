@@ -9,11 +9,15 @@
 #include <GL/glew.h>					
 #include <GLFW/glfw3.h>
 #include "Vector.hpp"
+#include "Line.hpp"
 #include "Buffer.hpp"
 #include "Timing.hpp"
 #include "Settings.hpp"
+#include "XML.hpp"
+#include "tinyxml2.h"
 using namespace std;
 using namespace potato;
+using namespace tinyxml2;
 
 class ExerciseRenderEngine {
     private:
@@ -31,6 +35,9 @@ class ExerciseRenderEngine {
         bool drawThreadRunning = false;
         mutex frontBufferMutex;
         bool USE_VSYNC = true;
+
+        // Lines
+        vector<Line<int,unsigned char>> allLines;
 
         // Timing stuff
         Timekeeper timekeeper;

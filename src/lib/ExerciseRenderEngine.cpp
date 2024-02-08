@@ -25,6 +25,11 @@ ExerciseRenderEngine::ExerciseRenderEngine(int windowWidth, int windowHeight) {
     
     glBindTexture(GL_TEXTURE_2D, 0);
 
+    // Load up SVG
+    XMLDocument doc;
+    doc.LoadFile("./starfleet.html");
+    parseAllSVGLines(doc, allLines);
+
     // Create thread
     drawThreadRunning = true;
     drawThread = new thread(&ExerciseRenderEngine::drawingLoop, this);
@@ -85,9 +90,13 @@ void ExerciseRenderEngine::drawingLoop() {
         // EXAMPLE: Just draw a red column that moves every frame
         int colWidth = 200;
         int colInc = 1;
-        drawAABox(drawBuffer, currentCol, 0, (currentCol+colWidth), windowHeight-1,
-                Vec3u(255, 0, 0));
+        //drawAABox(drawBuffer, currentCol, 0, (currentCol+colWidth), windowHeight-1,
+        //        Vec3u(255, 0, 0));
         currentCol = (currentCol+colInc)%windowWidth;
+
+        for(int i = 0; i < allLines.size(); i++) {
+            drawLineDDA<int,unsigned char>(drawBuffer, allLines.at(i));
+        }
 
         // Swap buffers
         swapBuffers();
