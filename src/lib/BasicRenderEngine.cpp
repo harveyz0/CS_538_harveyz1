@@ -1,15 +1,12 @@
 #include "BasicRenderEngine.hpp"
 
 BasicRenderEngine::BasicRenderEngine(int windowWidth, int windowHeight) {
-    // Store window width and height
-    // We assume RGB for the format (so 3 components)
+    // Store window width and height    
     this->windowWidth = windowWidth;
     this->windowHeight = windowHeight;
-    this->nrComponents = 3;
-
+    
     // Create drawing buffer and a "screen" buffer 
-    // (as if we were transmitting information to the display device)
-    this->totalBufferSize = windowWidth*windowHeight*nrComponents;
+    // (as if we were transmitting information to the display device)    
     this->frontBuffer = new Image<Vec3u>(windowWidth, windowHeight);  
     this->screenBuffer = new Image<Vec3u>(windowWidth, windowHeight);
     this->frontBuffer->clear(Vec3u(0,0,0));
@@ -50,9 +47,6 @@ void BasicRenderEngine::renderToWindowTexture() {
     glBindTexture(GL_TEXTURE_2D, windowTextureID);
 
     // Simulate buffer to screen transfer    
-    //for(int i = 0; i < totalBufferSize; i++) {        
-    //    screenBuffer[i] = frontBuffer[i];
-    //}
     screenBuffer->copyFrom(frontBuffer);
         
     // Copy in screen buffer to texture
@@ -61,17 +55,8 @@ void BasicRenderEngine::renderToWindowTexture() {
 }
 
 void BasicRenderEngine::drawOneFrame() {
-    // Timing code from: https://www.learncpp.com/cpp-tutorial/timing-your-code/
-    using Clock = std::chrono::steady_clock;
-	using Second = std::chrono::duration<double, std::ratio<1> >;
-
-    // Get appropriate total time for desired FPS
-    // (Slightly off because of 15 ms in main program and copy times)
-    double targetFPS = 60;
-    double targetTime = 1.0/targetFPS;
-
     // Start time
-    chrono::time_point<Clock> startTime = Clock::now();
+    timekeeper.startFrame();
 
     // Set drawing buffer
     Image<Vec3u> *drawBuffer = frontBuffer;
@@ -85,34 +70,18 @@ void BasicRenderEngine::drawOneFrame() {
     int colInc = 1;
     drawAABox(drawBuffer, currentCol, 0, (currentCol+colWidth), windowHeight-1,
                 Vec3u(255, 0, 0));
-    currentCol = (currentCol+colInc)%windowWidth;
+    currentCol = (currentCol+colInc)%windowWidth;    
 
-    potato::Vec3f A(1.0f,2.0f,3.0f);
-    potato::Vec3f B(4.5f, 6.7f, 8.9f);
-    cout << "LENGTH: " << A.length() << endl;
-    potato::Vec3f C = A + B;
-    C[1] = 5280.1f;
-    cout << "C: " << C << endl;
-
-    // Get elapsed time
-    double elapsed = chrono::duration_cast<Second>(Clock::now() - startTime).count();
-
-    // Calculate how much time to wait
-    double waitTime = targetTime - elapsed;
-
-    // Calculate possible FPS
-    int possibleFPS = (int)(round(1.0/elapsed));
-
-    // Overtime?
-    if(waitTime < 0) {            
-        waitTime = 0;
-    }
-
-    // Print time elapsed
-    cout << "POSSIBLE FPS: " << possibleFPS << "; TIME (SECONDS): " << elapsed << endl;
+    // Get wait time
+    double waitTime = timekeeper.endFrame();
 
     // Wait extra time
-    this_thread::sleep_for(chrono::milliseconds((long)round(waitTime*1000)));    
+    if(USE_TARGET_FPS) {
+        this_thread::sleep_for(chrono::microseconds((long)round(waitTime*1000000.0)));  
+    }
+    else {
+        this_thread::sleep_for(chrono::milliseconds(1));
+    }  
 }
 
 void BasicRenderEngine::drawAABox(  Image<Vec3u>* buffer,
@@ -122,18 +91,10 @@ void BasicRenderEngine::drawAABox(  Image<Vec3u>* buffer,
 
     int w = ex - sx + 1;
     int h = ey - sy + 1;
-    int index = nrComponents*(windowWidth*sy + sx);
-    int lineWidth = windowWidth*nrComponents;
-
+    
     for(int y = sy; y <= ey && y < windowHeight; y++) {
-        int startCol = index;
-        for(int x = sx; x <= ex && x < windowWidth; x++) {
-            //buffer[index] = r;
-            //buffer[index+1] = g;
-            //buffer[index+2] = b;
-            buffer->setPixel(x,y,color);
-            index += nrComponents;
-        }
-        index = startCol + lineWidth;
+        for(int x = sx; x <= ex && x < windowWidth; x++) {            
+            buffer->setPixel(x,y,color);            
+        }        
     } 
 }
