@@ -16,6 +16,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(OpenGL_GL_PREFERENCE GLVND)
 
+if(UNIX)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+endif()
+
 #####################################
 # Find necessary libraries
 #####################################
@@ -79,6 +83,12 @@ target_link_libraries(tester ${ALL_LIBRARIES})
 
 set_target_properties(tester PROPERTIES COMPILE_DEFINITIONS "TEST")
 doctest_discover_tests(tester)
+
+# ExerciseApp
+add_executable(ExerciseApp ${GENERAL_SOURCES} "./src/app/ExerciseApp.cpp")
+target_link_libraries(ExerciseApp ${ALL_LIBRARIES})
+install(TARGETS ExerciseApp RUNTIME DESTINATION bin/ExerciseApp)
+install(DIRECTORY shaders/ExerciseApp DESTINATION bin/ExerciseApp/shaders)
 
 # Assign01
 # Uncomment these lines
