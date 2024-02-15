@@ -18,12 +18,17 @@ ExerciseRenderEngine::ExerciseRenderEngine(int windowWidth, int windowHeight) {
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     
     glBindTexture(GL_TEXTURE_2D, windowTextureID);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, windowWidth, windowHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, screenBuffer);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, windowWidth, windowHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, screenBuffer->data());
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
     glBindTexture(GL_TEXTURE_2D, 0);
+
+    // Load up SVG
+    XMLDocument doc;
+    doc.LoadFile("./starfleet.html");
+    parseAllSVGLines(doc, allLines);
 
     // Create thread
     drawThreadRunning = true;
@@ -85,9 +90,13 @@ void ExerciseRenderEngine::drawingLoop() {
         // EXAMPLE: Just draw a red column that moves every frame
         int colWidth = 200;
         int colInc = 1;
-        drawAABox(drawBuffer, currentCol, 0, (currentCol+colWidth), windowHeight-1,
-                Vec3u(255, 0, 0));
+        //drawAABox(drawBuffer, currentCol, 0, (currentCol+colWidth), windowHeight-1,
+        //        Vec3u(255, 0, 0));
         currentCol = (currentCol+colInc)%windowWidth;
+
+        for(int i = 0; i < allLines.size(); i++) {
+            drawLineDDA<int,unsigned char>(drawBuffer, allLines.at(i));
+        }
 
         // Swap buffers
         swapBuffers();
