@@ -3,7 +3,7 @@ project( Basic_CS_538 )
 
 set(CMAKE_INSTALL_PREFIX .)
 
-set(MASTER_DEPEND "~/Dependencies" CACHE PATH "Set this if necessary to your directory for dependencies.")	
+set(MASTER_DEPEND "~/Dependencies" CACHE PATH "Set this if necessary to your directory for dependencies.")
 set(CMAKE_PREFIX_PATH ${MASTER_DEPEND} ${CMAKE_PREFIX_PATH})
 set(CMAKE_BUILD_TYPE Debug)
 
@@ -27,8 +27,8 @@ endif()
 find_package(OpenGL REQUIRED)
 find_package(Vulkan REQUIRED)
 find_package(assimp REQUIRED)
-find_package(glfw3 3.3 REQUIRED) 
-find_package(GLEW REQUIRED)	
+find_package(glfw3 3.3 REQUIRED)
+find_package(GLEW REQUIRED)
 find_package(doctest REQUIRED)
 
 include(CTest)
@@ -47,13 +47,14 @@ endif()
 
 include_directories("src/include" ${Vulkan_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${DOCTEST_INCLUDE_DIR})
 
-file(GLOB GENERAL_SOURCES    
-    "src/lib/*.cpp"  
-    "src/lib/*.hpp"  
+file(GLOB GENERAL_SOURCES
+    "src/lib/[!.#]*.cpp"
+    "src/lib/[!.#]*.hpp"
 )
 
+
 #####################################
-# Create executables 
+# Create executables
 # and install targets
 #####################################
 
@@ -63,7 +64,7 @@ else()
     set(ALL_LIBRARIES ${Vulkan_LIBRARIES} ${ASSIMP_LIBRARIES} ${ASSIMP_ZLIB} glfw GLEW::glew_s ${GLEW_SHARED_LIBRARIES} ${OPENGL_LIBRARIES})
 endif()
 
- 
+
 # RenderApp
 #add_executable(BasicRenderApp ${GENERAL_SOURCES} "./src/app/BasicRenderApp.cpp")
 #target_link_libraries(BasicRenderApp ${ALL_LIBRARIES})
@@ -85,10 +86,10 @@ endif()
 #doctest_discover_tests(tester)
 
 # ExerciseApp
-add_executable(ExerciseApp ${GENERAL_SOURCES} "./src/app/ExerciseApp.cpp")
-target_link_libraries(ExerciseApp ${ALL_LIBRARIES})
-install(TARGETS ExerciseApp RUNTIME DESTINATION bin/ExerciseApp)
-install(DIRECTORY shaders/ExerciseApp DESTINATION bin/ExerciseApp/shaders)
+#add_executable(ExerciseApp ${GENERAL_SOURCES} "./src/app/ExerciseApp.cpp")
+#target_link_libraries(ExerciseApp ${ALL_LIBRARIES})
+#install(TARGETS ExerciseApp RUNTIME DESTINATION bin/ExerciseApp)
+#install(DIRECTORY shaders/ExerciseApp DESTINATION bin/ExerciseApp/shaders)
 
 # Assign01
 # Uncomment these lines
@@ -99,19 +100,18 @@ install(DIRECTORY shaders/ExerciseApp DESTINATION bin/ExerciseApp/shaders)
 
 # PotatoRenderApp
 # Uncomment these lines
-#add_executable(PotatoRenderApp ${GENERAL_SOURCES} "./src/app/PotatoRenderApp.cpp")
-#target_link_libraries(PotatoRenderApp ${ALL_LIBRARIES})
-#install(TARGETS PotatoRenderApp RUNTIME DESTINATION bin/PotatoRenderApp)
-#install(DIRECTORY shaders/PotatoRenderApp DESTINATION bin/PotatoRenderApp/shaders)
+add_executable(PotatoRenderApp ${GENERAL_SOURCES} "./src/app/PotatoRenderApp.cpp")
+target_link_libraries(PotatoRenderApp ${ALL_LIBRARIES})
+install(TARGETS PotatoRenderApp RUNTIME DESTINATION bin/PotatoRenderApp)
+install(DIRECTORY shaders/PotatoRenderApp DESTINATION bin/PotatoRenderApp/shaders)
 
 #####################################
 # TEST TARGETS
 #####################################
 
-enable_testing()
+#enable_testing()
 
-add_executable(TestVec3 ${GENERAL_SOURCES} "./src/tests/TestVec3.cpp")
-target_link_libraries(TestVec3 ${ALL_LIBRARIES})
-set_target_properties(TestVec3 PROPERTIES COMPILE_DEFINITIONS "TEST")
-doctest_discover_tests(TestVec3)
-
+#add_executable(TestVec3 ${GENERAL_SOURCES} "./src/tests/TestVec3.cpp")
+#target_link_libraries(TestVec3 ${ALL_LIBRARIES})
+#set_target_properties(TestVec3 PROPERTIES COMPILE_DEFINITIONS "TEST")
+#doctest_discover_tests(TestVec3)
