@@ -30,6 +30,9 @@ ExerciseRenderEngine::ExerciseRenderEngine(int windowWidth, int windowHeight) {
     doc.LoadFile("./starfleet.html");
     parseAllSVGLines(doc, allLines);
 
+
+    allLines.push_back(Line<int, unsigned char>(500, 300, 0, 100, 400, 0, 128, 128, 128));
+
     // Create thread
     drawThreadRunning = true;
     drawThread = new thread(&ExerciseRenderEngine::drawingLoop, this);
@@ -94,8 +97,10 @@ void ExerciseRenderEngine::drawingLoop() {
         //        Vec3u(255, 0, 0));
         currentCol = (currentCol+colInc)%windowWidth;
 
-        for(int i = 0; i < allLines.size(); i++) {
-            drawLineDDA<int,unsigned char>(drawBuffer, allLines.at(i));
+        for(Line l : allLines){
+          //for(int i = 0; i < allLines.size(); i++) {
+          l.paint(*drawBuffer);
+          //drawLineDDA<int,unsigned char>(drawBuffer, allLines.at(i));
         }
 
         // Swap buffers

@@ -86,10 +86,10 @@ endif()
 #doctest_discover_tests(tester)
 
 # ExerciseApp
-#add_executable(ExerciseApp ${GENERAL_SOURCES} "./src/app/ExerciseApp.cpp")
-#target_link_libraries(ExerciseApp ${ALL_LIBRARIES})
-#install(TARGETS ExerciseApp RUNTIME DESTINATION bin/ExerciseApp)
-#install(DIRECTORY shaders/ExerciseApp DESTINATION bin/ExerciseApp/shaders)
+add_executable(ExerciseApp ${GENERAL_SOURCES} "./src/app/ExerciseApp.cpp")
+target_link_libraries(ExerciseApp ${ALL_LIBRARIES})
+install(TARGETS ExerciseApp RUNTIME DESTINATION bin/ExerciseApp)
+install(DIRECTORY shaders/ExerciseApp DESTINATION bin/ExerciseApp/shaders)
 
 # Assign01
 # Uncomment these lines

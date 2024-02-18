@@ -8,66 +8,66 @@ PotatoRenderEngine::PotatoRenderEngine(int windowWidth, int windowHeight) {
     this->windowHeight = windowHeight;
     this->nrComponents = 3;
 
-    // Create drawing buffer and a "screen" buffer 
+    // Create drawing buffer and a "screen" buffer
     // (as if we were transmitting information to the display device)
     this->totalBufferSize = windowWidth*windowHeight*nrComponents;
-    this->frontBuffer = new unsigned char[totalBufferSize];     
+    this->frontBuffer = new unsigned char[totalBufferSize];
     this->screenBuffer = new unsigned char[totalBufferSize];
-    clearBuffer(this->frontBuffer, 0, 0, 0);    
+    clearBuffer(this->frontBuffer, 0, 0, 0);
     clearBuffer(this->screenBuffer, 0, 0, 0);
 
     // Generate window texture
-    glGenTextures(1, &windowTextureID);    
+    glGenTextures(1, &windowTextureID);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    
+
     glBindTexture(GL_TEXTURE_2D, windowTextureID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, windowWidth, windowHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, screenBuffer);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    
+
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-PotatoRenderEngine::~PotatoRenderEngine() { 
+PotatoRenderEngine::~PotatoRenderEngine() {
     // Clean up buffer(s)
-    delete [] frontBuffer;  
-    delete [] screenBuffer;  
+    delete [] frontBuffer;
+    delete [] screenBuffer;
     frontBuffer = 0;
     screenBuffer = 0;
-    
-    // Clean up texture    
+
+    // Clean up texture
     glBindTexture(GL_TEXTURE_2D, 0);
     glDeleteTextures(1, &(windowTextureID));
     windowTextureID = 0;
 }
 
-void PotatoRenderEngine::renderToWindowTexture() {    
+void PotatoRenderEngine::renderToWindowTexture() {
     // FOR NOW, just draw the frame here
     drawOneFrame();
 
-    // Activate screen texture    
+    // Activate screen texture
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, windowTextureID);
 
-    // Simulate buffer to screen transfer    
-    for(int i = 0; i < totalBufferSize; i++) {        
+    // Simulate buffer to screen transfer
+    for(int i = 0; i < totalBufferSize; i++) {
         screenBuffer[i] = frontBuffer[i];
     }
-        
+
     // Copy in screen buffer to texture
-    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, windowWidth, windowHeight, 
-                    GL_RGB, GL_UNSIGNED_BYTE, screenBuffer); 	
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, windowWidth, windowHeight,
+                    GL_RGB, GL_UNSIGNED_BYTE, screenBuffer);
 }
 
-void PotatoRenderEngine::clearBuffer(unsigned char *buffer, 
+void PotatoRenderEngine::clearBuffer(unsigned char *buffer,
                                     unsigned char r,
                                     unsigned char g,
                                     unsigned char b) {
     for(int i = 0; i < totalBufferSize; i += nrComponents) {
         buffer[i] = r;
         buffer[i+1] = g;
-        buffer[i+2] = b;        
+        buffer[i+2] = b;
     }
 }
 
@@ -94,8 +94,9 @@ void PotatoRenderEngine::drawOneFrame() {
     // EXAMPLE: Just draw a red column that moves every frame
     int colWidth = 200;
     int colInc = 1;
-    drawAABox(drawBuffer, currentCol, 0, (currentCol+colWidth), windowHeight-1,
-                255, 0, 0);
+    //drawAABox(drawBuffer, currentCol, 0, (currentCol+colWidth), windowHeight-1,
+    //            255, 0, 0);
+
     currentCol = (currentCol+colInc)%windowWidth;
 
     potato::Vec3f A(1.0f,2.0f,3.0f);
@@ -115,7 +116,7 @@ void PotatoRenderEngine::drawOneFrame() {
     int possibleFPS = (int)(round(1.0/elapsed));
 
     // Overtime?
-    if(waitTime < 0) {            
+    if(waitTime < 0) {
         waitTime = 0;
     }
 
@@ -123,11 +124,11 @@ void PotatoRenderEngine::drawOneFrame() {
     cout << "POSSIBLE FPS: " << possibleFPS << "; TIME (SECONDS): " << elapsed << endl;
 
     // Wait extra time
-    this_thread::sleep_for(chrono::milliseconds((long)round(waitTime*1000)));    
+    this_thread::sleep_for(chrono::milliseconds((long)round(waitTime*1000)));
 }
 
 void PotatoRenderEngine::drawAABox(  unsigned char* buffer,
-                                    int sx, int sy, 
+                                    int sx, int sy,
                                     int ex, int ey,
                                     unsigned char r,
                                     unsigned char g,
@@ -147,5 +148,5 @@ void PotatoRenderEngine::drawAABox(  unsigned char* buffer,
             index += nrComponents;
         }
         index = startCol + lineWidth;
-    } 
+    }
 }

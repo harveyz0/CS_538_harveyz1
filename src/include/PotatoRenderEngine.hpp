@@ -6,7 +6,7 @@
 #include <chrono>
 #include <mutex>
 #include <cmath>
-#include <GL/glew.h>					
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "Vector.hpp"
 using namespace std;
@@ -22,25 +22,25 @@ class PotatoRenderEngine {
         int nrComponents = 3;
         int totalBufferSize = 0;
 
-        // BONUS    
+        // BONUS
         int currentCol = 0;
 
         // Internal drawing functions
-        void clearBuffer(   unsigned char *buffer, 
+        void clearBuffer(   unsigned char *buffer,
                             unsigned char r,
                             unsigned char g,
                             unsigned char b);
-        void drawOneFrame();    
+        void drawOneFrame();
         void drawAABox( unsigned char *buffer,
-                        int sx, int sy, 
+                        int sx, int sy,
                         int ex, int ey,
                         unsigned char r,
                         unsigned char g,
                         unsigned char b);
-        
+
     public:
         PotatoRenderEngine(int windowWidth, int windowHeight);
-        ~PotatoRenderEngine();  
-        // Copies display buffer to window texture  
+        ~PotatoRenderEngine();
+        // Copies display buffer to window texture
         void renderToWindowTexture();
 };
