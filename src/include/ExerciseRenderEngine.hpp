@@ -10,6 +10,7 @@
 #include <GLFW/glfw3.h>
 #include "Vector.hpp"
 #include "Line.hpp"
+#include "Mesh.hpp"
 #include "Buffer.hpp"
 #include "Timing.hpp"
 #include "Settings.hpp"

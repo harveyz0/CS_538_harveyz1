@@ -98,6 +98,11 @@ void ExerciseRenderEngine::drawingLoop() {
             drawLineDDA<int,unsigned char>(drawBuffer, allLines.at(i));
         }
 
+        Vec3i A = Vec3i(10, 20, 0);
+        Vec3i B = Vec3i(50, 40, 0);
+        Vec3i C = Vec3i(5, 100, 0);
+        fillTriangle(drawBuffer, A, B, C);
+
         // Swap buffers
         swapBuffers();
 
