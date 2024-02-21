@@ -31,7 +31,12 @@ ExerciseRenderEngine::ExerciseRenderEngine(int windowWidth, int windowHeight) {
     parseAllSVGLines(doc, allLines);
 
 
-    allLines.push_back(Line<int, unsigned char>(500, 300, 0, 100, 400, 0, 128, 128, 128));
+    //allLines.push_back(Line<int, unsigned char>(500, 300, 0, 100, 400, 0, 128, 128, 128));
+
+    //cout << "Slope of last line " << allLines.back().calculateSlop() << endl;
+
+    //allLines.push_back(Line<int, unsigned char>(100, 300, 0, 300, 400, 0, 128, 128, 128));
+    //cout << "Slope of last last line " << allLines.back().calculateSlop() << endl;
 
     // Create thread
     drawThreadRunning = true;

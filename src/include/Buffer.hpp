@@ -40,7 +40,7 @@ public:
     if(index > cnt){
       stringstream err;
       err << "The value of index == " << index << " was beyond the length of the cnt == " << cnt << endl;
-      throw out_of_range(err.str());
+      throw range_error(err.str());
     }
   };
 

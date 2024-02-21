@@ -30,10 +30,17 @@ template <typename T> class Vec3
     };
 
     Vec3() = default;
+    //Vec3(Vec3<T> &v) = default;
     Vec3(T x, T y, T z) : x(x), y(y), z(z){};
 
     template <typename U>
     Vec3(const Vec3<U> &other) : Vec3<T>(static_cast<T>(other.x), static_cast<T>(other.y), static_cast<T>(other.z)){};
+
+    void copy(const Vec3<T> &from) {
+        this->x = from.x;
+        this->y = from.y;
+        this->z = from.z;
+    };
 
     auto length() const -> typename VecLength<T>::type
     {

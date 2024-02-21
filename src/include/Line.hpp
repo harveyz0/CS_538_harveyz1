@@ -1,12 +1,129 @@
 #pragma once
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <stdexcept>
 
 #include "Buffer.hpp"
+#include "Exceptions.hpp"
 #include "Vector.hpp"
 using namespace std;
 namespace potato {
+
+template<typename T>
+bool
+checkAndFlip(Vec3<T>& start, Vec3<T>& end)
+{
+  decltype(T{} / float{}) slope = calculateSlop(start, end);
+
+  if (slope < 0) {
+    Vec3<T> temp(start);
+    start.copy(end);
+    end.copy(temp);
+    return true;
+  }
+
+  return false;
+
+  // T dx = end.x - start.x;
+  // T dy = end.y - start.y;
+
+  //  if (abs(dx) < abs(dy)) {
+  //    swap(start.x, start.y);
+  //    swap(end.x, end.y);
+  //  }
+};
+
+template<typename T>
+inline float
+calculateMidpoint(float x, float y, Vec3<T> start, Vec3<T> end)
+// This should probably be fixed to allow doubles
+{
+  return (start.y - end.y) * x + (end.x - start.x) * y + (start.x * end.y) -
+         (end.x * start.y);
+};
+
+template<typename T>
+float
+calculateMidpoint(Vec3<T> start, Vec3<T> end, float x, float y)
+{
+  auto dy = start.y - end.y;
+  auto dx = end.x - start.x;
+  auto c1 = start.x * end.y;
+  auto c2 = end.x * start.y;
+
+  auto res = dy * x + dx * y + c1 - c2;
+  return res;
+};
+
+template<typename T, typename C>
+void
+drawActualMidpoint(Image<Vec3<C>>& image,
+                   const Vec3<T>& start,
+                   const Vec3<T>& end,
+                   const Vec3<C>& color)
+{
+  // When you need to flip x and y do all xs and ys flip?
+  Vec3<T> newStart(start);
+  Vec3<T> newEnd(end);
+  // if(calculateSlop(start, end) < 0){
+  //   newStart.copy(end);
+  //   newEnd.copy(start);
+  // }
+  // checkAndFlip(newStart, newEnd);
+
+  int dx = newEnd.x - newStart.x;
+  int dy = newEnd.y - newStart.y;
+  bool swap = abs(dx) < abs(dy);
+  if (swap) {
+    std::swap(dx, dy);
+    std::swap(newStart.x, newStart.y);
+    std::swap(newEnd.x, newEnd.y);
+  }
+  if (dx < 0) {
+    std::swap(newStart, newEnd);
+    //auto temp = newEnd;
+    //newEnd = newStart;
+    //newStart = temp;
+    dx = -dx;
+    dy = -dy;
+  }
+
+  decltype(T{} / float{}) y = newStart.y;
+  // decltype(T{} / float{}) changeToY = 1;
+  decltype(T{} / float{}) change = 1;
+  decltype(T{} / float{}) x = newStart.x;
+  decltype(T{} / float{}) stop = newEnd.x;
+  if(dy < 0){
+    change = -1;
+    dy = -dy;
+  }
+
+  float d = calculateMidpoint(x + 1, y + 0.5, newStart, newEnd);
+    std::cout << "swap " << swap << " x " << x << " y " << y << " stop " << stop << endl;
+  for (; x <= stop; ++x) {
+    if (swap) {
+      image.setPixel(y, x, color);
+    } else {
+      image.setPixel(x, y, color);
+    }
+    if (d < 0) {
+      y = y + change;
+      d = d + dx - dy;
+    } else {
+      d = d - dy;
+    }
+  }
+};
+
+template<typename T>
+inline auto
+calculateSlop(const Vec3<T> start, const Vec3<T> end) -> decltype(T{} / float{})
+// I think this allows doubles, it at least compiles
+{
+  return decltype(T{} / float{})(end.y - start.y) /
+         decltype(T{} / float{})(end.x - start.x);
+};
 
 template<typename T, typename C>
 class Line
@@ -18,13 +135,12 @@ public:
   Vec3<C> color{ 128, 128, 128 };
 
   Line(){};
-  Line(T x0, T y0, T z0, T x1, T y1, T z1, C r, C g, C b) :
-    start(x0, y0, z0),
-    end(x1, y1, z1),
-    color(r, g, b)
-  {};
+  Line(T x0, T y0, T z0, T x1, T y1, T z1, C r, C g, C b)
+    : start(x0, y0, z0)
+    , end(x1, y1, z1)
+    , color(r, g, b){};
 
-  void paint(Image<Vec3<C>>& image) { return drawDDA(image); };
+  void paint(Image<Vec3<C>>& image) { return drawMidpoint(image); };
 
   void drawDDA(Image<Vec3<C>>& image)
   {
@@ -51,9 +167,27 @@ public:
 
         image.setPixel(round(x), round(y), this->color);
       } catch (out_of_range) {
-        break;
+        continue;
+      } catch (range_error) {
+        continue;
       }
     }
+  };
+
+  // inline decltype(T{} / float{}) calculateSlop() const //-> decltype(T{} /
+  // float{})
+  //  I think this allows doubles, it at least compiles
+  //{
+  //   return calculateSlop(this->start, this->end);
+  // };
+
+  void drawMidpoint(Image<Vec3<C>>& image)
+  {
+    Vec3<T> myStart(this->start);
+    Vec3<T> myEnd(this->end);
+
+    checkAndFlip(myStart, myEnd);
+    drawActualMidpoint(image, myStart, myEnd, this->color);
   };
 };
 
