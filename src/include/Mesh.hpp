@@ -68,32 +68,33 @@ namespace potato {
         return box;
     };
 
-    template<typename T>
-    Vec3<float> barycentric(ImplicitLine<float> &AB,
-                            ImplicitLine<float> &AC,                            
+    struct BaryData {
+        ImplicitLine<float> AB;
+        ImplicitLine<float> AC;
+        float Cval {};
+        float Bval {};
+
+        BaryData(Vec3f &A, Vec3f &B, Vec3f &C) {
+            AB = ImplicitLine<float>(A,B);
+            AC = ImplicitLine<float>(A,C);
+            Cval = AB.eval(C.x, C.y);
+            Bval = AC.eval(B.x, B.y);
+        };
+    };
+    
+    inline Vec3<float> barycentric(BaryData &bd,                    
                             float x, float y) {
         Vec3<float> bary;
-        bary.z = AB.eval(x, y) / AB.eval(C.x, C.y);
-        bary.y = AC.eval(x, y) / AC.eval(B.x, B.y);
+        bary.z = bd.AB.eval(x, y) / bd.Cval;
+        bary.y = bd.AC.eval(x, y) / bd.Bval;
         bary.x = 1.0 - bary.y - bary.z;
         return bary;
     };
-
-    template<typename T>
-    Vec3<float> barycentric(Vec3<T> A,
-                            Vec3<T> B,
-                            Vec3<T> C,
-                            float x, float y) {        
-        ImplicitLine<float> AB(A,B);
-        ImplicitLine<float> AC(A,C);
-        return barycentric(AB, AC, x, y);
-    };
-
-
-    template<typename T>
-    void calculateTriangleBarycentric(  Vec3<T> A,
-                                        Vec3<T> B,
-                                        Vec3<T> C,
+    
+    inline void calculateTriangleBarycentric(  
+                                        Vec3f &A,
+                                        Vec3f &B,
+                                        Vec3f &C,
                                         vector<Vec3f> &allBary) {
 
         BoundBox bb = computeBounds(A,B,C);
@@ -101,12 +102,11 @@ namespace potato {
         int ey = floor(bb.end.y);
         int sx = floor(bb.start.x);
         int ex = floor(bb.end.x);
-        ImplicitLine<float> AB(A,B);
-        ImplicitLine<float> AC(A,C);
-
+        BaryData bd(A,B,C);
+        
         for(int y = sy; y <= ey; y++) {
             for(int x = sx; x <= ex; x++) {
-                Vec3<float> bary = barycentric(AB,AC,float(x),float(y));
+                Vec3<float> bary = barycentric(bd,float(x),float(y));
                 if(bary.x > 0 && bary.y > 0 && bary.z > 0) {
                     allBary.push_back(bary);
                 }
@@ -114,9 +114,9 @@ namespace potato {
         }
     };
 
-    template<typename T, typename S>
-    void fillTriangle(  Image<Vec3<S>> *image,
-                        Vec3<T> A, Vec3<T> B, Vec3<T> C) {
+    /*
+    void fillTriangle(  Image<Vec3f> *image,
+                        Vec3f A, Vec3f B, Vec3f C) {
         BoundBox bb = computeBounds(A,B,C);
         for(auto y = bb.start.y; y <= bb.end.y; y += 1) {
             for(auto x = bb.start.x; x <= bb.end.x; x += 1) {
@@ -133,5 +133,5 @@ namespace potato {
                 }
             }
         }
-    };
+    };*/
 };

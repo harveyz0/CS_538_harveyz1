@@ -7,10 +7,10 @@ ExerciseRenderEngine::ExerciseRenderEngine(int windowWidth, int windowHeight) {
     
     // Create drawing buffer and a "screen" buffer 
     // (as if we were transmitting information to the display device)    
-    this->frontBuffer = new Image<Vec3u>(windowWidth, windowHeight);  
-    this->backBuffer = new Image<Vec3u>(windowWidth, windowHeight);  
+    this->frontBuffer = new Image<Vec3f>(windowWidth, windowHeight);  
+    this->backBuffer = new Image<Vec3f>(windowWidth, windowHeight);  
     this->screenBuffer = new Image<Vec3u>(windowWidth, windowHeight);
-    this->frontBuffer->clear(Vec3u(0,0,0));
+    this->frontBuffer->clear(Vec3f(0,0,0));
     this->screenBuffer->clear(Vec3u(0,0,0));
 
     // Generate window texture
@@ -66,7 +66,7 @@ void ExerciseRenderEngine::renderToWindowTexture() {
 
     // Simulate buffer to screen transfer     
     if(USE_VSYNC) frontBufferMutex.lock();
-    screenBuffer->copyFrom(frontBuffer);
+    screenBuffer->copyFrom(frontBuffer, 255.0f, 0.0f);
     if(USE_VSYNC) frontBufferMutex.unlock();
         
     // Copy in screen buffer to texture
@@ -81,10 +81,10 @@ void ExerciseRenderEngine::drawingLoop() {
         timekeeper.startFrame();
 
         // Set drawing buffer
-        Image<Vec3u> *drawBuffer = backBuffer;
+        Image<Vec3f> *drawBuffer = backBuffer;
 
         // Clear drawing buffer
-        drawBuffer->clear(Vec3u(0,0,0));
+        drawBuffer->clear(Vec3f(0,0,0));
 
         // Draw our items
         // EXAMPLE: Just draw a red column that moves every frame
@@ -94,14 +94,14 @@ void ExerciseRenderEngine::drawingLoop() {
         //        Vec3u(255, 0, 0));
         currentCol = (currentCol+colInc)%windowWidth;
 
-        for(int i = 0; i < allLines.size(); i++) {
-            drawLineDDA<int,unsigned char>(drawBuffer, allLines.at(i));
-        }
+        //for(int i = 0; i < allLines.size(); i++) {
+        //    drawLineDDA<int,unsigned char>(drawBuffer, allLines.at(i));
+        //}
 
         Vec3i A = Vec3i(10, 20, 0);
         Vec3i B = Vec3i(50, 40, 0);
         Vec3i C = Vec3i(5, 100, 0);
-        fillTriangle(drawBuffer, A, B, C);
+        //fillTriangle(drawBuffer, A, B, C);
 
         // Swap buffers
         swapBuffers();
@@ -121,17 +121,17 @@ void ExerciseRenderEngine::drawingLoop() {
 
 void ExerciseRenderEngine::swapBuffers() {
     if(!USE_VSYNC || frontBufferMutex.try_lock()) {
-        Image<Vec3u> *tmp = backBuffer;
+        Image<Vec3f> *tmp = backBuffer;
         backBuffer = frontBuffer;
         frontBuffer = tmp;
         if(USE_VSYNC) frontBufferMutex.unlock();
     }
 }
 
-void ExerciseRenderEngine::drawAABox(   Image<Vec3u>* buffer,
+void ExerciseRenderEngine::drawAABox(   Image<Vec3f>* buffer,
                                         int sx, int sy, 
                                         int ex, int ey,
-                                        Vec3u color) {
+                                        Vec3f color) {
 
     int w = ex - sx + 1;
     int h = ey - sy + 1;

@@ -22,6 +22,8 @@ namespace potato {
         T c1 {};
         T c2 {};
 
+        ImplicitLine() = default;
+
         ImplicitLine(Vec3<T> start, Vec3<T> end) {
             this->start = start;
             this->end = end;
