@@ -1,7 +1,7 @@
 #pragma once
 
 // Comment to turn off testing
-//#define ENABLE_TESTING
+#define ENABLE_TESTING
 
 // Set target FPS
 #define TARGET_FPS      60
