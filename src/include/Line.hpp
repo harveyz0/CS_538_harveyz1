@@ -32,19 +32,19 @@ checkAndFlip(Vec3<T>& start, Vec3<T>& end)
   //    swap(end.x, end.y);
   //  }
 }
-    template<typename T>
-    float implicit( Vec3<T> start, Vec3<T> end, 
-                    float x, float y) {
-        auto dy = start.y - end.y;
-        auto dx = end.x - start.x;
-        auto c1 = start.x*end.y;
-        auto c2 = end.x*start.y;
+template<typename T>
+float
+implicit(Vec3<T> start, Vec3<T> end, float x, float y)
+{
+  auto dy = start.y - end.y;
+  auto dx = end.x - start.x;
+  auto c1 = start.x * end.y;
+  auto c2 = end.x * start.y;
 
-        auto res = dy*x + dx*y + c1 - c2;
-        return res;
-    };
+  auto res = dy * x + dx * y + c1 - c2;
+  return res;
+};
 
-    
 template<typename T>
 inline float
 calculateMidpoint(float x, float y, Vec3<T> start, Vec3<T> end)
@@ -93,9 +93,9 @@ drawActualMidpoint(Image<Vec3<C>>& image,
   }
   if (dx < 0) {
     std::swap(newStart, newEnd);
-    //auto temp = newEnd;
-    //newEnd = newStart;
-    //newStart = temp;
+    // auto temp = newEnd;
+    // newEnd = newStart;
+    // newStart = temp;
     dx = -dx;
     dy = -dy;
   }
@@ -105,7 +105,7 @@ drawActualMidpoint(Image<Vec3<C>>& image,
   decltype(T{} / float{}) change = 1;
   decltype(T{} / float{}) x = newStart.x;
   decltype(T{} / float{}) stop = newEnd.x;
-  if(dy < 0){
+  if (dy < 0) {
     change = -1;
     dy = -dy;
   }
@@ -202,46 +202,41 @@ public:
 };
 
 template<typename T, typename C>
-    float implicit(Line<T,C> line, 
-                    float x, float y) {
-        return implicit(line.start,line.end,x,y);
-    };
+float
+implicit(Line<T, C> line, float x, float y)
+{
+  return implicit(line.start, line.end, x, y);
+};
 
-    //void drawLineDDA(Image<Vec3<C>> *image,
-    template<typename T, typename C>
-    void RealedrawLineDDA(Image<Vec3<C>> *image,
-                    Line<T,C> &line) {
-        auto dx = line.end.x - line.start.x;
-        auto dy = line.end.y - line.start.y;
-        int steps = 0;
-        float xInc, yInc;
-        float x = line.start.x;
-        float y = line.start.y;
+// void drawLineDDA(Image<Vec3<C>> *image,
+template<typename T, typename C>
+void
+RealedrawLineDDA(Image<Vec3<C>>* image, Line<T, C>& line)
+{
+  auto dx = line.end.x - line.start.x;
+  auto dy = line.end.y - line.start.y;
+  int steps = 0;
+  float xInc, yInc;
+  float x = line.start.x;
+  float y = line.start.y;
 
-        if(abs(dx) > abs(dy)) {
-            steps = abs(dx);
-        }
-        else {
-            steps = abs(dy);
-        }
+  if (abs(dx) > abs(dy)) {
+    steps = abs(dx);
+  } else {
+    steps = abs(dy);
+  }
 
-        xInc = float(dx) / float(steps);
-        yInc = float(dy) / float(steps);
+  xInc = float(dx) / float(steps);
+  yInc = float(dy) / float(steps);
 
-        image->setPixel((int)round(x), 
-                        (int)round(y),
-                        line.color);
+  image->setPixel((int)round(x), (int)round(y), line.color);
 
-        for(int k = 0; k < steps; k++) {
-            x += xInc;
-            y += yInc;
+  for (int k = 0; k < steps; k++) {
+    x += xInc;
+    y += yInc;
 
-            image->setPixel(
-                        (int)round(x), 
-                        (int)round(y),
-                        line.color);
-        }
-    };
-
+    image->setPixel((int)round(x), (int)round(y), line.color);
+  }
+};
 
 }; // namespace potato
