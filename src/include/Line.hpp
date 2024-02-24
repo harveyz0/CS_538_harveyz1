@@ -8,12 +8,35 @@
 #include "Vector.hpp"
 using namespace std;
 namespace potato {
+    template<typename T>
+    struct ImplicitLine {
+        Vec3<T> start {};
+        Vec3<T> end{};
+        T dx {};
+        T dy {};
+        T c1 {};
+        T c2 {};
 
+        ImplicitLine(Vec3<T> start, Vec3<T> end) {
+            this->start = start;
+            this->end = end;
+            dy = end.y - start.y;
+            dx = end.x - start.x;
+            c1 = start.x*end.y;
+            c2 = end.x*start.y;
+        };
+
+        float eval(float x, float y) {
+           return -dy*x + dx*y + c1 - c2; 
+        };
+
+    };
 template<typename T>
 bool
 checkAndFlip(Vec3<T>& start, Vec3<T>& end)
 {
   decltype(T{} / float{}) slope = calculateSlop(start, end);
+
 
   if (slope < 0) {
     Vec3<T> temp(start);
@@ -23,6 +46,22 @@ checkAndFlip(Vec3<T>& start, Vec3<T>& end)
   }
 
   return false;
+  };
+    /*
+    template<typename T>
+    float implicit( Vec3<T> start, Vec3<T> end, 
+                    float x, float y) {
+        auto dy = start.y - end.y;
+        auto dx = end.x - start.x;
+        auto c1 = start.x*end.y;
+        auto c2 = end.x*start.y;
+
+
+    template<typename T, typename C>
+    float implicit(Line<T,C> line, 
+                    float x, float y) {
+        return implicit(line.start,line.end,x,y);
+    };*/
 
   // T dx = end.x - start.x;
   // T dy = end.y - start.y;
