@@ -32,6 +32,8 @@ inline bool really_close(double a, double b) {
 
 #ifdef ENABLE_TESTING
 
+
+
 TEST_CASE("VecLength") {
     SUBCASE("float") { CHECK(typeid(float) == typeid(potato::VecLength<float>::type));}  
     SUBCASE("int") { CHECK(typeid(float) == typeid(potato::VecLength<int>::type));}  

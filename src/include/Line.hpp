@@ -8,6 +8,7 @@
 #include "Vector.hpp"
 using namespace std;
 namespace potato {
+
     template<typename T>
     struct ImplicitLine {
         Vec3<T> start {};
@@ -27,10 +28,11 @@ namespace potato {
         };
 
         float eval(float x, float y) {
-           return -dy*x + dx*y + c1 - c2; 
+           return -dy*x + dx*y + c1 - c2;
         };
 
     };
+
 template<typename T>
 bool
 checkAndFlip(Vec3<T>& start, Vec3<T>& end)
@@ -49,7 +51,7 @@ checkAndFlip(Vec3<T>& start, Vec3<T>& end)
   };
     /*
     template<typename T>
-    float implicit( Vec3<T> start, Vec3<T> end, 
+    float implicit( Vec3<T> start, Vec3<T> end,
                     float x, float y) {
         auto dy = start.y - end.y;
         auto dx = end.x - start.x;
@@ -58,10 +60,10 @@ checkAndFlip(Vec3<T>& start, Vec3<T>& end)
 
 
     template<typename T, typename C>
-    float implicit(Line<T,C> line, 
+    float implicit(Line<T,C> line,
                     float x, float y) {
         return implicit(line.start,line.end,x,y);
-    };*/
+    };
 
   // T dx = end.x - start.x;
   // T dy = end.y - start.y;
@@ -70,7 +72,6 @@ checkAndFlip(Vec3<T>& start, Vec3<T>& end)
   //    swap(start.x, start.y);
   //    swap(end.x, end.y);
   //  }
-}
 template<typename T>
 float
 implicit(Vec3<T> start, Vec3<T> end, float x, float y)
@@ -84,6 +85,7 @@ implicit(Vec3<T> start, Vec3<T> end, float x, float y)
   return res;
 };
 
+  */
 template<typename T>
 inline float
 calculateMidpoint(float x, float y, Vec3<T> start, Vec3<T> end)
@@ -240,12 +242,14 @@ public:
   };
 };
 
+  /*
 template<typename T, typename C>
 float
 implicit(Line<T, C> line, float x, float y)
 {
   return implicit(line.start, line.end, x, y);
 };
+  */
 
 // void drawLineDDA(Image<Vec3<C>> *image,
 template<typename T, typename C>

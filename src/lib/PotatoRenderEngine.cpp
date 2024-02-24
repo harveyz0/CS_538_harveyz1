@@ -99,13 +99,6 @@ void PotatoRenderEngine::drawOneFrame() {
 
     currentCol = (currentCol+colInc)%windowWidth;
 
-    potato::Vec3f A(1.0f,2.0f,3.0f);
-    potato::Vec3f B(4.5f, 6.7f, 8.9f);
-    cout << "LENGTH: " << A.length() << endl;
-    potato::Vec3f C = A + B;
-    C[1] = 5280.1f;
-    cout << "C: " << C << endl;
-
     // Get elapsed time
     double elapsed = chrono::duration_cast<Second>(Clock::now() - startTime).count();
 

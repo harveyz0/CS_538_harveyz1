@@ -3,8 +3,8 @@
 #include <cmath>
 #include <vector>
 #include <iostream>
-#include "Line.hpp"
 #include "Vector.hpp"
+#include "Line.hpp"
 using namespace std;
 
 namespace potato {
@@ -17,7 +17,7 @@ namespace potato {
     struct Polygon {
         vector<Vert> vertices;
     };
-    
+
     struct TriangleMesh {
         vector<Vert> vertices;
         vector<unsigned int> indices;
@@ -51,7 +51,7 @@ namespace potato {
     BoundBox<T> computeBounds(Vec3<T> A, Vec3<T> B, Vec3<T> C) {
         BoundBox<T> box;
         box.start = min(min(A,B),C);
-        box.end = max(max(A,B),C);        
+        box.end = max(max(A,B),C);
         return box;
     };
 
@@ -70,7 +70,7 @@ namespace potato {
 
     template<typename T>
     Vec3<float> barycentric(ImplicitLine<float> &AB,
-                            ImplicitLine<float> &AC,                            
+                            ImplicitLine<float> &AC,
                             float x, float y) {
         Vec3<float> bary;
         bary.z = AB.eval(x, y) / AB.eval(C.x, C.y);
@@ -83,7 +83,7 @@ namespace potato {
     Vec3<float> barycentric(Vec3<T> A,
                             Vec3<T> B,
                             Vec3<T> C,
-                            float x, float y) {        
+                            float x, float y) {
         ImplicitLine<float> AB(A,B);
         ImplicitLine<float> AC(A,C);
         return barycentric(AB, AC, x, y);

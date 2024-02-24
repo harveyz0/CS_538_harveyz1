@@ -6,7 +6,7 @@
 #include <chrono>
 #include <mutex>
 #include <cmath>
-#include <GL/glew.h>					
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "Vector.hpp"
 #include "Line.hpp"
@@ -23,7 +23,7 @@ using namespace tinyxml2;
 class ExerciseRenderEngine {
     private:
         // Data for display buffer
-        unsigned int windowTextureID = 0;        
+        unsigned int windowTextureID = 0;
         Image<Vec3u> *frontBuffer = 0;
         Image<Vec3u> *backBuffer = 0;
         Image<Vec3u> *screenBuffer = 0;
@@ -42,21 +42,21 @@ class ExerciseRenderEngine {
 
         // Timing stuff
         Timekeeper timekeeper;
-        
-        // BONUS    
+
+        // BONUS
         int currentCol = 0;
 
-        // Internal drawing functions        
-        void drawingLoop();    
+        // Internal drawing functions
+        void drawingLoop();
         void drawAABox( Image<Vec3u> *buffer,
-                        int sx, int sy, 
+                        int sx, int sy,
                         int ex, int ey,
-                        Vec3u color);        
+                        Vec3u color);
         void swapBuffers();
-        
+
     public:
         ExerciseRenderEngine(int windowWidth, int windowHeight);
-        ~ExerciseRenderEngine();  
-        // Copies display buffer to window texture  
+        ~ExerciseRenderEngine();
+        // Copies display buffer to window texture
         void renderToWindowTexture();
 };
