@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Vector.hpp"
 #include <sstream>
 #include <stdexcept>
+#include "Vector.hpp"
 using namespace std;
 
 namespace potato {
@@ -25,29 +25,31 @@ public:
     delete[] buffer;
   };
 
-  
   T* data() const { return buffer; };
 
   int size() const { return cnt; };
 
   size_t stride() const { return sizeof(T); };
 
-  void set(int index, T val) { checkRange(index); buffer[index] = val; };
-
-  T& get(int index) const { checkRange(index); return buffer[index]; };
-
-  void checkRange(int index) const {
-    if(index > cnt){
-      stringstream err;
-      err << "The value of index == " << index << " was beyond the length of the cnt == " << cnt << endl;
-      throw range_error(err.str());
-    }
+  void set(int index, T val)
+  {
+    checkRange(index);
+    buffer[index] = val;
   };
 
-  void clear(T clearVal)
+  T& get(int index) const
   {
-    for (int i = 0; i < cnt; i++) {
-      buffer[i] = clearVal;
+    checkRange(index);
+    return buffer[index];
+  };
+
+  void checkRange(int index) const
+  {
+    if (index > cnt) {
+      stringstream err;
+      err << "The value of index == " << index
+          << " was beyond the length of the cnt == " << cnt << endl;
+      throw range_error(err.str());
     }
   };
 
@@ -61,7 +63,30 @@ public:
       buffer[i] = other->buffer[i];
     }
   };
-};
+
+  template<typename U, typename S>
+  void copyFrom(const Buffer<U>* other, S alpha, S beta)
+  {
+    if (cnt != other->size())
+      throw std::out_of_range("ERROR: Unequal sizes! " + to_string(cnt) +
+                              " vs. " + to_string(other->size()));
+
+    for (int i = 0; i < cnt; i++) {
+      auto val = other->get(i);
+      val = val * alpha;
+      val = val + beta;
+      buffer[i] = T(val);
+    }
+  };
+
+  void clear(T clearVal)
+  {
+    for (int i = 0; i < cnt; i++) {
+      buffer[i] = clearVal;
+    }
+  };
+
+  };
 
 template<typename T>
 class Image : public Buffer<T>
@@ -88,15 +113,18 @@ public:
   int getWidth() const { return width; };
   int getHeight() const { return height; };
 
-  int getIndex(int x, int y) const {
-    if(x > width){
+  int getIndex(int x, int y) const
+  {
+    if (x > width) {
       stringstream err;
-      err << "The value of x == " << x << " was beyond the length of the width == " << width << endl;
+      err << "The value of x == " << x
+          << " was beyond the length of the width == " << width << endl;
       throw out_of_range(err.str());
     }
-    if(y > height){
+    if (y > height) {
       stringstream err;
-      err << "The value of y == " << y << " was beyond the length of the height == " << height << endl;
+      err << "The value of y == " << y
+          << " was beyond the length of the height == " << height << endl;
       throw out_of_range(err.str());
     }
 

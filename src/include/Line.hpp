@@ -18,6 +18,8 @@ namespace potato {
         T c1 {};
         T c2 {};
 
+        ImplicitLine() = default;
+
         ImplicitLine(Vec3<T> start, Vec3<T> end) {
             this->start = start;
             this->end = end;
@@ -41,9 +43,10 @@ checkAndFlip(Vec3<T>& start, Vec3<T>& end)
 
 
   if (slope < 0) {
-    Vec3<T> temp(start);
-    start.copy(end);
-    end.copy(temp);
+    std::swap(start, end);
+    //Vec3<T> temp(start);
+    //start.copy(end);
+    //end.copy(temp);
     return true;
   }
 
@@ -153,6 +156,7 @@ drawActualMidpoint(Image<Vec3<C>>& image,
 
   float d = calculateMidpoint(x + 1, y + 0.5, newStart, newEnd);
   for (; x <= stop; ++x) {
+    cout << "setPixel " << endl;
     if (swap) {
       image.setPixel(y, x, color);
     } else {
@@ -191,7 +195,10 @@ public:
     , end(x1, y1, z1)
     , color(r, g, b){};
 
-  void paint(Image<Vec3<C>>& image) { return drawMidpoint(image); };
+  void paint(Image<Vec3<C>>& image) {
+    return this->drawDDA(image);
+  };
+  //  return drawActualMidpoint(image, this->start, this->end, this->color); };
 
   void drawDDA(Image<Vec3<C>>& image)
   {
@@ -237,7 +244,7 @@ public:
     Vec3<T> myStart(this->start);
     Vec3<T> myEnd(this->end);
 
-    checkAndFlip(myStart, myEnd);
+    //checkAndFlip(myStart, myEnd);
     drawActualMidpoint(image, myStart, myEnd, this->color);
   };
 };
@@ -250,7 +257,6 @@ implicit(Line<T, C> line, float x, float y)
   return implicit(line.start, line.end, x, y);
 };
   */
-
 // void drawLineDDA(Image<Vec3<C>> *image,
 template<typename T, typename C>
 void
@@ -281,5 +287,6 @@ RealedrawLineDDA(Image<Vec3<C>>* image, Line<T, C>& line)
     image->setPixel((int)round(x), (int)round(y), line.color);
   }
 };
+
 
 }; // namespace potato
