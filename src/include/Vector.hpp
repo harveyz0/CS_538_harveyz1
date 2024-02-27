@@ -32,6 +32,13 @@ namespace potato {
         Vec4(T x, T y, T z, T w): x(x), y(y), z(z), w(w) {};
         Vec4(Vec3<T> v, T w): x(v.x), y(v.y), z(v.z), w(w) {};
 
+        void copyFrom(const Vec4<T> &other) {
+            x = other.x;
+            y = other.y;
+            z = other.z;
+            w = other.w;
+        };
+
         template<typename U>
         auto operator+(Vec4<U> v2) const
         -> Vec4<decltype(T{} + U{})>
@@ -186,6 +193,12 @@ namespace potato {
             y(static_cast<T>(other.y)),
             z(static_cast<T>(other.z)) {};
 
+        void copyFrom(const Vec3<T> &other) {
+            x = other.x;
+            y = other.y;
+            z = other.z;
+        };
+
         template<typename U>
         auto operator+(const Vec3<U> &v2) const
         -> Vec3<decltype(T{} + U{})>
@@ -328,4 +341,47 @@ namespace potato {
     using Vec3i = Vec3<int>;
     using Vec3d = Vec3<double>;
     using Vec3u = Vec3<unsigned char>;
+
+    // ADDITIONAL FUNCTIONS
+    template<typename T>
+    Vec3<T> minV(Vec3<T> a, Vec3<T> b) {
+        Vec3<T> c;
+        c.x = std::min(a.x, b.x);
+        c.y = std::min(a.y, b.y);
+        c.z = std::min(a.z, b.z);
+        return c;
+    };
+
+    template<typename T>
+    Vec3<T> maxV(Vec3<T> a, Vec3<T> b) {
+        Vec3<T> c;
+        c.x = std::max(a.x, b.x);
+        c.y = std::max(a.y, b.y);
+        c.z = std::max(a.z, b.z);
+        return c;
+    };
+
+    inline Vec3i floorV(Vec3f v) {
+        Vec3i vi;
+        vi.x = (int)std::floor(v.x);
+        vi.y = (int)std::floor(v.y);
+        vi.z = (int)std::floor(v.z);
+        return vi;
+    };
+
+    inline Vec3i ceilV(Vec3f v) {
+        Vec3i vi;
+        vi.x = (int)std::ceil(v.x);
+        vi.y = (int)std::ceil(v.y);
+        vi.z = (int)std::ceil(v.z);
+        return vi;
+    };
+
+    inline Vec3i roundV(Vec3f v) {
+        Vec3i vi;
+        vi.x = (int)std::round(v.x);
+        vi.y = (int)std::round(v.y);
+        vi.z = (int)std::round(v.z);
+        return vi;
+    };
 };

@@ -1,5 +1,4 @@
-#ifndef RENDER_ENGINE_H
-#define RENDER_ENGINE_H
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -7,11 +6,9 @@
 #include <chrono>
 #include <mutex>
 #include <cmath>
-#include <GL/glew.h>
+#include <GL/glew.h>					
 #include <GLFW/glfw3.h>
-#include "box.hpp"
 using namespace std;
-
 
 class A01RenderEngine {
     private:
@@ -24,32 +21,25 @@ class A01RenderEngine {
         int nrComponents = 3;
         int totalBufferSize = 0;
 
-        // BONUS
-        int currentCol = 100;
-        Box currentBox = Box(1, 1, 1, 1);
+        // BONUS    
+        int currentCol = 0;
 
         // Internal drawing functions
-        void clearBuffer(   unsigned char *buffer,
+        void clearBuffer(   unsigned char *buffer, 
                             unsigned char r,
                             unsigned char g,
                             unsigned char b);
-        void drawOneFrame();
+        void drawOneFrame();    
         void drawAABox( unsigned char *buffer,
-                        const Box& box,
+                        int sx, int sy, 
+                        int ex, int ey,
                         unsigned char r,
                         unsigned char g,
                         unsigned char b);
-
-    
-        Box getPoints(Box);
-
+        
     public:
         A01RenderEngine(int windowWidth, int windowHeight);
-        ~A01RenderEngine();
-        // Copies display buffer to window texture
+        ~A01RenderEngine();  
+        // Copies display buffer to window texture  
         void renderToWindowTexture();
 };
-
-
-
-#endif

@@ -99,11 +99,10 @@ install(DIRECTORY shaders/ExerciseApp DESTINATION bin/ExerciseApp/shaders)
 #install(DIRECTORY shaders/Assign01 DESTINATION bin/Assign01/shaders)
 
 # PotatoRenderApp
-# Uncomment these lines
-#add_executable(PotatoRenderApp ${GENERAL_SOURCES} "./src/app/PotatoRenderApp.cpp")
-#target_link_libraries(PotatoRenderApp ${ALL_LIBRARIES})
-#install(TARGETS PotatoRenderApp RUNTIME DESTINATION bin/PotatoRenderApp)
-#install(DIRECTORY shaders/PotatoRenderApp DESTINATION bin/PotatoRenderApp/shaders)
+add_executable(PotatoRenderApp ${GENERAL_SOURCES} "./src/app/PotatoRenderApp.cpp")
+target_link_libraries(PotatoRenderApp ${ALL_LIBRARIES})
+install(TARGETS PotatoRenderApp RUNTIME DESTINATION bin/PotatoRenderApp)
+install(DIRECTORY shaders/PotatoRenderApp DESTINATION bin/PotatoRenderApp/shaders)
 
 #####################################
 # TEST TARGETS

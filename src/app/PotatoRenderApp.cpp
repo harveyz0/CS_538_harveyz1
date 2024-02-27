@@ -3,7 +3,7 @@
 #include <sstream>
 #include <thread>
 #include <vector>
-#include <GL/glew.h>
+#include <GL/glew.h>					
 #include <GLFW/glfw3.h>
 #include "glm/glm.hpp"
 #include "tinyxml2.h"
@@ -12,6 +12,8 @@
 #include "GLSetup.hpp"
 #include "Shader.hpp"
 #include "PotatoRenderEngine.hpp"
+#include "PotatoForwardEngine.hpp"
+#include "PotatoExampleEngine.hpp"
 using namespace std;
 using namespace tinyxml2;
 
@@ -47,10 +49,10 @@ void createSimpleQuad(Mesh &m) {
 
 	// Add to mesh's list of vertices
 	m.vertices.push_back(upperLeft);
-	m.vertices.push_back(upperRight);
+	m.vertices.push_back(upperRight);	
 	m.vertices.push_back(lowerLeft);
 	m.vertices.push_back(lowerRight);
-
+	
 	// Add indices for two triangles
 	m.indices.push_back(0);
 	m.indices.push_back(3);
@@ -103,7 +105,7 @@ static void mouse_position_callback(GLFWwindow* window, double xpos, double ypos
 
 // Mouse button callback
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
-
+	
 	switch(button) {
 		case GLFW_MOUSE_BUTTON_LEFT:
 			if(action == GLFW_PRESS) {
@@ -132,7 +134,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if(action == GLFW_PRESS && key == GLFW_KEY_ESCAPE) {
 			glfwSetWindowShouldClose(window, true);
 	}
-
+		
 	// Check for other keys
 	if(action == GLFW_PRESS || action == GLFW_REPEAT) {
 		switch(key) {
@@ -145,7 +147,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 }
 
-// Main
+// Main 
 int main(int argc, char **argv) {
 
 	// Do a quick check on command line arguments
@@ -153,7 +155,7 @@ int main(int argc, char **argv) {
     for(int i = 1; i < argc; i++) {
         cout << "* Arg " << i << ": " << argv[i] << endl;
     }
-
+	
 	// Are we in debugging mode?
 	bool DEBUG_MODE = true;
 
@@ -174,7 +176,7 @@ int main(int argc, char **argv) {
 
 	// Set mouse button callback
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
-
+	
 	// Uncomment this to make mouse invisible
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
@@ -188,11 +190,11 @@ int main(int argc, char **argv) {
 	if(DEBUG_MODE) checkAndSetupOpenGLDebugging();
 
 	// Set the background color to white (so we can see if the quad is covering the window)
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);	
 
 	// Create and load shaders
 	GLuint programID = 0;
-	try {
+	try {		
 		// Load vertex shader code and fragment shader code
 		string vertexCode = readFileToString("./shaders/PotatoRenderApp/Quad.vs");
 		string fragCode = readFileToString("./shaders/PotatoRenderApp/Quad.fs");
@@ -203,7 +205,7 @@ int main(int argc, char **argv) {
 		// Create shader program from code
 		programID = initShaderProgramFromSource(vertexCode, fragCode);
 	}
-	catch (exception e) {
+	catch (exception e) {		
 		// Close program
 		cleanupGLFW(window);
 		exit(EXIT_FAILURE);
@@ -219,12 +221,26 @@ int main(int argc, char **argv) {
 
     // Get texture uniform location
     GLint uniformTextureID = glGetUniformLocation(programID, "quadTexture");
-
+	
 	// Enable depth testing
 	glEnable(GL_DEPTH_TEST);
 
     // Create Potato Render Engine
-    PotatoRenderEngine *engine = new PotatoRenderEngine(windowWidth, windowHeight);
+	PotatoRenderEngine *engine; 
+	if(RENDERER_CHOICE == BASE_RENDERER) {
+		engine = new PotatoRenderEngine(windowWidth, windowHeight);
+	}
+	else if(RENDERER_CHOICE == EXAMPLE_RENDERER) {
+		engine = new PotatoExampleEngine(windowWidth, windowHeight);
+	}
+	else if(RENDERER_CHOICE == FORWARD_RENDERER) {
+    	engine = new PotatoForwardEngine(windowWidth, windowHeight);
+	}
+	else {
+		throw std::invalid_argument("Bad renderer choice!");
+	}
+
+	engine->initialize();
 
 	while (!glfwWindowShouldClose(window)) {
 		// Set viewport size
@@ -245,9 +261,9 @@ int main(int argc, char **argv) {
         engine->renderToWindowTexture();
 
 		// Draw object
-		drawMesh(mgl);
+		drawMesh(mgl);	
 
-		// Swap buffers and poll for window events
+		// Swap buffers and poll for window events		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
@@ -256,16 +272,17 @@ int main(int argc, char **argv) {
 	}
 
     // Clean up engine
+	engine->shutdown();
     delete engine;
     engine = NULL;
 
 	// Clean up mesh
 	cleanupMesh(mgl);
-
+    
 	// Clean up shader programs
 	glUseProgram(0);
 	glDeleteProgram(programID);
-
+		
 	// Destroy window and stop GLFW
 	cleanupGLFW(window);
 

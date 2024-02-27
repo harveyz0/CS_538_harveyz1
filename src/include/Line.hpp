@@ -1,14 +1,23 @@
 #pragma once
-#include <algorithm>
+==== BASE ====
+==== BASE ====
 #include <cmath>
 #include <iostream>
-#include <stdexcept>
-
-#include "Buffer.hpp"
+==== BASE ====
 #include "Vector.hpp"
+#include "Buffer.hpp"
+==== BASE ====
 using namespace std;
 namespace potato {
+==== BASE ====
+    template<typename T, typename C>
+    struct Line {
+        Vec3<T> start {};
+        Vec3<T> end {};
+        Vec3<C> color {};
+    };
 
+==== BASE ====
     template<typename T>
     struct ImplicitLine {
         Vec3<T> start {};
@@ -32,83 +41,64 @@ namespace potato {
         float eval(float x, float y) {
            return -dy*x + dx*y + c1 - c2;
         };
+==== BASE ====
 
     };
 
-template<typename T>
-bool
-checkAndFlip(Vec3<T>& start, Vec3<T>& end)
-{
-  decltype(T{} / float{}) slope = calculateSlop(start, end);
-
-
-  if (slope < 0) {
-    std::swap(start, end);
-    //Vec3<T> temp(start);
-    //start.copy(end);
-    //end.copy(temp);
-    return true;
-  }
-
-  return false;
-  };
     /*
     template<typename T>
-    float implicit( Vec3<T> start, Vec3<T> end,
+    float implicit( Vec3<T> start, Vec3<T> end, 
                     float x, float y) {
         auto dy = start.y - end.y;
         auto dx = end.x - start.x;
         auto c1 = start.x*end.y;
         auto c2 = end.x*start.y;
 
-
-    template<typename T, typename C>
-    float implicit(Line<T,C> line,
-                    float x, float y) {
-        return implicit(line.start,line.end,x,y);
+        auto res = dy*x + dx*y + c1 - c2;
+        return res;
     };
 
-  // T dx = end.x - start.x;
-  // T dy = end.y - start.y;
+    template<typename T, typename C>
+    float implicit(Line<T,C> line, 
+                    float x, float y) {
+        return implicit(line.start,line.end,x,y);
+    };*/
 
-  //  if (abs(dx) < abs(dy)) {
-  //    swap(start.x, start.y);
-  //    swap(end.x, end.y);
-  //  }
-template<typename T>
-float
-implicit(Vec3<T> start, Vec3<T> end, float x, float y)
-{
-  auto dy = start.y - end.y;
-  auto dx = end.x - start.x;
-  auto c1 = start.x * end.y;
-  auto c2 = end.x * start.y;
+    template<typename T, typename C>
+    void drawLineDDA(Image<Vec3<C>> *image,
+                    Line<T,C> &line) {
+        auto dx = line.end.x - line.start.x;
+        auto dy = line.end.y - line.start.y;
+        int steps = 0;
+        float xInc, yInc;
+        float x = line.start.x;
+        float y = line.start.y;
 
-  auto res = dy * x + dx * y + c1 - c2;
-  return res;
-};
+        if(abs(dx) > abs(dy)) {
+            steps = abs(dx);
+        }
+        else {
+            steps = abs(dy);
+        }
 
-  */
-template<typename T>
-inline float
-calculateMidpoint(float x, float y, Vec3<T> start, Vec3<T> end)
-// This should probably be fixed to allow doubles
-{
-  return (start.y - end.y) * x + (end.x - start.x) * y + (start.x * end.y) -
-         (end.x * start.y);
-};
+        xInc = float(dx) / float(steps);
+        yInc = float(dy) / float(steps);
 
-template<typename T>
-float
-calculateMidpoint(Vec3<T> start, Vec3<T> end, float x, float y)
-{
-  auto dy = start.y - end.y;
-  auto dx = end.x - start.x;
-  auto c1 = start.x * end.y;
-  auto c2 = end.x * start.y;
+        image->setPixel((int)round(x), 
+                        (int)round(y),
+                        line.color);
 
-  auto res = dy * x + dx * y + c1 - c2;
-  return res;
+        for(int k = 0; k < steps; k++) {
+            x += xInc;
+            y += yInc;
+
+            image->setPixel(
+                        (int)round(x), 
+                        (int)round(y),
+                        line.color);
+        }
+    };
+==== BASE ====
 };
 
 template<typename T, typename C>
