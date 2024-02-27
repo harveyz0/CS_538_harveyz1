@@ -11,7 +11,9 @@
 #include "MeshGLData.hpp"
 #include "GLSetup.hpp"
 #include "Shader.hpp"
-#include "BasicRenderEngine.hpp"
+#include "PotatoRenderEngine.hpp"
+#include "PotatoForwardEngine.hpp"
+#include "PotatoExampleEngine.hpp"
 using namespace std;
 using namespace tinyxml2;
 
@@ -147,6 +149,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 // Main 
 int main(int argc, char **argv) {
+
 	// Do a quick check on command line arguments
 	cout << "Number of command line arguments: " << (argc-1) << endl;
     for(int i = 1; i < argc; i++) {
@@ -158,7 +161,7 @@ int main(int argc, char **argv) {
 
 	// GLFW setup
 	// Switch to 4.1 if necessary for macOS
-	GLFWwindow* window = setupGLFW("BasicRenderApp", 4, 3, windowWidth, windowHeight, DEBUG_MODE);
+	GLFWwindow* window = setupGLFW("PotatoRenderApp", 4, 3, windowWidth, windowHeight, DEBUG_MODE);
 
 	// GLEW setup
 	setupGLEW(window);
@@ -193,8 +196,8 @@ int main(int argc, char **argv) {
 	GLuint programID = 0;
 	try {		
 		// Load vertex shader code and fragment shader code
-		string vertexCode = readFileToString("./shaders/BasicRenderApp/Quad.vs");
-		string fragCode = readFileToString("./shaders/BasicRenderApp/Quad.fs");
+		string vertexCode = readFileToString("./shaders/PotatoRenderApp/Quad.vs");
+		string fragCode = readFileToString("./shaders/PotatoRenderApp/Quad.fs");
 
 		// Print out shader code, just to check
 		if(DEBUG_MODE) printShaderCode(vertexCode, fragCode);
@@ -222,8 +225,22 @@ int main(int argc, char **argv) {
 	// Enable depth testing
 	glEnable(GL_DEPTH_TEST);
 
-    // Create Basic Render Engine
-    BasicRenderEngine *engine = new BasicRenderEngine(windowWidth, windowHeight);
+    // Create Potato Render Engine
+	PotatoRenderEngine *engine; 
+	if(RENDERER_CHOICE == BASE_RENDERER) {
+		engine = new PotatoRenderEngine(windowWidth, windowHeight);
+	}
+	else if(RENDERER_CHOICE == EXAMPLE_RENDERER) {
+		engine = new PotatoExampleEngine(windowWidth, windowHeight);
+	}
+	else if(RENDERER_CHOICE == FORWARD_RENDERER) {
+    	engine = new PotatoForwardEngine(windowWidth, windowHeight);
+	}
+	else {
+		throw std::invalid_argument("Bad renderer choice!");
+	}
+
+	engine->initialize();
 
 	while (!glfwWindowShouldClose(window)) {
 		// Set viewport size
@@ -251,10 +268,11 @@ int main(int argc, char **argv) {
 		glfwPollEvents();
 
 		// Sleep for 15 ms
-		this_thread::sleep_for(chrono::milliseconds(1));
+		this_thread::sleep_for(chrono::milliseconds(15));
 	}
 
     // Clean up engine
+	engine->shutdown();
     delete engine;
     engine = NULL;
 
