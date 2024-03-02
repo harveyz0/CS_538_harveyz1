@@ -26,6 +26,8 @@ namespace potato {
             float angle = float(angleInc*i);
             Vert v;
             v.pos = Vec3f(radius*cos(angle), radius*sin(angle), 0.0f) + center;
+            v.pos.x = std::round(v.pos.x);
+            v.pos.y = std::round(v.pos.y);
             float r = std::max(0.0f, cos(angle));
             float g = std::max(0.0f, cos(angle - colorAngleOffset));
             float b = std::max(0.0f, cos(angle - 2.0f*colorAngleOffset));
@@ -326,7 +328,6 @@ calculateSlop(const Vec3<T> start, const Vec3<T> end) -> decltype(T{} / float{})
     };
 
     void fillTriangle(vector<Vert> &vertices, Face &face, vector<Fragment> &fragList) {
-
         BoundBox<float> fbox;
     computeBounds(vertices, face, fbox, true);
     BoundBox<int> ibox = convertBoundBox(fbox);
@@ -358,22 +359,5 @@ calculateSlop(const Vec3<T> start, const Vec3<T> end) -> decltype(T{} / float{})
                 }
             }
         }
-        // Compute bounding box
-
-        // Convert to integer bounding box
-
-        // You may assume we have triangles only
-
-        // Get barycentric data
-
-        // Loop through each position
-                // Calculate barycentric weights
-
-                // If within bounds...(greater than 0)
-
-                    // Calculate fragment
-
-                    // Add to list
-
     };
 };
