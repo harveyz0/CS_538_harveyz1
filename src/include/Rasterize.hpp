@@ -17,12 +17,22 @@ namespace potato {
     // Already provided
     PolyMesh* generateTestFan(const Vec3f &center, float radius, int triangleCnt);
     void drawLines(PolyMesh *mesh, vector<Fragment> &fragList, bool wireframe);
-    void fillTriangles(PolyMesh *mesh, vector<Fragment> &allFragments);    
-    Fragment computeFragment(Vert &vA, Vert &vB, Vert &vC, Vec3f &bc);  
+    void fillTriangles(PolyMesh *mesh, vector<Fragment> &allFragments);
+    Fragment computeFragment(Vert &vA, Vert &vB, Vert &vC, Vec3f &bc);
 
-    // TODO FOR ASSIGNMENT    
+    // TODO FOR ASSIGNMENT
     void drawLineDDA(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe);
-    void drawLineMid(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe);    
-    void fillTriangle(vector<Vert> &vertices, Face &face, vector<Fragment> &allFragments);   
-    
+    void drawLineMid(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe);
+    void fillTriangle(vector<Vert> &vertices, Face &face, vector<Fragment> &allFragments);
+
+template<typename T>
+inline float
+calculateMidpoint(float x, float y, Vec3<T> start, Vec3<T> end)
+// This should probably be fixed to allow doubles
+{
+  return (start.y - end.y) * x + (end.x - start.x) * y + (start.x * end.y) -
+         (end.x * start.y);
+};
+
+
 };

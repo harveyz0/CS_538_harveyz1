@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Vector.hpp"
 #include "Line.hpp"
+#include "Mesh.hpp"
 using namespace std;
 
 namespace potato {       
@@ -19,6 +20,12 @@ namespace potato {
             AC = ImplicitLine<float>(A,C);
             Cval = AB.eval(C.x, C.y);
             Bval = AC.eval(B.x, B.y);
+        };
+        BaryData(Vert &A, Vert &B, Vert &C) {
+            AB = ImplicitLine<float>(A.pos,B.pos);
+            AC = ImplicitLine<float>(A.pos,C.pos);
+            Cval = AB.eval(C.pos.x, C.pos.y);
+            Bval = AC.eval(B.pos.x, B.pos.y);
         };
     };
     

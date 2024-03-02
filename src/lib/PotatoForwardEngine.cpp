@@ -1,4 +1,6 @@
 #include "PotatoForwardEngine.hpp"
+#include "Settings.hpp"
+#include <stdexcept>
 
 PotatoForwardEngine::PotatoForwardEngine(int windowWidth, int windowHeight) : PotatoRenderEngine(windowWidth, windowHeight) {
     // For now, generate simple fan
@@ -7,7 +9,7 @@ PotatoForwardEngine::PotatoForwardEngine(int windowWidth, int windowHeight) : Po
     allMeshes.push_back(m);
 }
 
-PotatoForwardEngine::~PotatoForwardEngine() { 
+PotatoForwardEngine::~PotatoForwardEngine() {
     // Clean up meshes
     for(int i = 0; i < allMeshes.size(); i++) {
         delete allMeshes.at(i);
@@ -21,7 +23,11 @@ void PotatoForwardEngine::mergeFragments(vector<Fragment> &fragList, Image<Vec3f
     // For now, just blindly write all fragments to buffer
     for(int i = 0; i < fragList.size(); i++) {
         Fragment f = fragList.at(i);
+        try{
         drawBuffer->setPixel(f.pos.x, f.pos.y, Vec3f(f.color));
+        }catch(const std::out_of_range& ex){
+            cout << "ERROR : " << ex.what() << endl;
+        }
     }
 }
 
@@ -35,7 +41,9 @@ void PotatoForwardEngine::renderToDrawBuffer(Image<Vec3f> *drawBuffer) {
         PolyMesh *mesh = allMeshes.at(i);
 
         // Get fragments for inside of polygons
-        fillTriangles(mesh, allFragments);
+        if(!SKIP_FILL){
+            fillTriangles(mesh, allFragments);
+        }
 
         // Get fragments for lines
         drawLines(mesh, allFragments, DRAW_LINES_AS_WIREFRAME);
@@ -44,4 +52,3 @@ void PotatoForwardEngine::renderToDrawBuffer(Image<Vec3f> *drawBuffer) {
     // Merge fragments
     mergeFragments(allFragments, drawBuffer);
 }
-   

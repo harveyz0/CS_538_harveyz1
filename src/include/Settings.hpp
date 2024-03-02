@@ -12,14 +12,15 @@
 #define PRINT_AVE_STATS          true
 
 // Test geometry fan options
-#define GEO_FAN_BLADE_CNT           7
+#define GEO_FAN_BLADE_CNT           8
 
 // Drawing options
-#define DRAW_LINES_AS_WIREFRAME     false
+#define DRAW_LINES_AS_WIREFRAME     true
 #define LINE_DDA                    0
 #define LINE_MID                    1
-//#define LINE_ALGORITHM              LINE_DDA
-#define LINE_ALGORITHM              LINE_MID
+#define LINE_ALGORITHM              LINE_DDA
+//#define LINE_ALGORITHM              LINE_MID
+#define SKIP_FILL                   false
 
 // Renderer options
 #define BASE_RENDERER       0

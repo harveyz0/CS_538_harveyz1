@@ -51,6 +51,17 @@ namespace potato {
             };
         };
 
+        Vec4<T> operator+(T v2) const
+        {
+            return Vec4<T>(
+                x + v2,
+                y + v2,
+                z + v2,
+                w + v2
+            );
+        };
+
+
         template<typename U>
         auto operator-(Vec4<U> v2) const
         -> Vec4<decltype(T{} - U{})>

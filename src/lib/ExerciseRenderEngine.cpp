@@ -129,7 +129,7 @@ ExerciseRenderEngine::drawingLoop()
 
     for (Line l : allLines) {
       // for(int i = 0; i < allLines.size(); i++) {
-      l.paint(*drawBuffer);
+      //l.paint(*drawBuffer);
       // drawLineDDA<int,unsigned char>(drawBuffer, allLines.at(i));
     }
 

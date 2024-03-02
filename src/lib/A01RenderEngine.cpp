@@ -112,7 +112,7 @@ void A01RenderEngine::drawOneFrame() {
     }
 
     // Print time elapsed
-    cout << "POSSIBLE FPS: " << possibleFPS << "; TIME (SECONDS): " << elapsed << endl;
+    //cout << "POSSIBLE FPS: " << possibleFPS << "; TIME (SECONDS): " << elapsed << endl;
 
     // Wait extra time
     this_thread::sleep_for(chrono::milliseconds((long)round(waitTime*1000)));    

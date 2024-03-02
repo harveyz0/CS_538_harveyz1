@@ -9,8 +9,8 @@ using namespace std;
 namespace potato {
     template<typename T>
     struct BoundBox {
-        Vec3<T> start;
-        Vec3<T> end;
+        Vec3<T> start{};
+        Vec3<T> end{};
     };
 
     using BoundBoxf = BoundBox<float>;

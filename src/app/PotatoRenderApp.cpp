@@ -1,10 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string>
 #include <thread>
 #include <vector>
 #include <GL/glew.h>					
 #include <GLFW/glfw3.h>
+#include "Settings.hpp"
 #include "glm/glm.hpp"
 #include "tinyxml2.h"
 #include "MeshData.hpp"
@@ -159,9 +161,25 @@ int main(int argc, char **argv) {
 	// Are we in debugging mode?
 	bool DEBUG_MODE = true;
 
+	stringstream windowTitle;
+	windowTitle << "PotatoRenderApp ; fan blade count ";
+	windowTitle << GEO_FAN_BLADE_CNT;
+	windowTitle << " ; Line Algo ";
+	if(LINE_ALGORITHM == LINE_DDA){
+		windowTitle << "DDA ";
+	} else if(LINE_ALGORITHM == LINE_MID){
+		windowTitle << "MID ";
+	} else {
+		windowTitle << "UNKNOWN ";
+	}
+
+	if(DRAW_LINES_AS_WIREFRAME){
+		windowTitle << "; Wireframe";
+	}
+	
 	// GLFW setup
 	// Switch to 4.1 if necessary for macOS
-	GLFWwindow* window = setupGLFW("PotatoRenderApp", 4, 3, windowWidth, windowHeight, DEBUG_MODE);
+	GLFWwindow* window = setupGLFW(windowTitle.str(), 4, 3, windowWidth, windowHeight, DEBUG_MODE);
 
 	// GLEW setup
 	setupGLEW(window);
