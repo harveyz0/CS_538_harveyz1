@@ -233,7 +233,124 @@ calculateSlop(const Vec3<T> start, const Vec3<T> end) -> decltype(T{} / float{})
 };
 
 
+
+void drawLineMidAss(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe) {
+        Vec3f newStart(roundV(startVert.pos));
+    Vec3f newEnd(roundV(endVert.pos));
+    int dx = newEnd.x - newStart.x;
+    int dy = newEnd.y - newStart.y;
+    bool swap = abs(dy) > abs(dx);
+    if(swap){
+        std::swap(newStart.x, newStart.y);
+        std::swap(newEnd.x, newEnd.y);
+        std::swap(dx, dy);
+    }
+    Vec4f startColor = startVert.color;
+    Vec4f endColor = endVert.color;
+
+    if(dx < 0){
+        std::swap(newStart, newEnd);
+        std::swap(startColor, endColor);
+        dx = -dx;
+        dy = -dy;
+    }
+
+    float y = newStart.y;
+    float yInc = +1.0;
+    if(dy < 0){
+        yInc = -1;
+        dy = -dy;
+        std::swap(newStart.y, newEnd.y);
+    }
+    float d = ImplicitLine<float>(newStart, newEnd).eval(newStart.x + 1.0f, newStart.y + 0.5f);
+    float stepCount = newEnd.x - newStart.x;
+
+    Vec4f color = startColor;
+    Vec4f colorInc = (endColor - startColor) / stepCount;
+
+    if(wireframe){
+        color = Vec4f(1.0,1.0,1.0,1.0);
+    }
+    for(float x = newStart.x; x <= newEnd.x; ++x){
+        if(swap){
+            fragList.push_back(Fragment(y, x, color));
+        } else {
+            fragList.push_back(Fragment(x, y, color));
+        }
+        if(!wireframe){
+        color = color + colorInc;
+        }
+        if(d < 0){
+            y += yInc;
+            d = d + (dx - dy);
+        } else {
+            d = d - dy;
+        }
+    }
+};
+
+
+
+/*
+void
+drawActualMidpoint(Image<Vec3<C>>& image,
+                   const Vec3<T>& start,
+                   const Vec3<T>& end,
+                   const Vec3<C>& color)*/
     void drawLineMid(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe) {
+
+  // When you need to flip x and y do all xs and ys flip?
+  Vec3<float> newStart(startVert.pos);
+  Vec3<float> newEnd(endVert.pos);
+
+  int dx = newEnd.x - newStart.x;
+  int dy = newEnd.y - newStart.y;
+  bool swap = abs(dx) < abs(dy);
+  if (swap) {
+    std::swap(dx, dy);
+    std::swap(newStart.x, newStart.y);
+    std::swap(newEnd.x, newEnd.y);
+  }
+  Vec3f startColor = startVert.color;
+  Vec3f endColor = endVert.color;
+  if (dx < 0) {
+    std::swap(newStart, newEnd);
+    std::swap(startColor, endColor);
+    dx = -dx;
+    dy = -dy;
+  }
+
+  float change = 1;
+  float y = newStart.y; //I don't really understand why this doesn't get changed in the dy < 0
+  if (dy < 0) {
+    change = -1;
+    dy = -dy;
+    std::swap(newStart.y, newEnd.y);
+  }
+  float x = newStart.x;
+  float stop = newEnd.x;
+
+  Vec3f color = startColor;
+    Vec3f colorInc = (endColor - startColor) / (stop - x);
+    if(wireframe){
+        color = Vec3f(1.0,1.0,1.0);
+    }
+  float d = calculateMidpoint(newStart.x + 1, newStart.y + 0.5, newStart, newEnd);
+  for (; x <= stop; ++x) {
+    if (swap) {
+      fragList.push_back(Fragment(y, x, color));
+    } else {
+      fragList.push_back(Fragment(x, y, color));
+    }
+    if (d < 0) {
+      y = y + change;
+      d = d + (dx - dy);
+    } else {
+      d = d - dy;
+    }
+  }
+};
+    void drawLineMidMine(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe) {
         // When you need to flip x and y do all xs and ys flip?
         Vec3f newStart(roundV(startVert.pos));
         Vec3f newEnd(roundV(endVert.pos));
@@ -270,9 +387,11 @@ calculateSlop(const Vec3<T> start, const Vec3<T> end) -> decltype(T{} / float{})
         if (dy < 0) {
           change = -1;
           dy = -dy;
+            std::swap(newStart.y, newEnd.y);
+        y = newStart.y;
         }
 
-//    ImplicitLine<float> line(newStart, newEnd);
+    //ImplicitLine<float> line(newStart, newEnd);
 
         Vec4f colorInc = (endVert.color - startVert.color) / (stop - x);
         Vec4f curColor(startVert.color);
@@ -280,6 +399,7 @@ calculateSlop(const Vec3<T> start, const Vec3<T> end) -> decltype(T{} / float{})
             curColor = Vec4f(1.0, 1.0, 1.0, 1.0);
         }
         float d = calculateMidpoint(x + 1, y + 0.5, newStart, newEnd);
+        //float d = ImplicitLine<float>(newStart, newEnd).eval(x+1.0f, y+0.5f);
         for (; x <= stop; ++x) {
             if (swap) {
                 fragList.push_back(Fragment(y, x, curColor));
@@ -291,7 +411,7 @@ calculateSlop(const Vec3<T> start, const Vec3<T> end) -> decltype(T{} / float{})
             }
             if (d < 0) {
                 y = y + change;
-                d = d + dx - dy;
+                d = d + (dx - dy);
             } else {
                 d = d - dy;
             }
