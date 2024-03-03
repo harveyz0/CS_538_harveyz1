@@ -178,6 +178,9 @@ namespace potato {
             } else {
                 fragList.push_back(Fragment(x, y, color));
             }
+            if(!wireframe){
+                color = color + colorInc;
+            }
             if (d < 0) {
                 y = y + change;
                 d = d + (dx - dy);
