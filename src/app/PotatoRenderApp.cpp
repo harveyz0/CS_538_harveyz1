@@ -11,9 +11,11 @@
 #include "MeshGLData.hpp"
 #include "GLSetup.hpp"
 #include "Shader.hpp"
+
 #include "PotatoRenderEngine.hpp"
 #include "PotatoForwardEngine.hpp"
 #include "PotatoExampleEngine.hpp"
+
 using namespace std;
 using namespace tinyxml2;
 
