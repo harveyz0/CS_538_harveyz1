@@ -276,7 +276,7 @@ int main(int argc, char **argv) {
 
 
     // Clean up engine
-	engine->shutdown();
+	engine->shutdown(); 
     delete engine;
     engine = NULL;
 
