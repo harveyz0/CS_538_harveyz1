@@ -20,9 +20,9 @@ namespace potato {
     void fillTriangles(PolyMesh *mesh, vector<Fragment> &fragList);    
     Fragment computeFragment(Vert &vA, Vert &vB, Vert &vC, Vec3f &bc);  
 
-    // TODO FOR ASSIGNMENT
+    // TODO FOR ASSIGNMENT    
     void drawLineDDA(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe);
-    void drawLineMid(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe);
+    void drawLineMid(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe);    
 
 template<typename T>
 inline float

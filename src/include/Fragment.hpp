@@ -1,17 +1,16 @@
 #pragma once
 
 #define _USE_MATH_DEFINES
-#include "Vector.hpp"
 #include <cmath>
-#include <iostream>
 #include <vector>
+#include <iostream>
+#include "Vector.hpp"
 using namespace std;
 
 namespace potato {
-struct Fragment
-{
-  Vec3i pos{};
-  Vec4f color{};
+    struct Fragment {
+        Vec3i pos {};        
+        Vec4f color {};
 
     Fragment() = default;
   Fragment(int x, int y, int z, float r, float g, float b, float a)
@@ -24,5 +23,5 @@ struct Fragment
   Fragment(int x, int y, Vec3f color)
     : pos{ Vec3i(x, y, 0) }
     , color{ Vec4f(color, 0) } {};
-};
+    };
 };

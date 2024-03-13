@@ -9,7 +9,7 @@ PotatoForwardEngine::PotatoForwardEngine(int windowWidth, int windowHeight) : Po
     allMeshes.push_back(m);
 }
 
-PotatoForwardEngine::~PotatoForwardEngine() {
+PotatoForwardEngine::~PotatoForwardEngine() { 
     // Clean up meshes
     for(int i = 0; i < allMeshes.size(); i++) {
         delete allMeshes.at(i);
@@ -41,7 +41,7 @@ void PotatoForwardEngine::renderToDrawBuffer(Image<Vec3f> *drawBuffer) {
 
         // Get fragments for inside of polygons
         if(!SKIP_FILL){
-            fillTriangles(mesh, allFragments);
+        fillTriangles(mesh, allFragments);
         }
 
         // Get fragments for lines

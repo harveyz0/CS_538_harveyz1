@@ -1,17 +1,19 @@
 #pragma once
+
 #include <cmath>
 #include <iostream>
 #include "Vector.hpp"
 #include "Buffer.hpp"
 using namespace std;
-namespace potato {
-    template<typename T, typename C>
-    struct Line {
-        Vec3<T> start {};
-        Vec3<T> end {};
-        Vec3<C> color {};
-    };
 
+namespace potato {
+    template<typename T, typename C>    
+    struct Line{
+        Vec3<T> start {};
+        Vec3<T> end{};
+        Vec3<C> color{};
+    };
+       
     template<typename T>
     struct ImplicitLine {
         Vec3<T> start {};
@@ -33,10 +35,9 @@ namespace potato {
         };
 
         float eval(float x, float y) {
-           return -dy*x + dx*y + c1 - c2;
+           return -dy*x + dx*y + c1 - c2; 
         };
-
-    };
+    };   
 
     /*
     template<typename T>
@@ -49,7 +50,7 @@ namespace potato {
 
         auto res = dy*x + dx*y + c1 - c2;
         return res;
-    };
+};
 
     template<typename T, typename C>
     float implicit(Line<T,C> line, 

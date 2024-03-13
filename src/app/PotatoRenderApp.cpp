@@ -176,7 +176,7 @@ int main(int argc, char **argv) {
 	if(DRAW_LINES_AS_WIREFRAME){
 		windowTitle << "; Wireframe";
 	}
-	
+
 	// GLFW setup
 	// Switch to 4.1 if necessary for macOS
 	GLFWwindow* window = setupGLFW(windowTitle.str(), 4, 3, windowWidth, windowHeight, DEBUG_MODE);
@@ -245,64 +245,65 @@ int main(int argc, char **argv) {
 
     // Create Potato Render Engine
 	PotatoRenderEngine *engine; 
-	if(RENDERER_CHOICE == BASE_RENDERER) {
-		engine = new PotatoRenderEngine(windowWidth, windowHeight);
-	}
-	else if(RENDERER_CHOICE == EXAMPLE_RENDERER) {
-		engine = new PotatoExampleEngine(windowWidth, windowHeight);
-	}
-	else if(RENDERER_CHOICE == FORWARD_RENDERER) {
-    	engine = new PotatoForwardEngine(windowWidth, windowHeight);
-	}
-	else {
-		throw std::invalid_argument("Bad renderer choice!");
-	}
-
-	engine->initialize();
-
-	while (!glfwWindowShouldClose(window)) {
-		// Set viewport size
-		int fwidth, fheight;
-		glfwGetFramebufferSize(window, &fwidth, &fheight);
-		glViewport(0, 0, fwidth, fheight);
-
-		// Clear the framebuffer
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		// Use shader program
-		glUseProgram(programID);
-
-        // Set texture uniform variable
-        glUniform1i(uniformTextureID, 0);
-
-        // Render to window texture
-        engine->renderToWindowTexture();
-
-		// Draw object
-		drawMesh(mgl);	
-
-		// Swap buffers and poll for window events		
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-
-		// Sleep for 15 ms
-		this_thread::sleep_for(chrono::milliseconds(15));
-	}
-
-    // Clean up engine
-	engine->shutdown();
-    delete engine;
-    engine = NULL;
-
-	// Clean up mesh
-	cleanupMesh(mgl);
-    
-	// Clean up shader programs
-	glUseProgram(0);
-	glDeleteProgram(programID);
-		
-	// Destroy window and stop GLFW
-	cleanupGLFW(window);
-
-	return 0;
-}
+	if(RENDERER_CHOICE == BASE_RENDERER) { 
+		engine = new PotatoRenderEngine(windowWidth, windowHeight); 
+	} 
+	else if(RENDERER_CHOICE == EXAMPLE_RENDERER) { 
+		engine = new PotatoExampleEngine(windowWidth, windowHeight); 
+	} 
+	else if(RENDERER_CHOICE == FORWARD_RENDERER) { 
+    	engine = new PotatoForwardEngine(windowWidth, windowHeight); 
+	} 
+	else { 
+		throw std::invalid_argument("Bad renderer choice!"); 
+	} 
+	// end render check 
+ 
+	engine->initialize(); 
+ 
+	while (!glfwWindowShouldClose(window)) { 
+		// Set viewport size 
+		int fwidth, fheight; 
+		glfwGetFramebufferSize(window, &fwidth, &fheight); 
+		glViewport(0, 0, fwidth, fheight); 
+ 
+		// Clear the framebuffer 
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+ 
+		// Use shader program 
+		glUseProgram(programID); 
+ 
+        // Set texture uniform variable 
+        glUniform1i(uniformTextureID, 0); 
+ 
+        // Render to window texture 
+        engine->renderToWindowTexture(); 
+ 
+		// Draw object 
+		drawMesh(mgl); 
+ 
+		// Swap buffers and poll for window events 
+		glfwSwapBuffers(window); 
+		glfwPollEvents(); 
+ 
+		// Sleep for 15 ms 
+		this_thread::sleep_for(chrono::milliseconds(15)); 
+	} 
+ 
+    // Clean up engine 
+	engine->shutdown(); 
+    delete engine; 
+    engine = NULL; 
+ 
+	// Clean up mesh 
+	cleanupMesh(mgl); 
+ 
+	// Clean up shader programs 
+	glUseProgram(0); 
+	glDeleteProgram(programID); 
+ 
+	// Destroy window and stop GLFW 
+	cleanupGLFW(window); 
+ 
+	return 0; 
+} 

@@ -12,8 +12,8 @@ using namespace std;
 namespace potato {
 
     struct Vert {
-        Vec3f pos;
-        Vec4f color; // [0,1]
+        Vec3f pos {}; 
+        Vec4f color {}; // [0,1] 
 
         Vert operator+(const Vert &other) const {
             return {
@@ -47,7 +47,7 @@ namespace potato {
     struct Face {
         vector<unsigned int> indices {};
     };
-
+        
     class PolyMesh : public Object3D {
     protected:
         vector<Vert> vertices {};
@@ -60,11 +60,10 @@ namespace potato {
         vector<Face>& getFaces() { return faces; };
     bool isTriangle() { return vertices.size() == 3; };
     };
-
+    
     // Compute bounds for single face
     void computeBounds(vector<Vert> &vertices, Face &face, BoundBoxf &box, bool startBox=true);
 
     // Compute bounds for ENTIRE mesh
     void computeBounds(PolyMesh *mesh, BoundBoxf &box, bool startBox=true);
-
 };
