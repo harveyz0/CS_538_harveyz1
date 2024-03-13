@@ -225,7 +225,7 @@ int main(int argc, char **argv) {
 	// Enable depth testing
 	glEnable(GL_DEPTH_TEST);
 
-    // Create Potato Render Engine
+    // Create Potato Render Engine 
 	PotatoRenderEngine *engine; 
 	if(RENDERER_CHOICE == BASE_RENDERER) {
 		engine = new PotatoRenderEngine(windowWidth, windowHeight);
@@ -239,6 +239,7 @@ int main(int argc, char **argv) {
 	else {
 		throw std::invalid_argument("Bad renderer choice!");
 	}
+	// end render check
 
 	engine->initialize();
 
