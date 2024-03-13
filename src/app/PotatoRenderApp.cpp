@@ -274,6 +274,7 @@ int main(int argc, char **argv) {
 		this_thread::sleep_for(chrono::milliseconds(15));
 	}
 
+
     // Clean up engine
 	engine->shutdown();
     delete engine;
