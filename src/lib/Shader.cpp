@@ -7,8 +7,7 @@ string readFileToString(string filename) {
 	// Could we open file? 
 	if(!file || file.fail()) { 
 		cerr << "ERROR: Could not open file: " << filename << endl; 
-		const char *m = ("ERROR: Could not open file: " + filename).c_str(); 
-		throw runtime_error(m); 
+		throw runtime_error(("ERROR: Could not open file: " + filename)); 
 	} 
  
 	// Create output stream to receive file data 

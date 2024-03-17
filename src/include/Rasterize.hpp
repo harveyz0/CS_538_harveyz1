@@ -23,6 +23,7 @@ namespace potato {
     // TODO FOR ASSIGNMENT    
     void drawLineDDA(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe);
     void drawLineMid(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe);    
+    void drawPoints(Vert &startVert, Vert &endVert, vector<Fragment> &fragList, bool wireframe);
 
 template<typename T>
 inline float

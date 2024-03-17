@@ -1,4 +1,5 @@
 #include "PotatoForwardEngine.hpp"
+#include "Mesh.hpp"
 #include "Settings.hpp"
 #include <stdexcept>
 
@@ -6,7 +7,20 @@ PotatoForwardEngine::PotatoForwardEngine(int windowWidth, int windowHeight) : Po
     // For now, generate simple fan
     PolyMesh *m = generateTestFan(Vec3f(windowWidth/2.0f, windowHeight/2.0f, 0.0f),
                                     windowHeight/3.0f, GEO_FAN_BLADE_CNT);
-    allMeshes.push_back(m);
+    //allMeshes.push_back(m);
+    //return;
+    
+    vector<Face> faces = m->getFaces().at(0).faceToTriangles(m->getVertices());
+
+    PolyMesh *split = new PolyMesh(m->getVertices(), faces);
+    split->setId(4096);
+    allMeshes.push_back(split);
+    for (auto f : split->getFaces()) {
+        cout << " FACE " << endl;
+        for(auto i : f.indices){
+            cout << "indices i " << i << " vert pos " << split->getVertices().at(i).pos << endl;
+        }
+    }
 }
 
 PotatoForwardEngine::~PotatoForwardEngine() { 
@@ -43,6 +57,8 @@ void PotatoForwardEngine::renderToDrawBuffer(Image<Vec3f> *drawBuffer) {
         if(!SKIP_FILL){
         fillTriangles(mesh, allFragments);
         }
+
+        
 
         // Get fragments for lines
         drawLines(mesh, allFragments, DRAW_LINES_AS_WIREFRAME);

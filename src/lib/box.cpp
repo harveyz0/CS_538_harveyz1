@@ -7,7 +7,7 @@ Box::~Box(){
   height = 0;
 }
 
-Box::Box(int bottomLeftX, int BottomLeftY, int width, int height){
+Box::Box(int bottomLeftX, int bottomLeftY, int width, int height){
     this->bottomLeftX = bottomLeftX;
     this->bottomLeftY = bottomLeftY;
     this->width = width;

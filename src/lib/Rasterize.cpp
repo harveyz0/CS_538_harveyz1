@@ -5,6 +5,7 @@
 #include "Mesh.hpp"
 #include "Rasterize.hpp"
 #include "Vector.hpp"
+#include <algorithm>
 #include <stdexcept>
 
 namespace potato {
@@ -19,9 +20,12 @@ namespace potato {
         Vert      centerVert;
         centerVert.pos   = center;
         centerVert.color = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
-        m->getVertices().push_back(centerVert);
+        //m->getVertices().push_back(centerVert);
 
-        int vcnt = triangleCnt * 2;
+        int  vcnt        = triangleCnt * 2;
+        //int  vcnt        = triangleCnt ;
+
+        Face concave;
 
         for (int i = 0; i < vcnt; i++) {
             float angle = float(angleInc * i);
@@ -35,16 +39,21 @@ namespace potato {
             float b = std::max(0.0f, cos(angle - 2.0f * colorAngleOffset));
             v.color = Vec4f(r, g, b, 1.0f);
             m->getVertices().push_back(v);
+            concave.indices.push_back(m->getVertices().size() - 1);
+            cout << "Pushing on " << v.pos << endl;
         }
 
+
+        m->getFaces().push_back(concave);
+
         // Generate triangles
-        for (int i = 0; i < vcnt; i += 2) {
-            Face f;
-            f.indices.push_back(0);
-            f.indices.push_back(i + 1);
-            f.indices.push_back(i + 2);
-            m->getFaces().push_back(f);
-        }
+        // for (int i = 0; i < vcnt; i += 2) {
+        //    Face f;
+        //    f.indices.push_back(0);
+        //    f.indices.push_back(i + 1);
+        //    f.indices.push_back(i + 2);
+        //    m->getFaces().push_back(f);
+        //}
 
         return m;
     };
@@ -59,6 +68,8 @@ namespace potato {
             drawLine = &drawLineDDA;
         } else if (LINE_ALGORITHM == LINE_MID) {
             drawLine = &drawLineMid;
+        } else if (LINE_ALGORITHM == NO_LINE) {
+            drawLine = &drawPoints;
         } else {
             throw std::invalid_argument("Bad line drawing algorithm!");
         }
@@ -71,6 +82,11 @@ namespace potato {
                     (k + 1) % faces.at(i).indices.size());
                 drawLine(vertices.at(firstIndex), vertices.at(secondIndex),
                          fragList, wireframe);
+
+                //drawPoints(vertices.at(firstIndex), vertices.at(secondIndex),
+                //         fragList, true);
+                // cout << "Face at " << i << " is " <<
+                // faces.at(i).isConcave(mesh->getVertices()) << endl;
             }
         }
     };
@@ -160,7 +176,8 @@ namespace potato {
         if (dy < 0) {
             change = -1;
             dy     = -dy;
-            std::swap(newStart.y, newEnd.y);
+            std::swap(newStart.y,
+                      newEnd.y); // But we leave our y as the start position
         }
         float x        = newStart.x;
         float stop     = newEnd.x;
@@ -178,7 +195,7 @@ namespace potato {
             } else {
                 fragList.push_back(Fragment(x, y, color));
             }
-            if(!wireframe){
+            if (!wireframe) {
                 color = color + colorInc;
             }
             if (d < 0) {
@@ -188,6 +205,19 @@ namespace potato {
                 d = d - dy;
             }
         }
+    };
+
+    void drawPoints(Vert &startVert, Vert &endVert, vector<Fragment> &fragList,
+                    bool wireframe) {
+        Vec4f startColor(startVert.color);
+        Vec4f endColor(endVert.color);
+        if (wireframe) {
+            startColor = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+            endColor   = Vec4f(1.0f, 1.0f, 1.0f, 1.0f);
+        }
+        fragList.push_back(
+            Fragment(startVert.pos.x, startVert.pos.y, startColor));
+        fragList.push_back(Fragment(endVert.pos.x, endVert.pos.y, endColor));
     };
 
     void fillTriangle(vector<Vert> &vertices, Face &face,
@@ -204,7 +234,7 @@ namespace potato {
         for (float y = static_cast<float>(ibox.start.y);
              y <= static_cast<float>(ibox.end.y); y += 1.0f) {
             for (float x = static_cast<float>(ibox.start.x);
-                 x <= static_cast<float>(ibox.end.x); x += 1.0f) {
+                x <= static_cast<float>(ibox.end.x); x += 1.0f) {
                 // Vec3<float> bary = barycentric(A,B,C,float(x),float(y));
                 Vec3<float> bary = barycentric(bd, x, y);
                 if (bary.x > 0 && bary.y > 0 && bary.z > 0) {
