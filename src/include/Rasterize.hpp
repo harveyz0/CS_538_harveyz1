@@ -11,11 +11,12 @@
 #include "Mesh.hpp"
 #include "Bary.hpp"
 #include "Settings.hpp"
+#include "generator.hpp"
 using namespace std;
 
 namespace potato {
     // Already provided
-    PolyMesh* generateTestFan(const Vec3f &center, float radius, int triangleCnt);
+    //PolyMesh* generateTestFan(const Vec3f &center, float radius, int triangleCnt);
     void drawLines(PolyMesh *mesh, vector<Fragment> &fragList, bool wireframe);
     void fillTriangles(PolyMesh *mesh, vector<Fragment> &fragList);    
     Fragment computeFragment(Vert &vA, Vert &vB, Vert &vC, Vec3f &bc);  

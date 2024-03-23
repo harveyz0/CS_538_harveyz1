@@ -36,7 +36,7 @@ namespace potato {
 
     vector<Face> Face::faceToTriangles(const vector<Vert> &verts) {
         if (this->isConcave(verts)) {
-            //return concaveFaceToTriangles(verts, poly);
+            return concaveFaceToTriangles(verts, *this);
         }
         vector<Face> indices;
         do{

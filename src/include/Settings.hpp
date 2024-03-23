@@ -21,7 +21,7 @@
 #define NO_LINE                     2
 #define LINE_ALGORITHM              LINE_DDA
 //#define LINE_ALGORITHM              LINE_MID
-#define SKIP_FILL                   false
+#define SKIP_FILL                   true
 
 // Renderer options
 #define BASE_RENDERER       0

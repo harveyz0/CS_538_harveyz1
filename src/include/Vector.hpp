@@ -2,6 +2,9 @@
 #pragma once
 #include <cmath>
 #include <string>
+#include <stdexcept>
+#include <iostream>
+
 using namespace std;
 
 namespace potato {

@@ -6,7 +6,7 @@
 #include "Object3D.hpp"
 #include "Vector.hpp"
 #include <cmath>
-#include <iostream>
+#include <iostream> 
 #include <vector>
 using namespace std;
 
@@ -29,6 +29,10 @@ namespace potato {
         };
 
         Vert operator*(const float &w) const { return {pos * w, color * w}; };
+        ostream &operator<<(ostream &os) const {
+            return os << "(" << this->pos.x << "," << this->pos.y << ","
+                      << this->pos.z << ")";
+        };
     };
 
     struct Face {
@@ -40,35 +44,49 @@ namespace potato {
         }
         Face() = default;
 
+        template <typename T>
+        inline Vec3<T> crossProductLines(const Vec3<T> &point1,
+                                         const Vec3<T> &point2,
+                                         const Vec3<T> &point3) const {
+            return (point2 - point1).cross(point3 - point2);
+        };
         bool isConcave(const vector<Vert> &verts) const {
             if (3 > this->indices.size()) {
                 throw std::out_of_range(
                     "Can not run isConcave on face with less than 3 indices");
             }
-            //int  start = this->indices.size() - 2;
-            int  start = 0;
-            int  next = 1;
-            bool isLessThanZero =
-                0 > verts.at(start).pos.cross(verts.at(next).pos).z;
-            //cout << "isLessThanZero " << isLessThanZero << " verts.at(start + 1).pos.cross(verts.at(start).pos).z " << verts.at(start + 1).pos << " pos " << verts.at(start).pos << endl;
-            cout << "#### isLessThanZero " << isLessThanZero << " verts.at(start) " << verts.at(start).pos << " verts.at(next) ";
-            cout << verts.at(next).pos << " z " << verts.at(start).pos.cross(verts.at(next).pos).z << endl;
-            for (start = start + 1, next = next + 1; start < this->indices.size(); ++start, ++next) {
-            if(next == this->indices.size()){
-                next = 0;
-            }
-            auto z = verts.at(start).pos.cross(verts.at(next).pos).z;
-            cout << "Loop isLessThanZero " << isLessThanZero << " verts.at(start) " << verts.at(start).pos << " verts.at(next) ";
-            cout << verts.at(next).pos << " z " << z << endl;
-                if ((0 > z &&
-                     !isLessThanZero) ||
-                    (0 < z &&
-                     isLessThanZero)) {
+            unsigned int point1 = 0;
+            unsigned int point2 = 1;
+            unsigned int point3 = 2;
+            bool         isLessThanZero =
+                0 > this->crossProductLines(verts.at(point1).pos,
+                                            verts.at(point2).pos,
+                                            verts.at(point3).pos)
+                        .z;
+            ++point1;
+            ++point2;
+            ++point3;
+            while (point1 < this->indices.size()) {
+                auto z = this->crossProductLines(verts.at(point1).pos,
+                                                 verts.at(point2).pos,
+                                                 verts.at(point3).pos)
+                             .z;
+                if ((0 > z && !isLessThanZero) || (0 < z && isLessThanZero)) {
                     return true;
+                }
+                ++point1;
+                ++point2;
+                ++point3;
+                if (point2 == this->indices.size()) {
+                    point2 = 0;
+                }
+                if (point3 == this->indices.size()) {
+                    point3 = 0;
                 }
             }
             return false;
         };
+
         bool isTriangle() { return indices.size() == 3; };
         Face dropIndex(unsigned int index) {
             Face newFace(*this);
@@ -76,7 +94,7 @@ namespace potato {
             return newFace;
         };
         vector<Face> faceToTriangles(const vector<Vert> &verts);
-        Face faceToNextTriangle(const vector<Vert> &verts);
+        Face         faceToNextTriangle(const vector<Vert> &verts);
     };
 
     class PolyMesh : public Object3D {
@@ -93,7 +111,7 @@ namespace potato {
 
         vector<Vert> &getVertices() { return vertices; };
         vector<Face> &getFaces() { return faces; };
-        void setId(unsigned int newId){ this->id = newId; }
+        void          setId(unsigned int newId) { this->id = newId; }
     };
 
     // Compute bounds for single face
