@@ -1,27 +1,28 @@
 #include "PotatoForwardEngine.hpp"
 #include "Mesh.hpp"
 #include "Settings.hpp"
+#include "generator.hpp"
 #include <stdexcept>
 
 PotatoForwardEngine::PotatoForwardEngine(int windowWidth, int windowHeight) : PotatoRenderEngine(windowWidth, windowHeight) {
     // For now, generate simple fan
-    PolyMesh *m = generateConvexPolygon(Vec3f(windowWidth/2.0f, windowHeight/2.0f, 0.0f),
+    PolyMesh *m = generateConcavePolygon(Vec3f(windowWidth/2.0f, windowHeight/2.0f, 0.0f),
                                     windowHeight/3.0f, GEO_FAN_BLADE_CNT);
     allMeshes.push_back(m);
     //return;
     
-    vector<Face> faces = m->getFaces().at(0).faceToTriangles(m->getVertices());
-    //vector<Face> faces;
+    //vector<Face> faces = m->getFaces().at(0).faceToTriangles(m->getVertices());
+    vector<Face> faces;
 
     PolyMesh *split = new PolyMesh(m->getVertices(), faces);
     split->setId(4096);
     allMeshes.push_back(split);
-    //for (auto f : split->getFaces()) {
+    for (auto f : m->getFaces()) {
     //    cout << " FACE " << endl;
-    //    for(auto i : f.indices){
-    //        cout << "indices i " << i << " vert pos " << split->getVertices().at(i).pos << endl;
-    //    }
-    //}
+        for(auto i : f.indices){
+            cout << "indices i " << i << " vert pos " << split->getVertices().at(i).pos << endl;
+        }
+    }
 }
 
 PotatoForwardEngine::~PotatoForwardEngine() { 
