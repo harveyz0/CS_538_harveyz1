@@ -6,7 +6,7 @@
 #include "Object3D.hpp"
 #include "Vector.hpp"
 #include <cmath>
-#include <iostream> 
+#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -105,6 +105,11 @@ namespace potato {
 
       public:
         PolyMesh() : Object3D(){};
+        PolyMesh(PolyMesh &other) : Object3D() {
+            std::copy(other.vertices.begin(), other.vertices.end(), this->vertices.begin());
+            std::copy(other.faces.begin(), other.faces.end(), this->faces.begin());
+        };
+
         PolyMesh(const vector<Vert> &verts, const vector<Face> &face)
             : Object3D(), vertices(std::move(verts)), faces(std::move(face)){};
         virtual ~PolyMesh(){};
