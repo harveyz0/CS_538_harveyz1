@@ -16,11 +16,11 @@ class PotatoForwardEngine : public PotatoRenderEngine {
     // List of triangle meshes
     vector<PolyMesh *> allMeshes;
     vector<Fragment>   allFragments;
+    vector<PolyMesh *> renderMeshes{};
 
     // Merge fragments
     void mergeFragments(vector<Fragment> &fragList, Image<Vec3f> *drawBuffer);
 
-    vector<PolyMesh *> renderMeshes{};
 
     void processGeometryOneMesh(PolyMesh *inputMesh, Mat4f &modelMat,
                                 Mat4f &viewMat, Mat4f &projMat,

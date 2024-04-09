@@ -16,7 +16,17 @@ namespace potato {
         Vec3f pos{};
         Vec4f color{}; // [0,1]
 
-        Vert  operator+(const Vert &other) const {
+        Vert() = default;
+        Vert(Vec3f newpos, Vec4f newcolor) : pos(newpos), color(newcolor) {}
+
+        Vert(float x, float y, float z)
+            : pos(Vec3<float>(x, y, z)),
+              color(Vec4<float>(0.5, 0.5, 0.5, 1.0)) {}
+
+        Vert(float x, float y, float z, float r, float g, float b, float a)
+            : pos(Vec3<float>(x, y, z)), color(Vec4<float>(r, g, b, a)) {}
+
+        Vert operator+(const Vert &other) const {
             return {pos + other.pos, color + other.color};
         };
 
@@ -33,10 +43,24 @@ namespace potato {
             return os << "(" << this->pos.x << "," << this->pos.y << ","
                       << this->pos.z << ")";
         };
+
+        Vec3f &setPos(const Vec3f &newPos) {
+            this->pos = Vec3f(newPos);
+            return this->pos;
+        };
+
+        Vec3f &screenTransform(int width, int height) {
+            this->pos =
+                Vec3f(width * (this->pos.x + 1.0f) / 2.0f,
+                      height * (this->pos.y + 1.0f) / 2.0f, this->pos.z);
+            return this->pos;
+        };
     };
 
     struct Face {
         vector<unsigned int> indices{};
+        vector<unsigned int> textureIndices{};
+        vector<unsigned int> normalIndices{};
         Face(unsigned int A, unsigned int B, unsigned int C) {
             this->indices.push_back(A);
             this->indices.push_back(B);
@@ -50,6 +74,7 @@ namespace potato {
                                          const Vec3<T> &point3) const {
             return (point2 - point1).cross(point3 - point2);
         };
+
         bool isConcave(const vector<Vert> &verts) const {
             if (3 > this->indices.size()) {
                 throw std::out_of_range(
@@ -105,13 +130,16 @@ namespace potato {
 
       public:
         PolyMesh() : Object3D(){};
-        PolyMesh(PolyMesh &other) : Object3D() {
-            std::copy(other.vertices.begin(), other.vertices.end(), this->vertices.begin());
-            std::copy(other.faces.begin(), other.faces.end(), this->faces.begin());
+        PolyMesh(const PolyMesh &other) : Object3D() {
+            this->vertices.assign(other.vertices.begin(), other.vertices.end());
+            this->faces.assign(other.faces.begin(), other.faces.end());
         };
 
-        PolyMesh(const vector<Vert> &verts, const vector<Face> &face)
-            : Object3D(), vertices(std::move(verts)), faces(std::move(face)){};
+        PolyMesh(const vector<Vert> &verts, const vector<Face> &face) : Object3D(){
+            this->vertices.assign(verts.begin(), verts.end());
+            this->faces.assign(face.begin(), face.end());
+        };
+
         virtual ~PolyMesh(){};
 
         vector<Vert> &getVertices() { return vertices; };

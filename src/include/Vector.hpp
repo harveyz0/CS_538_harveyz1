@@ -185,6 +185,7 @@ namespace potato {
  
         Vec3() = default; 
         Vec3(T x, T y, T z): x(x), y(y), z(z) {}; 
+        Vec3(const Vec3<T> &other) = default;
  
         template<typename U> 
         Vec3(const Vec3<U> &other) : 

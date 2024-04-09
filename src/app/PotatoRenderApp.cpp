@@ -7,6 +7,7 @@
 #include <GL/glew.h>					
 #include <GLFW/glfw3.h>
 #include "Bary.hpp"
+#include "Exceptions.hpp"
 #include "Settings.hpp"
 #include "glm/glm.hpp"
 #include "tinyxml2.h"
@@ -17,6 +18,7 @@
 #include "PotatoRenderEngine.hpp"
 #include "PotatoForwardEngine.hpp"
 #include "PotatoExampleEngine.hpp"
+#include "OBJModel.hpp"
 #include "Vector.hpp"
 using namespace std;
 using namespace tinyxml2;
@@ -157,53 +159,7 @@ int main(int argc, char **argv) {
 	// Do a quick check on command line arguments
 	//
 	//
-//	Vec3i A(0, 0, 0);
-//	Vec3i B(5, 0, 0);
-//	Vec3i C(3, 1, 0);
-//	Vec3i D(5, 8, 0);
-//
-//	Vec3i E1 = B - A;
-//	Vec3i E2 = C - B;
-//	Vec3i E3 = D - C;
-//	Vec3i E4 = A - D;
-//
-//	cout << "Cross E1 X E2 " << E1.cross(E2) << endl;
-//	cout << "Cross E2 X E3 " << E2.cross(E3) << endl;
-//	cout << "Cross E3 X E4 " << E3.cross(E4) << endl;
-//	cout << "Cross E4 X E1 " << E4.cross(E1) << endl;
-//
-	//
-	//
-//	Vec3f W(1,1,1);
-//	Vec3f T(0,1,0);
-//	Vec3f TXW = T.cross(W);
 
-
-//	Vec3f U = TXW / TXW.length();
-//	Vec3f V = W.cross(U);
-//
-//	cout << "Cross T X W " << TXW << endl;
-//	cout << "Length TXW " << TXW.length() << endl;
-//	cout << "TXW / TXW.lenght " << U << endl;
-//	cout << "U " << U << " V " << V << " W " << W.normalize();
-//
-//
-//	
-//
-//	Vec3f A;
-//	Vec3f B;
-//	Vec3f C;
-//
-//
-//
-//	A = Vec3f(2, 2, 0);
-//	B = Vec3f(5, 3, 0);
-//	C = Vec3f(2, 5, 0);
-//
-//	BaryData bd(A, B, C);
-//	cout << "bd bary " << barycentric(bd, 1, 1) << endl;
-//
-//	return 0;
 	cout << "Number of command line arguments: " << (argc-1) << endl;
     for(int i = 1; i < argc; i++) {
         cout << "* Arg " << i << ": " << argv[i] << endl;
