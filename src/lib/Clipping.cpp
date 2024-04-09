@@ -2,34 +2,35 @@
 #include "Clipping.hpp"
 
 namespace potato {
-    unsigned int poopy(Vec4f v, float left,
+    unsigned int getExtendedCohenSutherlandCode(Vec4f v, float left,
                                                 float right, float bottom,
                                                 float top, float near,
                                                 float far) {
         int reVal = 0x0;
-        if ((left + v.x) < 0.0f) {
+    if((-v.x + left * v.w) > 0.0f){
             reVal |= BIT_LEFT;
         }
-        if ((right - v.x) < 0.0f) {
+
+    if((v.x - right * v.w) > 0.0f){
             reVal |= BIT_RIGHT;
         }
-        if ((bottom + v.y) < 0.0f) {
+    if((-v.y + bottom * v.w) > 0.0f){
             reVal |= BIT_BOTTOM;
         }
-        if ((top - v.y) < 0.0f) {
+    if((v.y - top * v.w) > 0.0f){
             reVal |= BIT_TOP;
         }
-        if ((near + v.z) < 0.0f) {
+    if((-v.z + near * v.w) > 0.0f){
             reVal |= BIT_NEAR;
         }
-        if ((far - v.z) < 0.0f) {
+    if((v.z - far * v.w) > 0.0f){
             reVal |= BIT_FAR;
         }
 
         return reVal;
     }
 
-    unsigned int getExtendedCohenSutherlandCode(Vec4f v, float left,
+    /*unsigned int poopy(Vec4f v, float left,
                                                 float right, float bottom,
                                                 float top, float near,
                                                 float far) {
@@ -54,7 +55,7 @@ namespace potato {
         }
 
         return reVal;
-    }
+    }*/
 
     inline unsigned int getExtendedCohenSutherlandCode(Vec4f v) {
         return getExtendedCohenSutherlandCode(v, CLIP_LEFT, CLIP_RIGHT,
