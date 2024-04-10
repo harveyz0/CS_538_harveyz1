@@ -1,6 +1,6 @@
-#include "PotatoForwardEngine.hpp"
 #include "Clipping.hpp"
 #include "Mesh.hpp"
+#include "PotatoForwardEngine.hpp"
 #include "Settings.hpp"
 #include <iterator>
 #include <stdexcept>
@@ -67,12 +67,11 @@ void PotatoForwardEngine::renderToDrawBuffer(Image<Vec3f> *drawBuffer) {
     // Clear list of fragments
     allFragments.clear();
 
-
     for (int i = 0; i < allMeshes.size(); i++) {
         PolyMesh *inputMesh = allMeshes.at(i);
-        PolyMesh *mesh = renderMeshes.at(i);
+        PolyMesh *mesh      = renderMeshes.at(i);
 
-        Mat4f m(1.0);
+        Mat4f     m(1.0);
         processGeometryOneMesh(inputMesh, m, m, m, mesh);
 
         // Get fragments for inside of polygons
@@ -92,19 +91,21 @@ void PotatoForwardEngine::processGeometryOneMesh(PolyMesh *inputMesh,
                                                  Mat4f    &modelMat,
                                                  Mat4f &viewMat, Mat4f &projMat,
                                                  PolyMesh *outMesh) {
-    vector<int> clips;
+    vector<unsigned int> clips;
     for (int i = 0; i < inputMesh->getVertices().size(); ++i) {
 
         Vec4f pos(inputMesh->getVertices().at(i).pos, 1.0f);
 
         Vec4f newPos = projMat * viewMat * modelMat * pos;
 
-        clips.push_back(getExtendedCohenSutherlandCode(newPos, CLIP_LEFT, CLIP_RIGHT,
-                                              CLIP_BOTTOM, CLIP_TOP, CLIP_NEAR,
-                                              CLIP_FAR));
-        //clips.push_back(getExtendedCohenSutherlandCode(newPos));
+        clips.push_back(getExtendedCohenSutherlandCode(
+            newPos, CLIP_LEFT, CLIP_RIGHT, CLIP_BOTTOM, CLIP_TOP, CLIP_NEAR,
+            CLIP_FAR));
 
-        outMesh->getVertices().at(i).setPos(Vec3f(newPos.x / newPos.w, newPos.y / newPos.w, newPos.z / newPos.w));
+        //TODO : No, wait this is really dumb, 
+        //this assumes the same sizing for both input and output already exists.
+        outMesh->getVertices().at(i).setPos(Vec3f(
+            newPos.x / newPos.w, newPos.y / newPos.w, newPos.z / newPos.w));
         outMesh->getVertices().at(i).screenTransform(windowWidth, windowHeight);
     }
     outMesh->getFaces().clear();
@@ -114,22 +115,17 @@ void PotatoForwardEngine::processGeometryOneMesh(PolyMesh *inputMesh,
         ++p;
         bool allIn = true;
         for (int i = 0; i < face.indices.size(); ++i) {
-            //try{
             if (clips.at(face.indices.at(i)) != 0) {
                 allIn = false;
                 break;
-            }//} catch(out_of_range){
-            //    allIn = false;
-           //     cout << "broken " << i << " p " << p << endl;
-           //     break;}
+            }
         }
         if (allIn) {
             outMesh->getFaces().push_back(face);
         }
     }
-    //for(Vert &v : outMesh->getVertices()){
-    //    v.screenTransform(windowWidth, windowHeight);
-    //}
-    //cout << "BREAKPOINT" << endl;
+    // for(Vert &v : outMesh->getVertices()){
+    //     v.screenTransform(windowWidth, windowHeight);
+    // }
+    // cout << "BREAKPOINT" << endl;
 }
-

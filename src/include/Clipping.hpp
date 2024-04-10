@@ -16,5 +16,4 @@ namespace potato {
                                        float bottom, float top, float near,
                                        float far);
 
-    unsigned int getExtendedCohenSutherlandCode(Vec4f v);
 }; // namespace potato
