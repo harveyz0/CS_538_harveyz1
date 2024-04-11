@@ -92,6 +92,7 @@ void PotatoForwardEngine::processGeometryOneMesh(PolyMesh *inputMesh,
                                                  Mat4f &viewMat, Mat4f &projMat,
                                                  PolyMesh *outMesh) {
     vector<unsigned int> clips;
+    outMesh->getVertices().assign(inputMesh->getVertices().begin(), inputMesh->getVertices().end());
     for (int i = 0; i < inputMesh->getVertices().size(); ++i) {
 
         Vec4f pos(inputMesh->getVertices().at(i).pos, 1.0f);
