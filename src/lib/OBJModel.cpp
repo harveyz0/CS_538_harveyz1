@@ -25,7 +25,7 @@ namespace potato {
             switch (curTok) {
             case Token::Vertex: {
                 Vert *v = parseVertex(currentLine);
-                 mesh->getVertices().push_back(*v);
+                mesh->getVertices().push_back(*v);
                 break;
             }
             case Token::Face: {
@@ -51,7 +51,7 @@ namespace potato {
         return mesh;
     }
 
-    Vert* parseVertex(const string &line) { // throws invalid_argument
+    Vert *parseVertex(const string &line) { // throws invalid_argument
         stringstream walker(line);
         string       v;
         if (!walker.eof()) {
@@ -61,7 +61,7 @@ namespace potato {
         // If theres no W cordinate than the default is 1, otherwise it'll get
         // overwritten with whatever is in the file.
         vector<string> vals = {"", "", ""};
-        int   i    = 0;
+        int            i    = 0;
 
         while (i < vals.size() && !walker.eof()) {
             walker >> vals[i];
@@ -92,13 +92,13 @@ namespace potato {
         while (!walker.eof()) {
             string curIndices;
             walker >> curIndices;
-            int currentIndex = 0;
+            int          currentIndex = 0;
             stringstream currentNumber;
             for (int i = 0; i < curIndices.size(); ++i) {
                 if (curIndices.at(i) == '/') {
                     if (currentNumber.str() != "") {
                         unsigned int num = std::stoi(currentNumber.str());
-                        num = num - 1;
+                        num              = num - 1;
                         switch (currentIndex) {
                         case 0:
                             newFace->indices.push_back(num);
@@ -144,6 +144,10 @@ namespace potato {
                 return Token::Normals;
             } else if (token == "s") {
                 return Token::SmoothShading;
+            } else if (token == "mtllib") {
+                return Token::Empty;
+            } else if (token == "usemtl") {
+                return Token::Empty;
             } else if (token == "") {
                 return Token::Empty;
             } else {
