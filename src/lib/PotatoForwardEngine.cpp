@@ -5,11 +5,14 @@
 
 PotatoForwardEngine::PotatoForwardEngine(int windowWidth, int windowHeight) : PotatoRenderEngine(windowWidth, windowHeight) {
     // For now, generate simple fan
-    PolyMesh *m = generateConvexPolygon(Vec3f(windowWidth/2.0f, windowHeight/2.0f, 0.0f),
+    //PolyMesh *m = generateConvexPolygon(Vec3f(windowWidth/2.0f, windowHeight/2.0f, 0.0f),
+    //                                windowHeight/3.0f, GEO_FAN_BLADE_CNT);
+    PolyMesh *m = generateTestFan(Vec3f(windowWidth/2.0f, windowHeight/2.0f, 0.0f),
                                     windowHeight/3.0f, GEO_FAN_BLADE_CNT);
     allMeshes.push_back(m);
     //return;
     
+    /*
     vector<Face> faces = m->getFaces().at(0).faceToTriangles(m->getVertices());
     //vector<Face> faces;
 
@@ -22,6 +25,7 @@ PotatoForwardEngine::PotatoForwardEngine(int windowWidth, int windowHeight) : Po
     //        cout << "indices i " << i << " vert pos " << split->getVertices().at(i).pos << endl;
     //    }
     //}
+    */
 }
 
 PotatoForwardEngine::~PotatoForwardEngine() { 
