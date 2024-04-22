@@ -128,6 +128,8 @@ namespace potato {
         vector<Face> faces{};
         unsigned int id{};
 
+        float minY{}, maxY{}, minX{}, maxX{}, minZ{}, maxZ{};
+
       public:
         PolyMesh() : Object3D(){};
         PolyMesh(const PolyMesh &other) : Object3D() {
@@ -145,6 +147,7 @@ namespace potato {
         vector<Vert> &getVertices() { return vertices; };
         vector<Face> &getFaces() { return faces; };
         void          setId(unsigned int newId) { this->id = newId; }
+        void calculateMinMaxs();
     };
 
     // Compute bounds for single face

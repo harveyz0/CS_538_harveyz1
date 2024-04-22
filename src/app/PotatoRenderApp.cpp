@@ -15,11 +15,13 @@
 #include "MeshGLData.hpp"
 #include "GLSetup.hpp"
 #include "Shader.hpp"
+#include "PotatoRayEngine.hpp"
 #include "PotatoRenderEngine.hpp"
 #include "PotatoForwardEngine.hpp"
 #include "PotatoExampleEngine.hpp"
 #include "OBJModel.hpp"
 #include "Vector.hpp"
+#include "objects.hpp"
 using namespace std;
 using namespace tinyxml2;
 
@@ -29,6 +31,7 @@ glm::vec2 lastMouse;
 // Set window width and height
 int windowWidth = 800;
 int windowHeight = 600;
+float aspect_ratio = float(windowWidth) / float(windowHeight);
 
 // Create very simple mesh: a quad (4 vertices, 6 indices, 2 triangles)
 void createSimpleQuad(Mesh &m) {
@@ -264,8 +267,9 @@ int main(int argc, char **argv) {
 	} 
 	else if(RENDERER_CHOICE == FORWARD_RENDERER) { 
     	engine = new PotatoForwardEngine(windowWidth, windowHeight); 
-	} 
-	else { 
+	} else if(RENDERER_CHOICE == RAY_RENDER) {
+		engine = new PotatoRayEngine(windowWidth, windowHeight);
+	} else { 
 		throw std::invalid_argument("Bad renderer choice!"); 
 	} 
 	// end render check 

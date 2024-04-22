@@ -83,7 +83,7 @@ void PotatoRenderEngine::drawingLoop() {
         Image<Vec3f> *drawBuffer = backBuffer; 
  
         // Clear drawing buffer 
-        drawBuffer->clear(); //(Vec3f(0,0,0)); 
+        //drawBuffer->clear(); //(Vec3f(0,0,0)); 
  
         // Draw our items 
         renderToDrawBuffer(drawBuffer); 
