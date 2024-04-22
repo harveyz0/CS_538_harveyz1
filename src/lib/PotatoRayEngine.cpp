@@ -1,16 +1,27 @@
 #include "PotatoRayEngine.hpp"
 #include "Settings.hpp"
 #include "interval.hpp"
+#include "materials.hpp"
 #include "objects.hpp"
+#include "sphere.hpp"
 #include <array>
 #include <memory>
 
 namespace potato {
     PotatoRayEngine::PotatoRayEngine(int windowWidth, int windowHeight)
         : PotatoRenderEngine(windowWidth, windowHeight) {
-        this->all.add(make_shared<Sphere>(Vec3d(0.0, 0.0, -1.0), 0.5));
-        this->all.add(make_shared<Sphere>(Vec3d(0.0, -100.5, -1.0), 100,
-                                          Vec3d(0.0, 1.0, 0.0)));
+
+        auto ground = make_shared<Lambertian>(Vec3d(0.8,0.8,0.0));
+        auto center = make_shared<Lambertian>(Vec3d(0.1,0.2,0.5));
+        auto left = make_shared<Metal>(Vec3d(0.8,0.8,0.8));
+        auto right = make_shared<Metal>(Vec3d(0.8,0.6,0.2));
+
+        this->all.add(make_shared<Sphere>(Vec3d(0.0,-100.5, -1.0), zero, zero, 100.0, ground));
+        this->all.add(make_shared<Sphere>(Vec3d(0.0,0.0, -1.2), zero, zero, 0.5, center));
+        this->all.add(make_shared<Sphere>(Vec3d(-1.0,0.0, -1.0), zero, zero, 0.5, left));
+        this->all.add(make_shared<Sphere>(Vec3d(1.0,0.0, -1.0), zero, zero, 0.5, right));
+        //this->all.add(make_shared<Sphere>(Vec3d(0.0, 0.0, -1.0), zero, Vec3d(1.0,1.0,1.0), 0.5));
+        //this->all.add(make_shared<Sphere>(Vec3d(0.0, -100.5, -1.0), zero, Vec3d(0.0, 1.0, 0.0), 100.0));
 
         this->camera = Camera(windowWidth, windowHeight);
         this->camera.initialize();

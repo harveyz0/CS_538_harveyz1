@@ -8,12 +8,15 @@
 
 namespace potato {
 
+    class Material;
+
     template <typename T> class HitRecord {
       public:
         Vec3<T> position;
         Vec3<T> normal;
         double  t{};
         bool    frontFace{};
+        shared_ptr<Material> material{};
 
         bool    setFaceNormal(const Ray &ray, const Vec3<T> outwardNormal) {
             // The outwardNormal is required to be of unit length.
@@ -33,37 +36,16 @@ namespace potato {
         Vec3d position{};
         Vec3d emission{};
         object() = default;
-        object(Vec3d position, Vec3d emission, Vec3d color)
-            : position(position), emission(emission), color(color) {}
+        object(Vec3d position_, Vec3d emission_, Vec3d color_)
+            : position(position_), emission(emission_), color(color_) {}
         virtual ~object() = default;
-
 
         virtual bool  intersect(const Ray         &ray,
                                 Interval interval,
                                 HitRecord<double> &rec) const = 0;
         virtual Vec3d getColor(const Ray &ray, const Vec3d &normal) const {
-    cout << "In this color" << endl;
             return (normal + this->color) * 0.5;
         };
-    };
-
-    class Sphere : public object {
-      public:
-        double radius;
-
-        Sphere() = default;
-        Sphere(Vec3d position, double radius)
-            : object(position, Vec3d(0.0, 0.0, 0.0), Vec3d(1.0, 1.0, 1.0)),
-              radius(radius) {}
-        Sphere(Vec3d position, double radius, Vec3d color)
-            : object(position, Vec3d(0.0, 0.0, 0.0), color),
-              radius(radius) {}
-        ~Sphere() = default;
-        double       intersection(const Ray &ray) const;
-        virtual bool intersect(const Ray         &ray, Interval interval,
-                               HitRecord<double> &rec) const override;
-
-        Vec3d getColor(const Ray &ray, const Vec3d &normal) const override;
     };
 
     class AllObjects {

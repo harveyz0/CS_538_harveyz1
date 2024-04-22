@@ -1,6 +1,8 @@
 
 #pragma once
+#include "Settings.hpp"
 #include <cmath>
+#include <complex>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -276,12 +278,20 @@ namespace potato {
             auto len = length();
             return {x / len, y / len, z / len};
         };
+
+        bool nearZero() const {
+            auto s = 1e-8;
+            return (fabs(this->x) < s) && (fabs(this->y) < s) &&
+                   (fabs(this->z) < s);
+        };
     };
 
     using Vec3f = Vec3<float>;
     using Vec3i = Vec3<int>;
     using Vec3d = Vec3<double>;
     using Vec3u = Vec3<unsigned char>;
+
+    static const Vec3<double> zero(0.0, 0.0, 0.0);
 
     // ADDITIONAL FUNCTIONS
     template <typename T> Vec3<T> minV(Vec3<T> a, Vec3<T> b) {
@@ -290,6 +300,36 @@ namespace potato {
         c.y = std::min(a.y, b.y);
         c.z = std::min(a.z, b.z);
         return c;
+    };
+
+    static Vec3<double> randomVec3() {
+        return Vec3<double>(random_double(), random_double(), random_double());
+    };
+
+    static Vec3<double> randomVec3(double min, double max) {
+        return Vec3<double>(random_double(min, max), random_double(min, max),
+                            random_double(min, max));
+    };
+
+    inline Vec3<double> randomInUnitSphere() {
+        while (true) {
+            auto p = randomVec3();
+            if (p.length_squared() < 1)
+                return p;
+        }
+    };
+
+    inline Vec3<double> randomNormalizeVec3() {
+        return randomInUnitSphere().normalize();
+    };
+
+    inline Vec3<double> randomOnHemisphere(const Vec3<double> &normal) {
+        Vec3<double> onSphere = randomNormalizeVec3();
+        if (onSphere.dot(normal) > 0.0) {
+            return onSphere;
+        } else {
+            return onSphere * -1;
+        }
     };
 
     template <typename T> Vec3<T> maxV(Vec3<T> a, Vec3<T> b) {
@@ -322,5 +362,10 @@ namespace potato {
         vi.y = (int)std::round(v.y);
         vi.z = (int)std::round(v.z);
         return vi;
+    };
+
+    template <typename T>
+    inline Vec3<T> reflect(const Vec3<T> &v, const Vec3<T> &n) {
+        return v - n * v.dot(n) * 2;
     };
 }; // namespace potato

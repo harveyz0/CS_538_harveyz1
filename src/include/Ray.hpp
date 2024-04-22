@@ -7,6 +7,7 @@
 namespace potato {
     class Ray {
       public:
+        Ray() {};
         Vec3d origin{};
         Vec3d direction{};
        // double tMin{0.0};

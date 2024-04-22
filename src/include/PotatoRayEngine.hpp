@@ -4,6 +4,7 @@
 #include "Settings.hpp"
 #include "camera.hpp"
 #include "objects.hpp"
+#include "sphere.hpp"
 
 namespace potato {
     class PotatoRayEngine : public PotatoRenderEngine {

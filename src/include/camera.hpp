@@ -11,6 +11,7 @@ namespace potato {
         int    imageWidth      = 100;
         int    imageHeight     = 100;
         int    samplesPerPixel = 100;
+        int    maxDepth        = 50;
         void   render(const object &obj);
 
         Camera(int imageWidth, int imageHeight)
@@ -34,7 +35,7 @@ namespace potato {
                                       this->viewportU / 2 - this->viewportV / 2;
             this->pixel00Loc = this->viewportUpperLeft +
                                (this->pixelDeltaU + this->pixelDeltaV) * 0.5;
-            this->worldInterval = Interval(0, infinity);
+            this->worldInterval     = Interval(0, infinity);
             this->pixelSamplesScale = 1.0 / this->samplesPerPixel;
         };
 
@@ -43,7 +44,7 @@ namespace potato {
         Vec3d getRealColor(const Vec3d &color);
 
       private:
-        double pixelSamplesScale;
+        double   pixelSamplesScale;
         Vec3d    center;
         float    viewportHeight{};
         float    viewportWidth{};
@@ -57,8 +58,10 @@ namespace potato {
         Vec3f    pixel00Loc{};
         Interval worldInterval{-infinity, infinity};
 
-        Vec3d    rayColor(const Ray &ray, const AllObjects &obj) const;
-        Vec3d    sampleSquare() const;
-        Ray      getRay(int x, int y) const;
+        // Vec3d    rayColor(const Ray &ray, const AllObjects &obj) const;
+        Vec3d rayColor(const Ray &ray, int maxDepth,
+                       const AllObjects &obj) const;
+        Vec3d sampleSquare() const;
+        Ray   getRay(int x, int y) const;
     };
 }; // namespace potato
