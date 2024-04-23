@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <limits>
+#include <thread>
 
 // Comment to turn off testing
 #define ENABLE_TESTING
@@ -40,6 +41,11 @@
 #define CLIP_TOP         1.0f
 #define CLIP_NEAR        -1.0f
 #define CLIP_FAR         1.0f
+
+// Change this if you don't want the 
+// program to eat every core it can....I'm sure it'll be fine.
+const static auto numThreads = std::thread::hardware_concurrency();
+//const static auto numThreads = 8;
 
 const double  infinity = std::numeric_limits<double>::infinity();
 const double  pi       = 3.1415926535897932385;

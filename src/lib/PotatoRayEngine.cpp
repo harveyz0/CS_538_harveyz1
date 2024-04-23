@@ -48,10 +48,13 @@ namespace potato {
             this->pixel00Loc = this->viewportUpperLeft +
                                (this->pixelDeltaU + this->pixelDeltaV) * 0.5;
             this->worldInterval = Interval(0, infinity);*/
+    this->camera.StartThreads();
     }
 
     void PotatoRayEngine::CameraShooter(Image<Vec3<float>> *buffer) {
-        this->camera.render(this->all, buffer);
+        this->camera.buffer = buffer;
+    this->camera.allObjects = &this->all;
+        //this->camera.render(this->all, buffer);
     }
 
     void PotatoRayEngine::ShootRays(const int &maxWidth, const int &maxHeight,

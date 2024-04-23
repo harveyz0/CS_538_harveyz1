@@ -2,22 +2,39 @@
 
 #include "Buffer.hpp"
 #include "Ray.hpp"
+#include "Settings.hpp"
 #include "objects.hpp"
+#include <mutex>
+#include <numeric>
+#include <string>
+#include <thread>
+#include <vector>
 
 namespace potato {
     class Camera {
       public:
-        double aspectRatio     = 1.0;
-        int    imageWidth      = 100;
-        int    imageHeight     = 100;
-        int    samplesPerPixel = 100;
-        int    maxDepth        = 50;
-        void   render(const object &obj);
+        double                aspectRatio     = 1.0;
+        int                   imageWidth      = 100;
+        int                   imageHeight     = 100;
+        int                   samplesPerPixel = 50;
+        int                   maxDepth        = 100;
+        Image<Vec3<float>>   *buffer          = nullptr;
+        AllObjects           *allObjects      = nullptr;
+        void                  render(const object &obj);
+
+        vector<std::thread *> workers;
+        vector<int>           rowsLeft;
+        mutex *rowsLock;
+
+        std::thread          *manager = nullptr;
+
+        bool                  frameDone = false;
 
         Camera(int imageWidth, int imageHeight)
             : imageWidth(imageWidth), imageHeight(imageHeight) {}
 
         void initialize() {
+            this->rowsLock = new mutex();
             this->aspectRatio    = float(imageWidth) / float(imageHeight);
             this->viewportHeight = 2.0;
             this->viewportWidth =
@@ -37,6 +54,35 @@ namespace potato {
                                (this->pixelDeltaU + this->pixelDeltaV) * 0.5;
             this->worldInterval     = Interval(0, infinity);
             this->pixelSamplesScale = 1.0 / this->samplesPerPixel;
+
+            this->RefillRowsLeft();
+        };
+
+        void RefillRowsLeft() {
+            this->rowsLeft.clear();
+            this->rowsLeft.reserve(this->imageHeight);
+            // std::iota(this->rowsLeft.begin(), this->rowsLeft.end(), 0);
+            for (int i = 0; i < this->imageHeight; ++i) {
+                this->rowsLeft.push_back(i);
+            }
+            // cout << this->rowsLeft << " POOOOOOPSSS" << endl;
+        };
+
+        void StartThreads() {
+        if(this->manager != nullptr){ return;}
+            this->manager =
+                new std::thread(&Camera::MonitorFrameCompletion, this);
+            int currentTop = 0;
+            int perThread  = this->imageHeight / numThreads;
+            for (int i = 0; i < numThreads - 1; ++i) {
+                workers.push_back(new std::thread(&Camera::RunWorker, this,
+                                                  currentTop,
+                                                  currentTop + perThread));
+                currentTop += perThread;
+            }
+            workers.push_back(new std::thread(&Camera::RunWorker, this,
+                                              currentTop, this->imageHeight));
+            cout << "Made some threads " << workers.size() << endl;
         };
 
         void  render(const AllObjects &obj, Image<Vec3f> *buffer);
@@ -63,5 +109,8 @@ namespace potato {
                        const AllObjects &obj) const;
         Vec3d sampleSquare() const;
         Ray   getRay(int x, int y) const;
+        void  DoColumn(int y);
+        void  RunWorker(int beginningY, int endingY);
+        void  MonitorFrameCompletion();
     };
 }; // namespace potato
