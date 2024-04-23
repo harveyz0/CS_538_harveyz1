@@ -1,0 +1,30 @@
+* Overview
+- Path Tracing
+- This whole code base was part of CS538 at SUNY Polytechnic taught by Dr Michael J. Reale for Spring 2024
+- Student: Zachary Harvey
+- The PotatoRenderEngine has been modified to run a path tracer.
+* Running the Project
+- The built binary will come out in the build directory under the name of PotatoRenderEngine
+- No command line arguments
+
+* Core Files
+- PotatoRayEngine.{hpp,cpp}
+  + Holds the basic ray tracer and brings all the pieces together.
+- Ray.hpp
+  + Just holds the origin and direction for a ray
+- camera.{hpp,cpp}
+  + The camera class largely holds all the information about the world and ends up being where most of the actual work is done
+- interval.hpp
+  + This just holds basically the min and max t values
+- objects.{hpp,cpp}
+  + This is the geometry that represents all the drawable and ray hittable objects.
+
+* Dependencies
+- CMake GLFW GLEW GLM Assimp Vulkan SDK and doctest
+
+
+* References
+- See [[file:docs/final-project.bib][Final Project Bibtex]] 
+- Largely [[https://raytracing.github.io/books/RayTracingInOneWeekend.html#movingcameracodeintoitsownclass][Ray Tracing In One Weekend]] is what I really followed.
+- Ideas were also pulled from Computer Graphics from Scratch by Gabriel Gambetta
+- As well as Computer Graphics Principles and Practice by John Hughes
