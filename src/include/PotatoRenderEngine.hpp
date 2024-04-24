@@ -48,7 +48,7 @@ class PotatoRenderEngine {
         PotatoRenderEngine(int windowWidth, int windowHeight); 
         virtual ~PotatoRenderEngine(); 
         // Start thread running 
-        void initialize(); 
+        virtual void initialize(); 
         // Stop thread 
         void shutdown(); 
         // Copies display buffer to window texture 

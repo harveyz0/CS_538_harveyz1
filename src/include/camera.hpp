@@ -13,28 +13,50 @@
 namespace potato {
     class Camera {
       public:
-        double                aspectRatio     = 1.0;
-        int                   imageWidth      = 100;
-        int                   imageHeight     = 100;
-        int                   samplesPerPixel = 50;
-        int                   maxDepth        = 100;
-        Image<Vec3<float>>   *buffer          = nullptr;
-        AllObjects           *allObjects      = nullptr;
+        double aspectRatio               = 1.0;
+        int    imageWidth                = 100;
+        int    imageHeight               = 100;
+        // This specifies how many ray we shoot out per pixel;
+        int samplesPerPixel              = 50;
+        // This will tell us how many bounces a ray can have;
+        int                   maxDepth   = 10;
+        //These two are only here so that the threads can get at them
+        Image<Vec3<float>>   *buffer     = nullptr;
+        AllObjects           *allObjects = nullptr;
         void                  render(const object &obj);
 
         vector<std::thread *> workers;
         vector<int>           rowsLeft;
-        mutex *rowsLock;
+        mutex                *rowsLock;
 
-        std::thread          *manager = nullptr;
+        std::thread          *manager   = nullptr;
 
         bool                  frameDone = false;
 
         Camera(int imageWidth, int imageHeight)
-            : imageWidth(imageWidth), imageHeight(imageHeight) {}
+            : imageWidth(imageWidth), imageHeight(imageHeight) {
+            cout << "Making new camera " << endl;
+        }
+        ~Camera() {
+            cout << "Destroying camera " << endl;
+            this->frameDone = true;
+
+            for (thread *t : this->workers) {
+                t->join();
+
+                delete t;
+            }
+            this->workers.clear();
+            if (this->manager != nullptr) {
+                this->manager->join();
+                delete this->manager;
+            }
+            delete this->rowsLock;
+            this->rowsLeft.clear();
+        };
 
         void initialize() {
-            this->rowsLock = new mutex();
+            this->rowsLock       = new mutex();
             this->aspectRatio    = float(imageWidth) / float(imageHeight);
             this->viewportHeight = 2.0;
             this->viewportWidth =
@@ -69,7 +91,7 @@ namespace potato {
         };
 
         void StartThreads() {
-        if(this->manager != nullptr){ return;}
+            // if(this->manager != nullptr){ return;}
             this->manager =
                 new std::thread(&Camera::MonitorFrameCompletion, this);
             int currentTop = 0;
@@ -90,6 +112,10 @@ namespace potato {
         Vec3d getRealColor(const Vec3d &color);
 
       private:
+        // I don't think we need this value as it seems like all it does is
+        // makes the image darker.
+        // I think it has something to do with gamma correction but I don't
+        // think that's a problem we have with this path tracer.
         double   pixelSamplesScale;
         Vec3d    center;
         float    viewportHeight{};

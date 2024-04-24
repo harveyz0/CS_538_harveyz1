@@ -29,6 +29,7 @@ namespace potato {
         virtual ~PotatoRayEngine();
         void         ShootRays(const int &maxWidth, const int &maxHeight,
                                Image<Vec3f> *buffer);
+        virtual void initialize() override; 
         virtual void renderToDrawBuffer(Image<Vec3f> *drawBuffer);
         void CameraShooter(Image<Vec3<float>> *buffer);
     };

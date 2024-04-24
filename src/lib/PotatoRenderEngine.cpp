@@ -44,6 +44,7 @@ PotatoRenderEngine::~PotatoRenderEngine() {
  
 void PotatoRenderEngine::initialize() { 
     // Create and start thread 
+    cout << "PotatoRenderEngine" << endl;
     drawThreadRunning = true; 
     drawThread = new thread(&PotatoRenderEngine::drawingLoop, this); 
 } 

@@ -7,6 +7,9 @@
 - The built binary will come out in the build directory under the name of PotatoRenderEngine
 - No command line arguments
 
+* Settings
+Most of the stuff in Settings.hpp does not do anything for the path tracer. There is one though, numThreads, will default to the number of cores a machine has. The only other one thats of interest of changing is in camera.hpp. samplesPerPixel does what it says on the tin. We split a pixel based on that. 
+
 * Core Files
 - PotatoRayEngine.{hpp,cpp}
   + Holds the basic ray tracer and brings all the pieces together.

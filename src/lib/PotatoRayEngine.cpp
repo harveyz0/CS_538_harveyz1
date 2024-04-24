@@ -1,4 +1,5 @@
 #include "PotatoRayEngine.hpp"
+#include "PotatoRenderEngine.hpp"
 #include "Settings.hpp"
 #include "interval.hpp"
 #include "materials.hpp"
@@ -48,12 +49,18 @@ namespace potato {
             this->pixel00Loc = this->viewportUpperLeft +
                                (this->pixelDeltaU + this->pixelDeltaV) * 0.5;
             this->worldInterval = Interval(0, infinity);*/
-    this->camera.StartThreads();
     }
+
+    void PotatoRayEngine::initialize() {
+    PotatoRenderEngine::initialize();
+    this->camera.StartThreads();
+    cout << "PotatoRayEngine" << endl;
+
+};
 
     void PotatoRayEngine::CameraShooter(Image<Vec3<float>> *buffer) {
         this->camera.buffer = buffer;
-    this->camera.allObjects = &this->all;
+        this->camera.allObjects = &this->all;
         //this->camera.render(this->all, buffer);
     }
 

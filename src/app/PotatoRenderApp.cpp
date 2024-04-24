@@ -275,7 +275,7 @@ int main(int argc, char **argv) {
 	// end render check 
  
 	engine->initialize(); 
- 
+
 	while (!glfwWindowShouldClose(window)) { 
 		// Set viewport size 
 		int fwidth, fheight; 

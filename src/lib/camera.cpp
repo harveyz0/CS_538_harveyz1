@@ -48,7 +48,8 @@ namespace potato {
             this->buffer->setPixel(x, y,
                                    this->rayColor(this->getRay(x, y),
                                                   this->maxDepth,
-                                                  *this->allObjects));
+                                                  *this->allObjects)); 
+                                       //this->pixelSamplesScale);
         }
     };
 
@@ -59,11 +60,11 @@ namespace potato {
             if (this->rowsLeft.size() == 0) {
                 continue;
             }
-        this->rowsLock->lock();
+            this->rowsLock->lock();
             int currentRow = this->rowsLeft.at(this->rowsLeft.size() - 1);
             this->rowsLeft.pop_back();
-        this->rowsLock->unlock();
-        //for(int y = beginningY; y < endingY; ++y)
+            this->rowsLock->unlock();
+            // for(int y = beginningY; y < endingY; ++y)
             this->DoColumn(currentRow);
         }
     };
