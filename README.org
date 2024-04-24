@@ -10,17 +10,29 @@
 * Settings
 Most of the stuff in Settings.hpp does not do anything for the path tracer. There is one though, numThreads, will default to the number of cores a machine has. The only other one thats of interest of changing is in camera.hpp. samplesPerPixel does what it says on the tin. We split a pixel based on that. 
 
+* Running the project
+- Build the project with `cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -S$PROJ_DIR -B$PROJ_DIR/build -G Unix\ Makefiles`
+- You can also build with the included [[file:build.sh][build.sh]] file
+- ./build/PotatoRenderApp is the executable
+
 * Core Files
 - PotatoRayEngine.{hpp,cpp}
   + Holds the basic ray tracer and brings all the pieces together.
 - Ray.hpp
   + Just holds the origin and direction for a ray
 - camera.{hpp,cpp}
-  + The camera class largely holds all the information about the world and ends up being where most of the actual work is done
+  + The camera class largely holds all the information about the world and ends up being where most of the actual work is done. There are some settings in camera.hpp that you'll probably want to look at.
 - interval.hpp
   + This just holds basically the min and max t values
 - objects.{hpp,cpp}
   + This is the geometry that represents all the drawable and ray hittable objects.
+- sphere.{hpp,cpp}
+  + This just defines a sphere with a material so we can have an object.
+- materials.hpp
+  + This just defines materials to use. Most of the interesting stuff happens here.
+
+- Existing files
+Most existing files have been left largely alone. I had to modify PotatoRenderEngine  to enable virtual inhertience. PotatoRenderApp I removed double buffering and VSYNC. The threads that actually figure out the color just run forever all writing to a single buffer. If you turn on double buffering then nothing gets drawn ever. There's a couple of additions in Settings.hpp but the path tracer doesn't use most of the things in there.
 
 * Dependencies
 - CMake GLFW GLEW GLM Assimp Vulkan SDK and doctest
