@@ -3,6 +3,7 @@
 #include "Vector.hpp"
 #include "objects.hpp"
 namespace potato {
+// A lot of this file comes from https://raytracing.github.io/books/RayTracingInOneWeekend.html In the metal section
 
     class Material {
       public:

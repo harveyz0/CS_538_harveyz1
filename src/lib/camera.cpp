@@ -10,7 +10,7 @@
 #include <thread>
 
 namespace potato {
-
+// A lot of this file comes from https://raytracing.github.io/books/RayTracingInOneWeekend.html
     Vec3d Camera::rayColor(const Ray &ray, int depth,
                            const AllObjects &obj) const {
         if (depth <= 0)
