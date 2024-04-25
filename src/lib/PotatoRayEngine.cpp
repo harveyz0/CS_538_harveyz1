@@ -24,8 +24,10 @@ namespace potato {
         //this->all.add(make_shared<Sphere>(Vec3d(0.0, 0.0, -1.0), zero, Vec3d(1.0,1.0,1.0), 0.5));
         //this->all.add(make_shared<Sphere>(Vec3d(0.0, -100.5, -1.0), zero, Vec3d(0.0, 1.0, 0.0), 100.0));
 
-        this->camera = Camera(windowWidth, windowHeight);
+    this->camera.imageWidth = windowWidth;
+    this->camera.imageHeight = windowHeight;
         this->camera.initialize();
+
         // this->objects.push_back(
         // Sphere(Vec3d(windowWidth / 2.0, windowHeight / 2.0, -1.0), 100.0));
         // Sphere(Vec3d(windowWidth / 2.0, windowHeight / 2.0, 1.0), 100.0));

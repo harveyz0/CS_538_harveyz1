@@ -21,7 +21,7 @@ namespace potato {
         Vec3f viewportUpperLeft{};
         Vec3f pixel00Loc{};
         Interval worldInterval{-infinity, infinity};
-        Camera camera{100,100};
+        Camera camera; //{100,100};
       public:
         //vector<Sphere> objects{};
         AllObjects all{};

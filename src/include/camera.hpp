@@ -33,6 +33,7 @@ namespace potato {
 
         bool                  frameDone = false;
 
+        Camera() {};
         Camera(int imageWidth, int imageHeight)
             : imageWidth(imageWidth), imageHeight(imageHeight) {
             cout << "Making new camera " << endl;
